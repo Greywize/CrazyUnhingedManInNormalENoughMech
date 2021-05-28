@@ -58,23 +58,23 @@ ScriptsOnlyBuild:
     - Class: 109
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11274}
+      Script: {instanceID: 11296}
     - Class: 114
-      Script: {instanceID: 11300}
+      Script: {instanceID: 11322}
     - Class: 114
-      Script: {instanceID: 11398}
+      Script: {instanceID: 11422}
     - Class: 114
-      Script: {instanceID: 11966}
+      Script: {instanceID: 11992}
     - Class: 114
-      Script: {instanceID: 12078}
+      Script: {instanceID: 12104}
     - Class: 114
-      Script: {instanceID: 13124}
+      Script: {instanceID: 13160}
     - Class: 114
-      Script: {instanceID: 13194}
+      Script: {instanceID: 13230}
     - Class: 114
-      Script: {instanceID: 13404}
+      Script: {instanceID: 13444}
     - Class: 114
-      Script: {instanceID: 13546}
+      Script: {instanceID: 13586}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -146,6 +146,12 @@ ScriptsOnlyBuild:
     assemblyName: Oculus.VR.dll
     namespaceName: 
     className: OVRGazePointer
+  - hash:
+      serializedVersion: 2
+      Hash: 558c1525c5d314876552b7239a9e6947
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Projectile
   - hash:
       serializedVersion: 2
       Hash: e7a73f5f78ba6445195ec23b74a1ce2d
@@ -508,6 +514,12 @@ ScriptsOnlyBuild:
     className: P2PNetworkBall
   - hash:
       serializedVersion: 2
+      Hash: 22621116f9a0131f5787a82302b42897
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PlayerController
+  - hash:
+      serializedVersion: 2
       Hash: 22dc216204f0e65ce2161bd7b6ecf06b
     assemblyName: Oculus.VR.dll
     namespaceName: 
@@ -754,6 +766,12 @@ ScriptsOnlyBuild:
     className: MatchController
   - hash:
       serializedVersion: 2
+      Hash: 411544be6f2e39e058f759a3e086dbc3
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PhysicsPusher
+  - hash:
+      serializedVersion: 2
       Hash: f8438efc679de058330bd3e038df1378
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
@@ -782,6 +800,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: GraphicRaycaster
+  - hash:
+      serializedVersion: 2
+      Hash: 51bdb0c2c7847de92c39116a7e851480
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: CameraController
   - hash:
       serializedVersion: 2
       Hash: 34c971ccf5a4d4c276f7753251cba95d
@@ -818,6 +842,12 @@ ScriptsOnlyBuild:
     assemblyName: Oculus.VR.dll
     namespaceName: UnityEngine.EventSystems
     className: OVRInputModule
+  - hash:
+      serializedVersion: 2
+      Hash: 85102dcaaece4124c6af1b8e5cf7d93b
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SimpleLocomotion
   - hash:
       serializedVersion: 2
       Hash: 11206112ec687db2172d3c94b2bdc0f2
@@ -862,7 +892,7 @@ ScriptsOnlyBuild:
     className: TestScript
   - hash:
       serializedVersion: 2
-      Hash: 52068401e1c44f160fd4c63b8671a5fc
+      Hash: 43c530ffc7e102d6dcca9497cf25dbc9
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PointerOptions

@@ -1011,8 +1011,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointer: {fileID: 259652831}
   boxSpeed: 25
-  moveSpeed: 25
-  turnSpeed: 60
+  moveSpeed: 18
+  turnAmount: 30
 --- !u!4 &1348334368
 Transform:
   m_ObjectHideFlags: 0
