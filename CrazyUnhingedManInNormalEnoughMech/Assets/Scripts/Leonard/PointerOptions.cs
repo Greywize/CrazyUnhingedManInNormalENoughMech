@@ -10,8 +10,9 @@ public class PointerOptions : MonoBehaviour
     private float initialMoveSpeed = 0;
     public float boxSpeed = 10.0f;
     public float moveSpeed = 3;
+    public float turnSpeed = 3;
     private LineRenderer lineRenderer;
-    private int toggleOptions = 1;
+    private int toggleOptions = 0;
 
     void Start()
     {
@@ -26,7 +27,7 @@ public class PointerOptions : MonoBehaviour
         Ray ray = new Ray(pointer.position, pointer.forward);
         RaycastHit hit;
         lineRenderer.SetPosition(0, ray.origin);
-        lineRenderer.SetPosition(1, ray.origin + 100 * ray.direction);
+        lineRenderer.SetPosition(1, ray.origin + 2500 * ray.direction);
 
         if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger))
         {
@@ -42,14 +43,17 @@ public class PointerOptions : MonoBehaviour
                     }
                 }
             }
-            if (toggleOptions == 0)
-            {
-                Vector3 fwd = ray.direction;
-                fwd.y = 0;
-                fwd.Normalize();
-                playerTransform.position += fwd * moveSpeed * Time.deltaTime;
-            }
         }
+
+        Vector3 forward = playerTransform.forward;
+        forward.y = 0;
+        forward.Normalize();
+        Vector3 forwardRight = playerTransform.right;
+        Vector2 touchpad = OVRInput.Get(OVRInput.Axis2D.PrimaryTouchpad);
+        playerTransform.position += playerTransform.forward * touchpad.y * moveSpeed * Time.deltaTime;
+        playerTransform.eulerAngles += Vector3.up * touchpad.x * turnSpeed * Time.deltaTime;
+        //playerTransform.forward += new Vector3(forward.x * (turnSpeed / 10) * Time.deltaTime, 0, 0);
+        //playerTransform.position += forward * moveSpeed * Time.deltaTime;
     }
 
     public void ChangeToggleOption(int num)
