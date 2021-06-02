@@ -49,7 +49,6 @@ public class PointerOptions : MonoBehaviour
         Vector3 forward = playerTransform.forward;
         forward.y = 0;
         forward.Normalize();
-        Vector3 forwardRight = playerTransform.right;
         Vector2 touchpad = OVRInput.Get(OVRInput.Axis2D.PrimaryTouchpad);
 
         if (touchpad.y > 0)

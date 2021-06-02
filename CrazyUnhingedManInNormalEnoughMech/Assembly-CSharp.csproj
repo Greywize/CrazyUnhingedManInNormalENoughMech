@@ -250,7 +250,27 @@
     <Compile Include="Assets\Scripts\Eduardo\Projectile.cs" />
     <Compile Include="Assets\Scripts\Eduardo\SimpleLocomotion.cs" />
     <Compile Include="Assets\Scripts\Leonard\CrossPlatformSwitcher.cs" />
+    <Compile Include="Assets\Scripts\Leonard\Player.cs" />
     <Compile Include="Assets\Scripts\Leonard\PointerOptions.cs" />
+    <Compile Include="Assets\Zach's Package\CameraController.cs" />
+    <Compile Include="Assets\Zach's Package\FastIK\Scripts\FastIK\FastIKCCD.cs" />
+    <Compile Include="Assets\Zach's Package\FastIK\Scripts\FastIK\FastIKFabric.cs" />
+    <Compile Include="Assets\Zach's Package\FastIK\Scripts\FastIK\FastIKLook.cs" />
+    <Compile Include="Assets\Zach's Package\FastIK\Scripts\Sample\SampleProcedualAnimation.cs" />
+    <Compile Include="Assets\Zach's Package\FastIK\Scripts\Sample\SampleRotator.cs" />
+    <Compile Include="Assets\Zach's Package\FastIK\Scripts\Sample\SampleSinMover.cs" />
+    <Compile Include="Assets\Zach's Package\Lerp.cs" />
+    <Compile Include="Assets\Zach's Package\SpiderMove.cs" />
+    <Compile Include="Assets\Zach's Package\StickyMover.cs" />
+    <Compile Include="Assets\Zach's Package\Terrain\Pathfinding\PathManager.cs" />
+    <Compile Include="Assets\Zach's Package\Terrain\Pathfinding\Tile.cs" />
+    <Compile Include="Assets\Zach's Package\Terrain\TerrainGen\ExampleUses\CharacterMover.cs" />
+    <Compile Include="Assets\Zach's Package\Terrain\TerrainGen\ExampleUses\ExampleSpawner.cs" />
+    <Compile Include="Assets\Zach's Package\Terrain\TerrainGen\Generation\CubeGenerator.cs" />
+    <Compile Include="Assets\Zach's Package\Terrain\TerrainGen\Generation\MeshBuilder.cs" />
+    <Compile Include="Assets\Zach's Package\Terrain\TerrainGen\SimpleCameraController.cs" />
+    <None Include="Assets\Zach's Package\FastIK\Documentation.txt" />
+    <None Include="Assets\Zach's Package\Terrain\TerrainGen\Generation\CubeTerrainShader.shader" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/s181696/source/repos/CrazyUnhingedManInNormalEnoughMech/CrazyUnhingedManInNormalEnoughMech/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>

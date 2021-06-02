@@ -2,7 +2,10 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - CrossPlatformSwitcher
-    - PointerOptions
+    - Player
+    - Projectile
+    - Zacks.Terrain.CubeGenerator
+    - Zacks.Terrain.MeshBuilder
     Oculus.VR.Editor.dll:
     - OVRConfig
     Oculus.VR.dll:
@@ -45,6 +48,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
+    - Class: 54
+      Script: {instanceID: 0}
     - Class: 64
       Script: {instanceID: 0}
     - Class: 65
@@ -58,28 +63,38 @@ ScriptsOnlyBuild:
     - Class: 109
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11296}
+      Script: {instanceID: 11280}
     - Class: 114
-      Script: {instanceID: 11322}
+      Script: {instanceID: 11308}
     - Class: 114
-      Script: {instanceID: 11422}
+      Script: {instanceID: 11346}
     - Class: 114
-      Script: {instanceID: 11992}
+      Script: {instanceID: 11408}
     - Class: 114
-      Script: {instanceID: 12104}
+      Script: {instanceID: 11712}
     - Class: 114
-      Script: {instanceID: 13160}
+      Script: {instanceID: 11888}
     - Class: 114
-      Script: {instanceID: 13230}
+      Script: {instanceID: 11986}
     - Class: 114
-      Script: {instanceID: 13444}
+      Script: {instanceID: 12098}
     - Class: 114
-      Script: {instanceID: 13586}
+      Script: {instanceID: 13174}
+    - Class: 114
+      Script: {instanceID: 13244}
+    - Class: 114
+      Script: {instanceID: 13486}
+    - Class: 114
+      Script: {instanceID: 13606}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
       Script: {instanceID: 0}
     - Class: 135
+      Script: {instanceID: 0}
+    - Class: 136
+      Script: {instanceID: 0}
+    - Class: 143
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
@@ -128,6 +143,12 @@ ScriptsOnlyBuild:
     assemblyName: Oculus.VR.dll
     namespaceName: 
     className: OVRCameraRig
+  - hash:
+      serializedVersion: 2
+      Hash: 232dd801c26df2ca22d9728b570af6d1
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Zacks.Misc
+    className: Lerp
   - hash:
       serializedVersion: 2
       Hash: fb6fbda121d17c03aa85a449ce8e4f22
@@ -232,6 +253,12 @@ ScriptsOnlyBuild:
     className: Image
   - hash:
       serializedVersion: 2
+      Hash: 8860633d29a22ff64e02e18da3716cdf
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Zacks.Terrain.UnityTemplateProjects
+    className: SimpleCameraController
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestTools.TestRunner.Callbacks
@@ -260,6 +287,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: GridLayoutGroup
+  - hash:
+      serializedVersion: 2
+      Hash: c70ee5ab7f7648c2d9be5c27781efb0e
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: DitzelGames.FastIK
+    className: SampleSinMover
   - hash:
       serializedVersion: 2
       Hash: c51d2a1569bb404a12e837742887b609
@@ -323,6 +356,12 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Zacks.Terrain
+    className: MeshBuilder
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: RectMask2D
@@ -350,6 +389,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: Mask
+  - hash:
+      serializedVersion: 2
+      Hash: 707b912bf871e282302e1708c5d35c5c
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Zacks.Terrain
+    className: CubeGenerator
   - hash:
       serializedVersion: 2
       Hash: caa533b001ae39b864ba8425019e2268
@@ -454,6 +499,12 @@ ScriptsOnlyBuild:
     className: OVRHeadsetEmulator
   - hash:
       serializedVersion: 2
+      Hash: df84a98157bbb1a95df4409081cfd0d0
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: DitzelGames.FastIK
+    className: SampleProcedualAnimation
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: Oculus.Platform.Samples.VrHoops
@@ -470,6 +521,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: Oculus.Platform.Samples.VrBoardGame
     className: GamePiece
+  - hash:
+      serializedVersion: 2
+      Hash: 36498a37dfc9f61edaf21a3f79cee236
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Zacks.Terrain
+    className: PathManager
   - hash:
       serializedVersion: 2
       Hash: b3ab2106268377ffe25dd18ac23dca28
@@ -542,6 +599,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestTools.TestRunner.Callbacks
     className: RemoteTestResultSender
+  - hash:
+      serializedVersion: 2
+      Hash: 4039b15c99963b17407f407c49c6f9e0
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Zacks.Terrain
+    className: CharacterMover
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -730,6 +793,12 @@ ScriptsOnlyBuild:
     className: PlatformManager
   - hash:
       serializedVersion: 2
+      Hash: 1de56f549c6e96d112f8fa81d1ee7e4b
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Zacks.Terrain
+    className: ExampleSpawner
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: Oculus.Platform.Samples.VrHoops
@@ -748,6 +817,12 @@ ScriptsOnlyBuild:
     className: PlayerArea
   - hash:
       serializedVersion: 2
+      Hash: 32a987ad9ebfd5a887922068e199caa7
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: DitzelGames.FastIK
+    className: FastIKFabric
+  - hash:
+      serializedVersion: 2
       Hash: dbb1a6051987b4922d94d1caad387b1c
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
@@ -758,6 +833,18 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TextMeshProUGUI
+  - hash:
+      serializedVersion: 2
+      Hash: a08ccc335225b6a90fd610cde5fea9ef
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Zacks.Misc
+    className: SpiderMove
+  - hash:
+      serializedVersion: 2
+      Hash: 283f8b4263e3724727e60bc576c4cc35
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Zacks.Misc
+    className: CameraController
   - hash:
       serializedVersion: 2
       Hash: bbf6c8bbcb3097b51034aeb2a5b7693a
@@ -788,6 +875,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: AudioTrack
+  - hash:
+      serializedVersion: 2
+      Hash: f87040afd2004ca630b679fe5979e779
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Zacks.Misc
+    className: StickyMover
   - hash:
       serializedVersion: 2
       Hash: ce638e2dcac0548a4a3e456d5051c131
@@ -868,6 +961,18 @@ ScriptsOnlyBuild:
     className: ONSPPropagationGeometry
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: DitzelGames.FastIK
+    className: SampleRotator
+  - hash:
+      serializedVersion: 2
+      Hash: 0da877ad61f6f92a3d18e7ff69459997
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: DitzelGames.FastIK
+    className: FastIKLook
+  - hash:
+      serializedVersion: 2
       Hash: 393c59b202b0e7b6b9fee142f9310de1
     assemblyName: Assembly-CSharp.dll
     namespaceName: Oculus.Platform
@@ -908,6 +1013,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_ColorGradient
+  - hash:
+      serializedVersion: 2
+      Hash: 402a3ef8a33dd68adf6ef1f22968a6c3
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Player
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f

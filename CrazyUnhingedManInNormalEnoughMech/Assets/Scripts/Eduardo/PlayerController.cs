@@ -141,5 +141,3 @@ public class PlayerController : MonoBehaviour
             moveRight();
     }
 }
-
-
