@@ -76,7 +76,7 @@ namespace Zacks.Misc
             RaycastHit hit;
 
             //cast a ray locally down
-            if (Physics.Raycast(rayStart, transform.up * -1, out hit, Mathf.Infinity, mask))
+            if (Physics.Raycast(rayStart, transform.up * -1, out hit, 200, mask))
             {
                 //l is our legs target
                 Lerp l = targets[index].GetComponent<Lerp>();

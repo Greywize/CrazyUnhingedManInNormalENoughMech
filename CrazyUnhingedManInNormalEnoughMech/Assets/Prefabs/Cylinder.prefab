@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c755ea0122ec0924bb65ec4ae73e23b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeout: 10
+  timeout: 20
 --- !u!54 &3263084283037754434
 Rigidbody:
   m_ObjectHideFlags: 0

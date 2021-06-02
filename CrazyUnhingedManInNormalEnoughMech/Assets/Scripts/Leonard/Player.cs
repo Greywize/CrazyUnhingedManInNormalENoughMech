@@ -34,11 +34,15 @@ public class Player : MonoBehaviour
     void Start()
     {
         cc = GetComponent<CharacterController>();
-        Vector3 spawnPos = terrain.GridToWorld(new Vector2Int(terrain.width / 2, terrain.length / 2));
-        spawnPos.y += 2;
-        transform.position = spawnPos;
         lineRenderer = GetComponent<LineRenderer>();
         fireTime = 0;
+
+        if (terrain)
+        {
+            Vector3 spawnPos = terrain.GridToWorld(new Vector2Int(terrain.width / 2, terrain.length / 2));
+            spawnPos.y += 2;
+            transform.position = spawnPos;
+        }
     }
 
     void Update()
