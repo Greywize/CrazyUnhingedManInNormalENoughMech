@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Zacks.Terrain
 {
     public class MeshBuilder : MonoBehaviour
     {
+        public bool done = false;
         List<Vector3> positions = new List<Vector3>();
         List<Vector3> normals = new List<Vector3>();
         List<Vector2> uvs = new List<Vector2>();
@@ -129,27 +132,102 @@ namespace Zacks.Terrain
             indices.Add(index + 3);
         }
 
-        public void CreateMesh(bool allocateMemory)
+        public void CreateMesh(bool allocateMemory, GameObject loadingPanel = null, TextMeshProUGUI specifcLoadingText = null, 
+            TextMeshProUGUI loadingPercent = null, Slider loadingBar = null)
+        {
+            if (!loadingPanel)
+            {
+                createMesh(allocateMemory);
+                done = true;
+            }
+            else
+            {
+                StartCoroutine(createMesh(allocateMemory, loadingPanel, specifcLoadingText, loadingPercent, loadingBar));
+            }
+        }
+
+        public void createMesh(bool allocateMemory)
         {
             MeshFilter mf = GetComponent<MeshFilter>();
             Mesh mesh = new Mesh();
 
             if (allocateMemory)
+            {
                 mesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
+            }
 
             mesh.vertices = positions.ToArray();
             mesh.normals = normals.ToArray();
             mesh.uv = uvs.ToArray();
             mesh.colors = colors.ToArray();
-
             mesh.SetTriangles(indices.ToArray(), 0);
             mesh.RecalculateBounds();
             mesh.RecalculateNormals();
             mf.mesh = mesh;
-
             MeshCollider mCol = GetComponent<MeshCollider>();
+
             if (mCol)
+            {
                 mCol.sharedMesh = mf.mesh;
+            }
+        }
+
+        IEnumerator createMesh(bool allocateMemory, GameObject loadingPanel = null, TextMeshProUGUI specifcLoadingText = null, 
+            TextMeshProUGUI loadingPercent = null, Slider loadingBar = null)
+        {
+            specifcLoadingText.text = "Generating mesh";
+            loadingBar.value = 0;
+            loadingPercent.text = loadingBar.value * 100f + "%";
+            yield return new WaitForEndOfFrame();
+            MeshFilter mf = GetComponent<MeshFilter>();
+            Mesh mesh = new Mesh();
+
+            if (allocateMemory)
+            {
+                mesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
+            }
+
+            mesh.vertices = positions.ToArray();
+            loadingBar.value = 0.125f;
+            loadingPercent.text = loadingBar.value * 100f + "%";
+            yield return new WaitForEndOfFrame();
+            mesh.normals = normals.ToArray();
+            loadingBar.value = 0.25f;
+            loadingPercent.text = loadingBar.value * 100f + "%";
+            yield return new WaitForEndOfFrame();
+            mesh.uv = uvs.ToArray();
+            loadingBar.value = 0.375f;
+            loadingPercent.text = loadingBar.value * 100f + "%";
+            yield return new WaitForEndOfFrame();
+            mesh.colors = colors.ToArray();
+            loadingBar.value = 0.5f;
+            loadingPercent.text = loadingBar.value * 100f + "%";
+            yield return new WaitForEndOfFrame();
+            mesh.SetTriangles(indices.ToArray(), 0);
+            loadingBar.value = 0.625f;
+            loadingPercent.text = loadingBar.value * 100f + "%";
+            yield return new WaitForEndOfFrame();
+            mesh.RecalculateBounds();
+            loadingBar.value = 0.75f;
+            loadingPercent.text = loadingBar.value * 100f + "%";
+            yield return new WaitForEndOfFrame();
+            mesh.RecalculateNormals();
+            loadingBar.value = 0.875f;
+            loadingPercent.text = loadingBar.value * 100f + "%";
+            yield return new WaitForEndOfFrame();
+            mf.mesh = mesh;
+            MeshCollider mCol = GetComponent<MeshCollider>();
+
+            if (mCol)
+            {
+                mCol.sharedMesh = mf.mesh;
+            }
+
+            loadingBar.value = 1;
+            loadingPercent.text = loadingBar.value * 100f + "%";
+            yield return new WaitForEndOfFrame();
+            loadingPanel.SetActive(false);
+            done = true;
         }
     }
 }
