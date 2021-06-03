@@ -245,8 +245,15 @@
     <Compile Include="Assets\Oculus\Spatializer\scripts\OculusSpatializerUnity.cs" />
     <Compile Include="Assets\Oculus\Spatializer\scripts\helpers\ONSPReflectionZone.cs" />
     <Compile Include="Assets\Scripts\CrossPlatformSwitcher.cs" />
+    <Compile Include="Assets\Scripts\Eduardo\CameraController.cs" />
+    <Compile Include="Assets\Scripts\Eduardo\PhysicsPusher.cs" />
+    <Compile Include="Assets\Scripts\Eduardo\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\Eduardo\Projectile.cs" />
+    <Compile Include="Assets\Scripts\Eduardo\SimpleLocomotion.cs" />
     <Compile Include="Assets\Scripts\Leonard\Player.cs" />
     <Compile Include="Assets\Scripts\Leonard\PointerOptions.cs" />
+    <Compile Include="Assets\Scripts\Leonard\WeaponHolder.cs" />
+    <Compile Include="Assets\Scripts\Leonard\WeaponScript.cs" />
     <Compile Include="Assets\Scripts\LoadingSceneScript.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
@@ -297,6 +304,7 @@
     <Compile Include="Assets\Zach's Package\Terrain\TerrainGen\ExampleUses\ExampleSpawner.cs" />
     <Compile Include="Assets\Zach's Package\Terrain\TerrainGen\Generation\CubeGenerator.cs" />
     <Compile Include="Assets\Zach's Package\Terrain\TerrainGen\Generation\MeshBuilder.cs" />
+    <Compile Include="Assets\Zach's Package\Terrain\TerrainGen\SimpleCameraController.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\Zach's Package\FastIK\Documentation.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
@@ -321,31 +329,31 @@
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Bangers - OFL.txt" />
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>D:/ADV_GP_YR2/repos/VR/GroupProject2/CrazyUnhingedManInNormalEnoughMech/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>C:/Users/s181696/source/repos/CrazyUnhingedManInNormalEnoughMech/CrazyUnhingedManInNormalEnoughMech/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>D:/ADV_GP_YR2/repos/VR/GroupProject2/CrazyUnhingedManInNormalEnoughMech/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>C:/Users/s181696/source/repos/CrazyUnhingedManInNormalEnoughMech/CrazyUnhingedManInNormalEnoughMech/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>D:/ADV_GP_YR2/repos/VR/GroupProject2/CrazyUnhingedManInNormalEnoughMech/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/s181696/source/repos/CrazyUnhingedManInNormalEnoughMech/CrazyUnhingedManInNormalEnoughMech/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>D:/ADV_GP_YR2/repos/VR/GroupProject2/CrazyUnhingedManInNormalEnoughMech/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>C:/Users/s181696/source/repos/CrazyUnhingedManInNormalEnoughMech/CrazyUnhingedManInNormalEnoughMech/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>D:/ADV_GP_YR2/repos/VR/GroupProject2/CrazyUnhingedManInNormalEnoughMech/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>C:/Users/s181696/source/repos/CrazyUnhingedManInNormalEnoughMech/CrazyUnhingedManInNormalEnoughMech/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>D:/ADV_GP_YR2/repos/VR/GroupProject2/CrazyUnhingedManInNormalEnoughMech/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>C:/Users/s181696/source/repos/CrazyUnhingedManInNormalEnoughMech/CrazyUnhingedManInNormalEnoughMech/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>D:/ADV_GP_YR2/repos/VR/GroupProject2/CrazyUnhingedManInNormalEnoughMech/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>C:/Users/s181696/source/repos/CrazyUnhingedManInNormalEnoughMech/CrazyUnhingedManInNormalEnoughMech/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>D:/ADV_GP_YR2/repos/VR/GroupProject2/CrazyUnhingedManInNormalEnoughMech/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/s181696/source/repos/CrazyUnhingedManInNormalEnoughMech/CrazyUnhingedManInNormalEnoughMech/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>D:/ADV_GP_YR2/repos/VR/GroupProject2/CrazyUnhingedManInNormalEnoughMech/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>C:/Users/s181696/source/repos/CrazyUnhingedManInNormalEnoughMech/CrazyUnhingedManInNormalEnoughMech/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
