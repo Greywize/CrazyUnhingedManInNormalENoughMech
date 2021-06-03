@@ -137,10 +137,10 @@
     <None Include="Assets\Oculus\VR\NOTICE.txt" />
     <None Include="Assets\Oculus\VR\Resources\Unlit Transparent Color.shader" />
     <Reference Include="UnityEditor.UI">
-      <HintPath>C:/Users/s181696/source/repos/CrazyUnhingedManInNormalEnoughMech/CrazyUnhingedManInNormalEnoughMech/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>D:/ADV_GP_YR2/repos/VR/GroupProject2/CrazyUnhingedManInNormalEnoughMech/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>C:/Users/s181696/source/repos/CrazyUnhingedManInNormalEnoughMech/CrazyUnhingedManInNormalEnoughMech/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>D:/ADV_GP_YR2/repos/VR/GroupProject2/CrazyUnhingedManInNormalEnoughMech/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
