@@ -357,7 +357,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1861184763}
-  cameraPos: {fileID: 1861184763}
+  cameraPos: {fileID: 1935767986}
   moveSpeed: 0.7
   rotateSpeed: 100
 --- !u!1001 &199567433538980203
@@ -375,17 +375,17 @@ PrefabInstance:
     - target: {fileID: 199567435216282933, guid: 7ebc98d3a17383a42b282533dbea3a5c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -6.28
       objectReference: {fileID: 0}
     - target: {fileID: 199567435216282933, guid: 7ebc98d3a17383a42b282533dbea3a5c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.36
+      value: -4.14
       objectReference: {fileID: 0}
     - target: {fileID: 199567435216282933, guid: 7ebc98d3a17383a42b282533dbea3a5c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 10.89
+      value: -4.69
       objectReference: {fileID: 0}
     - target: {fileID: 199567435216282933, guid: 7ebc98d3a17383a42b282533dbea3a5c,
         type: 3}
@@ -445,7 +445,7 @@ PrefabInstance:
     - target: {fileID: 4071738766669229434, guid: 9317c51500fe40c41b1f54c0f53f07a2,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -18.19
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4071738766669229434, guid: 9317c51500fe40c41b1f54c0f53f07a2,
         type: 3}
@@ -455,7 +455,7 @@ PrefabInstance:
     - target: {fileID: 4071738766669229434, guid: 9317c51500fe40c41b1f54c0f53f07a2,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -17.22
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4071738766669229434, guid: 9317c51500fe40c41b1f54c0f53f07a2,
         type: 3}
