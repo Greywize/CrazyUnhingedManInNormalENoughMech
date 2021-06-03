@@ -3,15 +3,18 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Zacks.Terrain;
 
 public class LoadingSceneScript : MonoBehaviour
 {
+    public CubeGenerator terrainGen;
     public GameObject loadingPanel;
-    //public Slider loadingBar;
-    //public TextMeshProUGUI loadingPercentage;
+    public TextMeshProUGUI specificText;
+    public TextMeshProUGUI loadingPercentage;
+    public Slider loadingBar;
     public string levelName = "sceneNameHere";
 
-    void Start()
+    void Awake()
     {
         StartCoroutine(LoadSceneAsync(levelName));
     }
@@ -19,14 +22,22 @@ public class LoadingSceneScript : MonoBehaviour
     IEnumerator LoadSceneAsync(string lvlN)
     {
         loadingPanel.SetActive(true);
-        AsyncOperation op = SceneManager.LoadSceneAsync(lvlN);
 
-        while (!op.isDone)
+        if (!terrainGen)
         {
-            //float progress = Mathf.Clamp01(op.progress / .9f);
-            //loadingBar.value = progress;
-            //loadingPercentage.text = (int)progress * 100 + "%";
-            yield return null;
+            AsyncOperation op = SceneManager.LoadSceneAsync(lvlN);
+
+            while (!op.isDone)
+            {
+                float progress = Mathf.Clamp01(op.progress / .9f);
+                loadingBar.value = progress;
+                loadingPercentage.text = progress * 100 + "%";
+                yield return null;
+            }
+        }
+        else
+        {
+            terrainGen.GenerateCubes(default, loadingPanel, specificText, loadingPercentage, loadingBar);
         }
     }
 }

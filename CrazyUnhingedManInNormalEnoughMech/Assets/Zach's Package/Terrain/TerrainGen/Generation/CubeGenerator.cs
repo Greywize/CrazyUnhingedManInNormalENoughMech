@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 //using Mirror;
 
@@ -12,14 +15,12 @@ namespace Zacks.Terrain
     public class CubeGenerator : MonoBehaviour
     {
         [Header("Size Variables")]
-
         //[SerializeField]
         [Tooltip("How many cubes wide the terrain will be (Range 1 - inf)")]
         public int width = 50;
         //[SerializeField]
         [Tooltip("How many cubes long the terrain will be (Range 1 - inf)")]
         public int length = 50;
-
         ///// <summary>
         ///// Returns how many cubes wide the tile is (Use CalculateWidth() for how many world units the terrain is)
         ///// </summary>
@@ -30,80 +31,51 @@ namespace Zacks.Terrain
         ///// </summary>
         ///// <returns></returns>
         //public int GetLength() { return length; }
-
-
         [Space]
-
-
         //[SerializeField]
         [Tooltip("The distance between each cube (default = 0)")]
         public float cubeDistance = 1;
-
         //[SerializeField]
         [Tooltip("How large each cube is (default = 0.1) (cannot be less than or equal to 0)")]
         public float cubeScale = 0.1f;
-
-
         [Header("Perlin Noise Variables")]
-
         //[SerializeField]
         [Tooltip("The scale of the perlin noise (higher value means more noise)")]
         public float scale = 20;
-
-
         [Space]
-
-
         //[SerializeField]
         [Tooltip("Raise the cubes height to this power (default 1)")]
         public float power = 1;
-
-
         [Space]
-
-
         [SerializeField]
         [Tooltip("How high the height should be multiplied (default = 1)")]
         float heightMultiplier = 1;
-
-
         //[SerializeField]
         [Tooltip("The offset of the perlin noise generator in the x direction")]
         float offsetX = 100.0f;
         //[SerializeField]
         [Tooltip("The offset of the perlin noise generator in the z direction")]
         float offsetZ = 100.0f;
-
         //[Tooltip("The offset of the perlin noise generator in the x direction")]
         public float OffSetX
         {
             get { return offsetX; }
             set { offsetX = value; }
         }
-
         public float OffSetZ
         {
             get { return offsetZ; }
             set { offsetZ = value; }
         }
-
-
         [Space]
-
-
         //[SerializeField]
         [Tooltip("Whether to round the cubes y position to an int")]
         public bool roundToInt = false;
-
-
         [Header("Material Variables")]
-
         //[SerializeField]
         [Tooltip("The color of the tiles as the height of the terrain increases")]
         public Gradient gradient = null;
-
         MeshBuilder meshBuilder;
-
         //all of the cubes in our terrain
         Vector3[,] m_cubes;
         public Vector3[,] Cubes
@@ -111,35 +83,21 @@ namespace Zacks.Terrain
             get { return m_cubes; }
         }
         float[,] perlinVals;
-
-
         [Header("Other Options")]
-
         [SerializeField]
         [Tooltip("When true, allows larger meshes to be generated (WARNING: meshes large enough to need this will affect performance)")]
         bool allocateLargerMemory = false;
-
-
         [Space]
-
-
         //[SerializeField]
         [Tooltip("The minimum height difference they need in order to have a triangle drawn between them")]
         public float heightDifMin = 0.01f;
-
-
         [Space]
-
-
         [SerializeField]
         [Tooltip("Whether the mesh should generate when the game starts")]
         bool generateOnAwake = false;
-
-
+        public bool done = false;
         //makes sure the perlin noise isnt passed in integer form
         const float refiner = 1.1f;
-
-
         /// <summary>
         /// How many world units wide the terrain is
         /// </summary>
@@ -151,17 +109,38 @@ namespace Zacks.Terrain
         /// <returns></returns>
         public float CalculateLength() { return length * (cubeScale + cubeDistance); }
 
-
         private void Awake()
         {
             if (generateOnAwake)
+            {
                 GenerateCubes();
+            }
+        }
+
+        void Update()
+        {
+            done = meshBuilder.done;
+
+            if (done)
+            {
+                meshBuilder.done = false;
+            }
+        }
+
+        /// <summary>
+        /// Helper function that starts the coroutine generateCubes
+        /// </summary>
+        public void GenerateCubes(Vector2 seed = default(Vector2), GameObject loadingPanel = null, 
+            TextMeshProUGUI specifcLoadingText = null, TextMeshProUGUI loadingPercent = null, Slider loadingBar = null)
+        {
+            StartCoroutine(generateCubes(seed, loadingPanel, specifcLoadingText, loadingPercent, loadingBar));
         }
 
         /// <summary>
         /// Creates the terrain from a passed in seed (random seed if blank)
         /// </summary>
-        public void GenerateCubes(Vector2 seed = default(Vector2))
+        public IEnumerator generateCubes(Vector2 seed = default(Vector2), GameObject loadingPanel = null, 
+            TextMeshProUGUI specifcLoadingText = null, TextMeshProUGUI loadingPercent = null, Slider loadingBar = null)
         {
             meshBuilder = GetComponent<MeshBuilder>();
 
@@ -182,7 +161,6 @@ namespace Zacks.Terrain
             }
 
             meshBuilder.Clear();
-
 
             //make sure the player doesnt break things
             if (width <= 0)
@@ -217,6 +195,14 @@ namespace Zacks.Terrain
             //for each cube to generate
             for (int x = 0; x < width; x++)
             {
+                if ((x % 10) == 0 && loadingPanel)
+                {
+                    specifcLoadingText.text = "Generating cubes";
+                    loadingBar.value = Mathf.Clamp01((float)x / (float)width);
+                    loadingPercent.text = loadingBar.value * 100f + "%";
+                    yield return null;
+                }
+
                 for (int z = 0; z < length; z++)
                 {
 
@@ -253,6 +239,14 @@ namespace Zacks.Terrain
             //for each face
             for (int x = 0; x < width; x++)
             {
+                if ((x % 10) == 0 && loadingPanel)
+                {
+                    specifcLoadingText.text = "Generating faces";
+                    loadingBar.value = Mathf.Clamp01((float)x / (float)width);
+                    loadingPercent.text = loadingBar.value * 100f + "%";
+                    yield return null;
+                }
+
                 for (int y = 0; y < length; y++)
                 {
                     //if we can go one tile more in the z direction
@@ -346,12 +340,18 @@ namespace Zacks.Terrain
                 }
             }
 
-
-            meshBuilder.CreateMesh(allocateLargerMemory);
+            if (loadingPanel)
+            {
+                meshBuilder.CreateMesh(allocateLargerMemory, loadingPanel, specifcLoadingText, loadingPercent, loadingBar);
+            }
+            else
+            {
+                meshBuilder.createMesh(allocateLargerMemory);
+            }
         }
 
         /// <summary>
-        ///randomises where in the perlin noise seed the terrain will generate 
+        /// Randomises where in the perlin noise seed the terrain will generate 
         /// </summary>
         public void RandomiseArea()
         {
