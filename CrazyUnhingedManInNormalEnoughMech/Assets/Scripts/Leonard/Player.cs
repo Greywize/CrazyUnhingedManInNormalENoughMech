@@ -30,23 +30,36 @@ public class Player : MonoBehaviour
     public float fireRate = 0.1f;
     private float fireTime;
     public GameObject[] weaponPrefabs;
+    public GameObject model;
 
     void Start()
     {
+        if (model)
+        {
+            model.SetActive(false);
+        }
+
         cc = GetComponent<CharacterController>();
         lineRenderer = GetComponent<LineRenderer>();
         fireTime = 0;
-
-        if (terrain)
-        {
-            Vector3 spawnPos = terrain.GridToWorld(new Vector2Int(terrain.width / 2, terrain.length / 2));
-            spawnPos.y += 2;
-            transform.position = spawnPos;
-        }
     }
 
     void Update()
     {
+        if (terrain && terrain.done)
+        {
+            if (model)
+            {
+                model.SetActive(true);
+            }
+
+            cc.enabled = false;
+            Vector3 spawnPos = terrain.GridToWorld(new Vector2Int(terrain.width / 2, terrain.length / 2));
+            spawnPos.y += 2.1f;
+            transform.position = spawnPos;
+            cc.enabled = true;
+        }
+
         fireTime += Time.deltaTime;
         Shoot();
         Move();
@@ -208,7 +221,7 @@ public class Player : MonoBehaviour
         velocity = transform.forward * Input.GetAxis("Vertical") * speed;
         //new Vector3(0, cc.isGrounded ? 0 : -gravity, Input.GetAxis("Vertical") * speed);
 #endif
-        velocity.y = cc.isGrounded ? 0 : -gravity;
+        velocity.y += cc.isGrounded ? velocity.y : -gravity;
         cc.Move(velocity * Time.deltaTime);
     }
 }
