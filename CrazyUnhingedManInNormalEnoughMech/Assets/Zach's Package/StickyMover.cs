@@ -44,11 +44,11 @@ namespace Zacks.Misc
 
             mask = 1 << 8;
 
-            CubeGenerator generator = GameObject.FindGameObjectWithTag("Terrain").GetComponent<CubeGenerator>();
+            // CubeGenerator generator = GameObject.FindGameObjectWithTag("Terrain").GetComponent<CubeGenerator>();
 
-            Vector3 spawnPos = generator.GridToWorld(new Vector2Int(generator.width / 2 - 5, generator.length / 2 - 5));
-            spawnPos.y += 2;
-            transform.position = spawnPos;
+            //Vector3 spawnPos = generator.GridToWorld(new Vector2Int(generator.width / 2 - 5, generator.length / 2 - 5));
+           // spawnPos.y += 2;
+           // transform.position = spawnPos;
         }
 
         // Update is called once per frame

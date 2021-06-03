@@ -106,8 +106,6 @@ namespace DitzelGames.FastIK
                 current = current.parent;
             }
 
-
-
         }
 
         // Update is called once per frame
