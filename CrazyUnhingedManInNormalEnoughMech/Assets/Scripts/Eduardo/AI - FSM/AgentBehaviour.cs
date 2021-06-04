@@ -29,6 +29,12 @@ namespace AI
         public int currentTransition = 0;
         [Space(10)]
 
+        [Header("Agent Actions")]
+        public int currAction;
+        public AgentAction performAction;
+        public AgentAction[] agentActions;
+        [Space(10)]
+
         [Header("Agent Destination")]
         public AgentBehaviour target;
         public Vector3 currPosition;
@@ -59,6 +65,10 @@ namespace AI
         private void Update()
         {
             currPosition = transform.position;
+
+            if (agentActions.Length > 0)
+                agentActions[0].performAction(this, target);
+
             if (currState == null)
                 checkTransitions(this);
             else
@@ -74,7 +84,7 @@ namespace AI
             {
                 currState = defaultState;
                 currState.OnStateEnter(this);
-                timer = 1;
+                timer = 0.2f;
             }
         }
         #endregion
@@ -151,13 +161,13 @@ namespace AI
         {
             agent.prevState = s;
 
-            if (agent.currState != null)
-                agent.currState = null;
+            //  if (agent.currState != null)
+            agent.currState = null;
 
             if (agent.target != null)
                 agent.target = null;
 
-            // agent.destination = Vector3.zero;
+            agent.destination = Vector3.zero;
         }
 
         public void ResetTransition(AgentBehaviour agent)
@@ -167,8 +177,8 @@ namespace AI
             if (agent.currentTransition >= agent.Transitions.Length)
             {
                 agent.currentTransition = 0;
-                agent.currState = agent.defaultState;
-                agent.currState.OnStateEnter(agent);
+                /*                agent.currState = agent.defaultState;
+                                agent.currState.OnStateEnter(agent);*/
             }
         }
 

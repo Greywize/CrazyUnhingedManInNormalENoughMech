@@ -20,11 +20,16 @@ namespace AI
         #region PUBLIC FUNCTIONS
         public override bool CheckCondition(AgentBehaviour agent)
         {
-            if (agent.destination == null)
+            if (agent.target != null)
+            {
+                Debug.Log($"{agent} already has a target: {agent.target}");
                 return false;
+            }
+
+            agent.enableSensor(true);
 
             // [2] if a target has been found
-            if (Vector3.Distance(agent.transform.position, agent.destination) > 1.2f)
+            if (Vector3.Distance(agent.transform.position, agent.destination) > agent.sensor.detection)
             {
                 agent.sensor.closestTarget = false;
                 return true;
