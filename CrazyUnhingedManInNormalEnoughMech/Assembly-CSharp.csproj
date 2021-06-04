@@ -239,6 +239,8 @@
      <Compile Include="Assets\Scripts\CrossPlatformSwitcher.cs" />
      <Compile Include="Assets\Scripts\Leonard\Player.cs" />
      <Compile Include="Assets\Scripts\Leonard\PointerOptions.cs" />
+     <Compile Include="Assets\Scripts\Leonard\WeaponHolder.cs" />
+     <Compile Include="Assets\Scripts\Leonard\WeaponScript.cs" />
      <Compile Include="Assets\Scripts\LoadingSceneScript.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
