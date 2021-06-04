@@ -10,6 +10,9 @@ public class Player : MonoBehaviour
     [Tooltip("How fast the player moves")]
     float speed = 10;
     [SerializeField]
+    [Tooltip("How fast the player dashes")]
+    float dashMultipler = 3;
+    [SerializeField]
     [Tooltip("How fast the player falls")]
     float gravity = 10;
     [SerializeField]
@@ -30,7 +33,6 @@ public class Player : MonoBehaviour
     public Camera VRCam;
     private float fireTime;
     public GameObject model;
-    public int layer = 5;
 
     void Start()
     {
@@ -75,7 +77,7 @@ public class Player : MonoBehaviour
     {
 #if !UNITY_EDITOR
         Ray ray = new Ray(VRCam.transform.position, VRCam.transform.forward);
-        int layerMask = 1 << layer;
+        int layerMask = 1 << 5;
 
         if (OVRInput.Get(OVRInput.Button.Back) && Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask))
         {
@@ -193,7 +195,13 @@ public class Player : MonoBehaviour
         }
         if (OVRInput.GetDown(OVRInput.Button.PrimaryTouchpad) && !touchpadPressed)
         {
+            velocity = transform.forward * touchpad.y * speed * dashMultipler;
+            
+            if (touchpad.y == 0)
+            {
             transform.eulerAngles += Vector3.up * touchpad.x * turnAmount;
+            }
+            
             touchpadPressed = true;
         }
         else if (!OVRInput.GetDown(OVRInput.Button.PrimaryTouchpad) && touchpadPressed)
@@ -203,6 +211,11 @@ public class Player : MonoBehaviour
 
         velocity = transform.forward * touchpad.y * speed;
 #else
+        if (Input.GetKeyDown(KeyCode.E) && !touchpadPressed)
+        {
+            velocity = transform.forward * Input.GetAxis("Vertical") * speed * dashMultipler;
+            touchpadPressed = true;
+        }
         if (Input.GetKeyDown(KeyCode.A) && !touchpadPressed)
         {
             transform.eulerAngles -= Vector3.up * turnAmount;
