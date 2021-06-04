@@ -5,6 +5,7 @@ ScriptsOnlyBuild:
     - LoadingSceneScript
     - Player
     - Projectile
+    - WeaponHolder
     - Zacks.Terrain.CubeGenerator
     - Zacks.Terrain.MeshBuilder
     Oculus.VR.Editor.dll:
@@ -78,6 +79,8 @@ ScriptsOnlyBuild:
     - Class: 109
       Script: {instanceID: 0}
     - Class: 114
+      Script: {instanceID: 0}
+    - Class: 114
       Script: {instanceID: 11236}
     - Class: 114
       Script: {instanceID: 11302}
@@ -88,43 +91,45 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11430}
     - Class: 114
-      Script: {instanceID: 11502}
+      Script: {instanceID: 11504}
     - Class: 114
-      Script: {instanceID: 11736}
+      Script: {instanceID: 11738}
     - Class: 114
-      Script: {instanceID: 11912}
+      Script: {instanceID: 11914}
     - Class: 114
-      Script: {instanceID: 12014}
+      Script: {instanceID: 12016}
     - Class: 114
-      Script: {instanceID: 12050}
+      Script: {instanceID: 12052}
     - Class: 114
-      Script: {instanceID: 12132}
+      Script: {instanceID: 12134}
     - Class: 114
-      Script: {instanceID: 12252}
+      Script: {instanceID: 12254}
     - Class: 114
-      Script: {instanceID: 12670}
+      Script: {instanceID: 12672}
     - Class: 114
-      Script: {instanceID: 12830}
+      Script: {instanceID: 12832}
     - Class: 114
-      Script: {instanceID: 12848}
+      Script: {instanceID: 12850}
     - Class: 114
-      Script: {instanceID: 13110}
+      Script: {instanceID: 12978}
     - Class: 114
-      Script: {instanceID: 13194}
+      Script: {instanceID: 13114}
     - Class: 114
-      Script: {instanceID: 13244}
+      Script: {instanceID: 13198}
     - Class: 114
-      Script: {instanceID: 13320}
+      Script: {instanceID: 13248}
     - Class: 114
-      Script: {instanceID: 13424}
+      Script: {instanceID: 13324}
     - Class: 114
-      Script: {instanceID: 13560}
+      Script: {instanceID: 13428}
     - Class: 114
-      Script: {instanceID: 13576}
+      Script: {instanceID: 13564}
     - Class: 114
-      Script: {instanceID: 13698}
+      Script: {instanceID: 13580}
     - Class: 114
-      Script: {instanceID: 13738}
+      Script: {instanceID: 13702}
+    - Class: 114
+      Script: {instanceID: 13742}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -968,6 +973,12 @@ ScriptsOnlyBuild:
     className: SimpleScript
   - hash:
       serializedVersion: 2
+      Hash: 0ecbeaedf15a8a49556fdbcecb621b41
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: WeaponHolder
+  - hash:
+      serializedVersion: 2
       Hash: 274152c972478468d8321a977bbca8e3
     assemblyName: Assembly-CSharp.dll
     namespaceName: TMPro.Examples
@@ -1262,7 +1273,7 @@ ScriptsOnlyBuild:
     className: VertexShakeA
   - hash:
       serializedVersion: 2
-      Hash: ac68372b95ec8b0d4eb85158569cb318
+      Hash: d8b0a8c839b0bd1e05ebaa78bc6814ff
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Player
