@@ -1,5 +1,9 @@
 sceneSetups:
+<<<<<<< HEAD
+- path: Assets/Scenes/Programming/Leonard.unity
+=======
 - path: Assets/Scenes/Design/Seth.unity
+>>>>>>> b99d263441eaf1955ddbb468fe1e47409ecd2257
   isLoaded: 1
   isActive: 1
   isSubScene: 0
