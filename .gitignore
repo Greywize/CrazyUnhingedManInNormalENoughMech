@@ -91,3 +91,10 @@ CrazyUnhingedManInNormalEnoughMech/Library/shadercompiler-UnityShaderCompiler.ex
 CrazyUnhingedManInNormalEnoughMech/Library/shadercompiler-UnityShaderCompiler.exe3.log
 *.log
 CrazyUnhingedManInNormalEnoughMech/Library/SourceAssetDB
+*.csproj
+CrazyUnhingedManInNormalEnoughMech/Library/ArtifactDB
+CrazyUnhingedManInNormalEnoughMech/Library/CurrentLayout-default.dwlt
+*.dll
+*.log
+CrazyUnhingedManInNormalEnoughMech/Library/SourceAssetDB
+CrazyUnhingedManInNormalEnoughMech/Library/ScriptAssemblies/Assembly-CSharp.pdb
