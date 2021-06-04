@@ -25,11 +25,9 @@ public class Player : MonoBehaviour
     Vector3 velocity;
     LineRenderer lineRenderer;
     bool touchpadPressed = false;
-    public int weaponSwitch;
-    public int projectileSpeed = 50;
-    public float fireRate = 0.1f;
+    public Weapon currentWeapon;
+    public Camera VRCam;
     private float fireTime;
-    public GameObject[] weaponPrefabs;
     public GameObject model;
 
     void Start()
@@ -61,6 +59,7 @@ public class Player : MonoBehaviour
         }
 
         fireTime += Time.deltaTime;
+        SwapWeapon();
         Shoot();
         Move();
 
@@ -68,6 +67,23 @@ public class Player : MonoBehaviour
         {
             Debug.Log($"The players position in grid coords is {terrain.WorldToGrid(transform.position)}");
         }
+    }
+
+    void SwapWeapon()
+    {
+#if !UNITY_EDITOR
+        Ray ray = new Ray(VRCam.transform.position, VRCam.transform.forward);
+
+        if (OVRInput.Get(OVRInput.Button.Back) && Physics.Raycast(ray, out RaycastHit hit))
+        {
+            WeaponHolder newWeapon = hit.collider.GetComponent<WeaponHolder>();
+
+            if (newWeapon)
+            {
+                currentWeapon = newWeapon.weapon;
+            }
+        }
+#endif
     }
 
     void Shoot()
@@ -79,64 +95,45 @@ public class Player : MonoBehaviour
 
         if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger))
         {
-            FireWeapon(weaponSwitch, ray);
-        }
-        if (OVRInput.Get(OVRInput.Button.Back))
-        {
-            weaponSwitch++;
+            FireWeapon(ray);
         }
 #else
-        if (Input.GetMouseButton(0)) // Left click
+        if (Input.GetMouseButton(0))
         {
-            FireWeapon(weaponSwitch);
-        }
-        if (Input.GetMouseButtonDown(1)) // Right click
-        {
-            weaponSwitch++;
+            FireWeapon();
         }
 #endif
     }
-    private void FireWeapon(int w, Ray ray)
+
+    private void FireWeapon(Ray ray)
     {
 #if !UNITY_EDITOR
-        if (weaponSwitch < weaponPrefabs.Length)
+        if (currentWeapon)
         {
-            if (fireTime >= fireRate)
+            if (fireTime >= currentWeapon.fireRate)
             {
                 fireTime = 0;
-                Rigidbody clone;
-                clone = Instantiate(weaponPrefabs[w].GetComponent<Rigidbody>(), ray.origin + 5 * ray.direction, transform.rotation);
-                clone.velocity = ray.direction * projectileSpeed;
+                GameObject clone = Instantiate(currentWeapon.projectile, ray.origin + 5 * ray.direction, transform.rotation);
+                clone.GetComponent<Rigidbody>().velocity = ray.direction * currentWeapon.projectileSpeed;
             }
         }
-        else
-        {
-            weaponSwitch = 0;
-        }
-
-        print($"Firing {weaponPrefabs[w]}");
 #endif
     }
 
-    private void FireWeapon(int w)
+    private void FireWeapon()
     {
 #if UNITY_EDITOR
-        if (weaponSwitch < weaponPrefabs.Length)
+        if (currentWeapon)
         {
-            if (fireTime >= fireRate)
+            if (fireTime >= currentWeapon.fireRate)
             {
                 fireTime = 0;
-                Rigidbody clone;
-                clone = Instantiate(weaponPrefabs[w].GetComponent<Rigidbody>(), transform.position + 5 * transform.forward, transform.rotation);
-                clone.velocity = transform.forward * projectileSpeed;
+                GameObject clone = Instantiate(currentWeapon.projectile, transform.position + 5 * transform.forward, transform.rotation);
+                clone.GetComponent<Rigidbody>().velocity = transform.forward * currentWeapon.projectileSpeed;
             }
         }
-        else
-        {
-            weaponSwitch = 0;
-        }
 
-        print($"Firing {weaponPrefabs[w]}");
+        print($"Firing {currentWeapon.ToString()}");
 #endif
     }
     void Move()
@@ -219,9 +216,8 @@ public class Player : MonoBehaviour
         }
 
         velocity = transform.forward * Input.GetAxis("Vertical") * speed;
-        //new Vector3(0, cc.isGrounded ? 0 : -gravity, Input.GetAxis("Vertical") * speed);
 #endif
-        velocity.y += cc.isGrounded ? velocity.y : -gravity;
+        velocity.y = cc.isGrounded ? -cc.velocity.y : cc.velocity.y - gravity;
         cc.Move(velocity * Time.deltaTime);
     }
 }
