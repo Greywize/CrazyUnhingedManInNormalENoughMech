@@ -35,27 +35,25 @@ namespace AI
             //  if (agent.currDestination < destinations.Length)
             //    destinations[agent.currDestination].Tick(agent, this);
 
-            if(!patrolParent)
+            if (!patrolParent)
             {
                 Debug.Log($"no patrolParent found in agent");
                 OnStateEnter(agent);
                 return;
             }
-        
 
             if (agent.currDestination < patrolParent.PatrolPoints.Length)
             {
                 for (int i = agent.currDestination; i < patrolParent.PatrolPoints.Length; i++)
                 {
                     agent.destination = patrolParent.PatrolPoints[i].point;
-                    if (!agent.reachDest)
+
+                    if (Vector3.Distance(agent.transform.position, agent.destination) >= 2.0f)
                         agent.MoveToward(agent.destination);
                     else
                         agent.currDestination++;
-
                 }
             }
-
         }
 
         /// <summary>
@@ -65,18 +63,11 @@ namespace AI
         /// <param name="s"></param>
         public void nextDestination(AgentBehaviour agent, PatrolState s)
         {
-            agent.reachDest = false;
             agent.currDestination++;
 
             if (agent.currDestination >= destinations.Length)
                 OnStateExit(agent);
         }
-
-
-        /*        public override void OnStateExit(AgentBehaviour agent, PatrolState p)
-                {
-                    nextDestination(agent, p);
-                }*/
 
     }
 }

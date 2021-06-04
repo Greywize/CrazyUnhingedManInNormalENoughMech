@@ -16,6 +16,7 @@ namespace AI
         #endregion
 
         #region PUBLIC MEMBERS
+        [Header("Required Objects")]
         public Sensor sensor;
         public AgentBehaviour agent;
 
@@ -33,7 +34,6 @@ namespace AI
         public Vector3 currPosition;
         public int currDestination = 0;
         public Vector3 destination;
-        public bool reachDest = false;
         public int moveSpeed;
         [Space(10)]
         #endregion
@@ -111,18 +111,16 @@ namespace AI
         public void MoveToward(Vector3 destination)
         {
             Vector3 direction = GetDirection(destination);
+            float distance = Vector3.Distance(transform.position, destination);
 
-            if (!reachDest)
-                if (Vector3.Dot(direction, destination) >= 0.2f)
-                {
-                    // https://stuartspixelgames.com/2018/06/21/move-an-object-towards-a-target-in-unity/
-                    lookAtTarget();
+            if (Vector3.Dot(direction, destination) >= 0.2f)
+            {
+                // https://stuartspixelgames.com/2018/06/21/move-an-object-towards-a-target-in-unity/
+                lookAtTarget();
+
+                if (distance >= 2.0f)
                     transform.position = Vector3.MoveTowards(transform.position, destination, moveSpeed * Time.deltaTime);
-                }
-                else
-                {
-                    reachDest = true;
-                }
+            }
         }
 
         /// <summary>
@@ -152,9 +150,6 @@ namespace AI
         public void ResetAgent(AgentBehaviour agent, AgentState s)
         {
             agent.prevState = s;
-
-            if (reachDest != false)
-                agent.reachDest = false;
 
             if (agent.currState != null)
                 agent.currState = null;

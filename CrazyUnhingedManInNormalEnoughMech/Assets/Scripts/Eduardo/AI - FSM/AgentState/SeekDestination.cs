@@ -28,15 +28,12 @@ namespace AI
         {
             Debug.DrawLine(agent.transform.position, agent.destination, Color.green);
             agent.destination = destination;
-            if (Vector3.Distance(agent.transform.position, destination) >= 2.0f)
-            {
-                if (agent.transform.localPosition != destination)
-                    agent.MoveToward(destination);
-            }
+            float distance = Vector3.Distance(agent.transform.position, agent.destination);
+
+            if (distance > 2.0f)
+                agent.MoveToward(destination);
             else
-            {
                 OnStateExit(agent);
-            }
         }
 
         /// <summary>
@@ -48,13 +45,12 @@ namespace AI
         {
             Debug.DrawLine(agent.transform.position, agent.destination, Color.blue);
             agent.destination = destination;
+            float distance = Vector3.Distance(agent.transform.position, agent.destination);
 
-            if (!agent.reachDest)
+            if (distance > 2.0f)
                 agent.MoveToward(destination);
             else
-            {
                 ps.nextDestination(agent, ps);
-            }
         }
 
     }

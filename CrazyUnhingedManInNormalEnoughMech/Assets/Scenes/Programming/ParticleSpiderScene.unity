@@ -356,8 +356,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1657abebec8a0f44d88c3b2a2a0d8852, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1861184763}
-  cameraPos: {fileID: 1935767986}
+  target: {fileID: 5643739907816486990}
+  cameraPos: {fileID: 1861184763}
   moveSpeed: 0.7
   rotateSpeed: 100
 --- !u!1001 &199567433538980203

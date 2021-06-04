@@ -9,6 +9,7 @@ namespace AI
     {
         public AgentBehaviour agent;
         public SphereCollider sphereCollider;
+        public float detection;
         public float proximity;
         public bool closestTarget = false;
 

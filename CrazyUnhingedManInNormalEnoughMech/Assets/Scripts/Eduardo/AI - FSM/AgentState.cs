@@ -31,7 +31,6 @@ namespace AI
 
         public virtual void OnStateExit(AgentBehaviour agent)
         {
-            agent.reachDest = false;
             agent.ResetAgent(agent, agent.currState);
             agent.ResetTransition(agent);
         }
