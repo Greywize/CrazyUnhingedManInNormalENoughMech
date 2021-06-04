@@ -682,6 +682,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 15
+  dashMultipler: 3
   gravity: 9.8
   turnAmount: 30
   terrain: {fileID: 0}
@@ -690,7 +691,6 @@ MonoBehaviour:
     type: 3}
   VRCam: {fileID: 1635948342928826860}
   model: {fileID: 2203961991378152357}
-  layer: 5
 --- !u!120 &1635948343522327397
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -1475,6 +1475,41 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1653669603257261624}
+    - target: {fileID: 7231841548654108387, guid: 7b7e561cca6d3434885624995f684b62,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7231841548654108387, guid: 7b7e561cca6d3434885624995f684b62,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1635948343522327406}
+    - target: {fileID: 7231841548654108387, guid: 7b7e561cca6d3434885624995f684b62,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: swapWeaponButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 7231841548654108387, guid: 7b7e561cca6d3434885624995f684b62,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7231841548654108387, guid: 7b7e561cca6d3434885624995f684b62,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 3959382317513665557}
+    - target: {fileID: 7231841548654108387, guid: 7b7e561cca6d3434885624995f684b62,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: WeaponHolder, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7231841548654108387, guid: 7b7e561cca6d3434885624995f684b62,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b7e561cca6d3434885624995f684b62, type: 3}
 --- !u!224 &2499156618698240945 stripped
@@ -1483,6 +1518,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 751622535431989750}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3959382317513665557 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4367578544621438435, guid: 7b7e561cca6d3434885624995f684b62,
+    type: 3}
+  m_PrefabInstance: {fileID: 751622535431989750}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d940bb0b11803bf409a44e9e3b571fe6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1635948342850758080
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1754,6 +1801,41 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1653669603257261624}
+    - target: {fileID: 7231841548654108387, guid: 7b7e561cca6d3434885624995f684b62,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7231841548654108387, guid: 7b7e561cca6d3434885624995f684b62,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1635948343522327406}
+    - target: {fileID: 7231841548654108387, guid: 7b7e561cca6d3434885624995f684b62,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: swapWeaponButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 7231841548654108387, guid: 7b7e561cca6d3434885624995f684b62,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7231841548654108387, guid: 7b7e561cca6d3434885624995f684b62,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 1202108190373633825}
+    - target: {fileID: 7231841548654108387, guid: 7b7e561cca6d3434885624995f684b62,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: WeaponHolder, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7231841548654108387, guid: 7b7e561cca6d3434885624995f684b62,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b7e561cca6d3434885624995f684b62, type: 3}
 --- !u!224 &356623911544193157 stripped
@@ -1762,6 +1844,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 3184747028211669698}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1202108190373633825 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4367578544621438435, guid: 7b7e561cca6d3434885624995f684b62,
+    type: 3}
+  m_PrefabInstance: {fileID: 3184747028211669698}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d940bb0b11803bf409a44e9e3b571fe6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7677507479515783991
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1996,6 +2090,41 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1653669603257261624}
+    - target: {fileID: 7231841548654108387, guid: 7b7e561cca6d3434885624995f684b62,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7231841548654108387, guid: 7b7e561cca6d3434885624995f684b62,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1635948343522327406}
+    - target: {fileID: 7231841548654108387, guid: 7b7e561cca6d3434885624995f684b62,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: swapWeaponButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 7231841548654108387, guid: 7b7e561cca6d3434885624995f684b62,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7231841548654108387, guid: 7b7e561cca6d3434885624995f684b62,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 4722187487163704434}
+    - target: {fileID: 7231841548654108387, guid: 7b7e561cca6d3434885624995f684b62,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: WeaponHolder, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7231841548654108387, guid: 7b7e561cca6d3434885624995f684b62,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b7e561cca6d3434885624995f684b62, type: 3}
 --- !u!224 &6184796927471762390 stripped
@@ -2004,3 +2133,15 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 9012922263630553489}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4722187487163704434 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4367578544621438435, guid: 7b7e561cca6d3434885624995f684b62,
+    type: 3}
+  m_PrefabInstance: {fileID: 9012922263630553489}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d940bb0b11803bf409a44e9e3b571fe6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
