@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1450890592825383749}
   - component: {fileID: 623903122238885362}
   - component: {fileID: 4367578544621438435}
+  - component: {fileID: 5084589814812111451}
   m_Layer: 5
   m_Name: WeaponHolder
   m_TagString: Untagged
@@ -149,6 +150,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d940bb0b11803bf409a44e9e3b571fe6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 11400000, guid: 8427bad63ea19d447a11489f18ecae61, type: 2}
-  thisImage: {fileID: 623903122238885362}
-  thePlayer: {fileID: 0}
+  weaponMono: {fileID: 0}
+--- !u!65 &5084589814812111451
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 686896261876186952}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.2, y: 0.3, z: 0.01}
+  m_Center: {x: 0, y: 0, z: 0}

@@ -10,6 +10,9 @@ public class Player : MonoBehaviour
     [Tooltip("How fast the player moves")]
     float speed = 10;
     [SerializeField]
+    [Tooltip("How fast the player dashes")]
+    float dashMultipler = 6;
+    [SerializeField]
     [Tooltip("How fast the player falls")]
     float gravity = 10;
     [SerializeField]
@@ -24,10 +27,19 @@ public class Player : MonoBehaviour
     CharacterController cc;
     Vector3 velocity;
     LineRenderer lineRenderer;
+    bool didDash = false;
+    bool dashing = false;
     bool touchpadPressed = false;
-    public Weapon currentWeapon;
+    //public Weapon[] currentWeapon;
+    public List<GameObject> currentWeaponMono = new List<GameObject>();
     public Camera VRCam;
     private float fireTime;
+    private float initialDashWarmupTime;
+    public float dashWarmupTime = 0.1f;
+    private float initialDashTime;
+    public float dashTime = 0.65f;
+    public float dashCooldownMultiplier = 7;
+    public float deadzone = 0.3f;
     public GameObject model;
 
     void Start()
@@ -40,6 +52,8 @@ public class Player : MonoBehaviour
         cc = GetComponent<CharacterController>();
         lineRenderer = GetComponent<LineRenderer>();
         fireTime = 0;
+        initialDashTime = dashTime;
+        initialDashWarmupTime = dashWarmupTime;
     }
 
     void Update()
@@ -71,16 +85,29 @@ public class Player : MonoBehaviour
 
     void SwapWeapon()
     {
-#if !UNITY_EDITOR
+#if UNITY_EDITOR
         Ray ray = new Ray(VRCam.transform.position, VRCam.transform.forward);
+        int layerMask = 1 << 5;
 
-        if (OVRInput.Get(OVRInput.Button.Back) && Physics.Raycast(ray, out RaycastHit hit))
+        if (OVRInput.Get(OVRInput.Button.Back) && Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask))
         {
             WeaponHolder newWeapon = hit.collider.GetComponent<WeaponHolder>();
 
             if (newWeapon)
             {
-                currentWeapon = newWeapon.weapon;
+                int i = 0;
+
+                foreach (GameObject weapon in currentWeaponMono)
+                {
+                    Destroy(weapon);
+                    i++;
+                }
+
+                for (int e = 0; e < i; e++)
+                {
+                    newWeapon.weaponMono.GetComponent<Weapon>().invert = e % 2;
+                    currentWeaponMono.Add(Instantiate(newWeapon.gameObject, transform));
+                }
             }
         }
 #endif
@@ -91,7 +118,7 @@ public class Player : MonoBehaviour
 #if !UNITY_EDITOR
         Ray ray = new Ray(pointer.position, pointer.forward);
         lineRenderer.SetPosition(0, ray.origin);
-        lineRenderer.SetPosition(1, ray.origin + 5 * ray.direction);
+        lineRenderer.SetPosition(1, ray.origin + 3 * ray.direction);
 
         if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger))
         {
@@ -108,13 +135,13 @@ public class Player : MonoBehaviour
     private void FireWeapon(Ray ray)
     {
 #if !UNITY_EDITOR
-        if (currentWeapon)
+        if (currentWeaponMono[0])
         {
-            if (fireTime >= currentWeapon.fireRate)
+            if (fireTime >= currentWeaponMono[0].GetComponent<WeaponMono>().fireRate)
             {
                 fireTime = 0;
-                GameObject clone = Instantiate(currentWeapon.projectile, ray.origin + 5 * ray.direction, transform.rotation);
-                clone.GetComponent<Rigidbody>().velocity = ray.direction * currentWeapon.projectileSpeed;
+                GameObject clone = Instantiate(currentWeaponMono[0].GetComponent<WeaponMono>().weaponAmmo, ray.origin + 3 * ray.direction, transform.rotation);
+                clone.GetComponent<Rigidbody>().velocity = ray.direction * currentWeaponMono[0].GetComponent<WeaponMono>().projectileSpeed;
             }
         }
 #endif
@@ -123,21 +150,22 @@ public class Player : MonoBehaviour
     private void FireWeapon()
     {
 #if UNITY_EDITOR
-        if (currentWeapon)
+        if (currentWeaponMono[0])
         {
-            if (fireTime >= currentWeapon.fireRate)
+            if (fireTime >= currentWeaponMono[0].GetComponent<WeaponMono>().fireRate)
             {
                 fireTime = 0;
-                GameObject clone = Instantiate(currentWeapon.projectile, transform.position + 5 * transform.forward, transform.rotation);
-                clone.GetComponent<Rigidbody>().velocity = transform.forward * currentWeapon.projectileSpeed;
+                GameObject clone = Instantiate(currentWeaponMono[0].GetComponent<WeaponMono>().weaponPrefab.GetComponent<Projectile>().projectilePrefab, transform.position + 5 * transform.forward, transform.rotation);
+                clone.GetComponent<Rigidbody>().velocity = transform.forward * currentWeaponMono[0].GetComponent<WeaponMono>().projectileSpeed;
             }
         }
 
-        print($"Firing {currentWeapon.ToString()}");
+        print($"Firing {currentWeaponMono[0].GetComponent<WeaponMono>().ToString()}");
 #endif
     }
     void Move()
     {
+        velocity = new Vector3();
 #if !UNITY_EDITOR
         Vector3 forward = transform.forward;
         forward.y = 0;
@@ -146,7 +174,7 @@ public class Player : MonoBehaviour
 
         if (touchpad.y > 0)
         {
-            if (touchpad.y < 0.4)
+            if (touchpad.y < deadzone)
             {
                 touchpad.y = 0;
             }
@@ -157,7 +185,7 @@ public class Player : MonoBehaviour
         }
         else if (touchpad.y < 0)
         {
-            if (touchpad.y > -0.4)
+            if (touchpad.y > -deadzone)
             {
                 touchpad.y = 0;
             }
@@ -168,7 +196,7 @@ public class Player : MonoBehaviour
         }
         if (touchpad.x > 0)
         {
-            if (touchpad.x < 0.4)
+            if (touchpad.x < deadzone)
             {
                 touchpad.x = 0;
             }
@@ -179,7 +207,7 @@ public class Player : MonoBehaviour
         }
         else if (touchpad.x < 0)
         {
-            if (touchpad.x > -0.4)
+            if (touchpad.x > -deadzone)
             {
                 touchpad.x = 0;
             }
@@ -190,7 +218,18 @@ public class Player : MonoBehaviour
         }
         if (OVRInput.GetDown(OVRInput.Button.PrimaryTouchpad) && !touchpadPressed)
         {
-            transform.eulerAngles += Vector3.up * touchpad.x * turnAmount;
+            if (touchpad.y > touchpad.x && touchpad.y > -touchpad.x)
+            {
+                if (!dashing)
+                {
+                    dashing = true;
+                }
+            }
+            else
+            {
+                transform.eulerAngles += Vector3.up * touchpad.x * turnAmount;
+            }
+
             touchpadPressed = true;
         }
         else if (!OVRInput.GetDown(OVRInput.Button.PrimaryTouchpad) && touchpadPressed)
@@ -198,14 +237,18 @@ public class Player : MonoBehaviour
             touchpadPressed = false;
         }
 
-        velocity = transform.forward * touchpad.y * speed;
 #else
-        if (Input.GetKeyDown(KeyCode.A) && !touchpadPressed)
+        if (Input.GetKeyDown(KeyCode.E) && !touchpadPressed && !dashing)
+        {
+            dashing = true;
+            touchpadPressed = true;
+        }
+        if (Input.GetKeyDown(KeyCode.A) && !touchpadPressed && (!dashing || dashTime <= 0))
         {
             transform.eulerAngles -= Vector3.up * turnAmount;
             touchpadPressed = true;
         }
-        else if (Input.GetKeyDown(KeyCode.D) && !touchpadPressed)
+        else if (Input.GetKeyDown(KeyCode.D) && !touchpadPressed && (!dashing || dashTime <= 0))
         {
             transform.eulerAngles += Vector3.up * turnAmount;
             touchpadPressed = true;
@@ -214,10 +257,41 @@ public class Player : MonoBehaviour
         {
             touchpadPressed = false;
         }
-
-        velocity = transform.forward * Input.GetAxis("Vertical") * speed;
 #endif
-        velocity.y = cc.isGrounded ? -cc.velocity.y : cc.velocity.y - gravity;
+        float dashCancel = 1;
+
+        if (dashing)
+        {
+            if (dashWarmupTime >= 0 && dashTime > 0)
+            {
+                dashCancel = 0;
+                dashWarmupTime -= Time.deltaTime;
+            }
+            else if (dashTime > 0 && !didDash)
+            {
+                velocity += transform.forward * speed * dashMultipler;
+                dashTime -= Time.deltaTime;
+            }
+            else
+            {
+                didDash = true;
+                dashWarmupTime += Time.deltaTime * (1 / dashCooldownMultiplier);
+
+                if (dashWarmupTime >= initialDashTime)
+                {
+                    dashTime = initialDashTime;
+                    dashWarmupTime = initialDashWarmupTime;
+                    didDash = false;
+                    dashing = false;
+                }
+            }
+        }
+#if !UNITY_EDITOR
+        velocity += transform.forward * dashCancel * touchpad.y * speed;
+#else
+        velocity += transform.forward * dashCancel * Input.GetAxis("Vertical") * speed;
+#endif
+        velocity.y = cc.isGrounded ? 0 : -gravity;
         cc.Move(velocity * Time.deltaTime);
     }
 }

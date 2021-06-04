@@ -7,5 +7,6 @@ public class Weapon : ScriptableObject
 {
     public int projectileSpeed = 50;
     public float fireRate = 0.1f;
-    public GameObject projectile;
+    public int invert = 0;
+    public GameObject weaponPrefab;
 }
