@@ -19,7 +19,7 @@ public class WeaponHolder : MonoBehaviour
     void Update()
     {
         //if (thePlayer.currentWeapon.projectile == weapon.projectile)
-        if (thePlayer.currentWeaponMono == weaponMono)
+        if (thePlayer.currentWeaponMono[0] == weaponMono)
         {
             thisImage.color = Color.red;
         }

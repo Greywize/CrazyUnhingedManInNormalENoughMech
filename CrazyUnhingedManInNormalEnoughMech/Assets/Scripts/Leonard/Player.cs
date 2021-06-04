@@ -30,8 +30,8 @@ public class Player : MonoBehaviour
     bool didDash = false;
     bool dashing = false;
     bool touchpadPressed = false;
-    //public Weapon currentWeapon;
-    public GameObject currentWeaponMono;
+    //public Weapon[] currentWeapon;
+    public List<GameObject> currentWeaponMono = new List<GameObject>();
     public Camera VRCam;
     private float fireTime;
     private float initialDashWarmupTime;
@@ -39,6 +39,7 @@ public class Player : MonoBehaviour
     private float initialDashTime;
     public float dashTime = 0.65f;
     public float dashCooldownMultiplier = 7;
+    public float deadzone = 0.3f;
     public GameObject model;
 
     void Start()
@@ -84,7 +85,7 @@ public class Player : MonoBehaviour
 
     void SwapWeapon()
     {
-#if !UNITY_EDITOR
+#if UNITY_EDITOR
         Ray ray = new Ray(VRCam.transform.position, VRCam.transform.forward);
         int layerMask = 1 << 5;
 
@@ -94,7 +95,19 @@ public class Player : MonoBehaviour
 
             if (newWeapon)
             {
-                currentWeaponMono = newWeapon.weaponMono;
+                int i = 0;
+
+                foreach (GameObject weapon in currentWeaponMono)
+                {
+                    Destroy(weapon);
+                    i++;
+                }
+
+                for (int e = 0; e < i; e++)
+                {
+                    newWeapon.weaponMono.GetComponent<Weapon>().invert = e % 2;
+                    currentWeaponMono.Add(Instantiate(newWeapon.gameObject, transform));
+                }
             }
         }
 #endif
@@ -122,13 +135,13 @@ public class Player : MonoBehaviour
     private void FireWeapon(Ray ray)
     {
 #if !UNITY_EDITOR
-        if (currentWeaponMono)
+        if (currentWeaponMono[0])
         {
-            if (fireTime >= currentWeaponMono.GetComponent<WeaponMono>().fireRate)
+            if (fireTime >= currentWeaponMono[0].GetComponent<WeaponMono>().fireRate)
             {
                 fireTime = 0;
-                GameObject clone = Instantiate(currentWeaponMono.GetComponent<WeaponMono>().projectile, ray.origin + 3 * ray.direction, transform.rotation);
-                clone.GetComponent<Rigidbody>().velocity = ray.direction * currentWeaponMono.GetComponent<WeaponMono>().projectileSpeed;
+                GameObject clone = Instantiate(currentWeaponMono[0].GetComponent<WeaponMono>().weaponAmmo, ray.origin + 3 * ray.direction, transform.rotation);
+                clone.GetComponent<Rigidbody>().velocity = ray.direction * currentWeaponMono[0].GetComponent<WeaponMono>().projectileSpeed;
             }
         }
 #endif
@@ -137,17 +150,17 @@ public class Player : MonoBehaviour
     private void FireWeapon()
     {
 #if UNITY_EDITOR
-        if (currentWeaponMono)
+        if (currentWeaponMono[0])
         {
-            if (fireTime >= currentWeaponMono.GetComponent<WeaponMono>().fireRate)
+            if (fireTime >= currentWeaponMono[0].GetComponent<WeaponMono>().fireRate)
             {
                 fireTime = 0;
-                GameObject clone = Instantiate(currentWeaponMono.GetComponent<WeaponMono>().projectile, transform.position + 5 * transform.forward, transform.rotation);
-                clone.GetComponent<Rigidbody>().velocity = transform.forward * currentWeaponMono.GetComponent<WeaponMono>().projectileSpeed;
+                GameObject clone = Instantiate(currentWeaponMono[0].GetComponent<WeaponMono>().weaponPrefab.GetComponent<Projectile>().projectilePrefab, transform.position + 5 * transform.forward, transform.rotation);
+                clone.GetComponent<Rigidbody>().velocity = transform.forward * currentWeaponMono[0].GetComponent<WeaponMono>().projectileSpeed;
             }
         }
 
-        print($"Firing {currentWeaponMono.GetComponent<WeaponMono>().ToString()}");
+        print($"Firing {currentWeaponMono[0].GetComponent<WeaponMono>().ToString()}");
 #endif
     }
     void Move()
@@ -161,7 +174,7 @@ public class Player : MonoBehaviour
 
         if (touchpad.y > 0)
         {
-            if (touchpad.y < 0.35)
+            if (touchpad.y < deadzone)
             {
                 touchpad.y = 0;
             }
@@ -172,7 +185,7 @@ public class Player : MonoBehaviour
         }
         else if (touchpad.y < 0)
         {
-            if (touchpad.y > -0.35)
+            if (touchpad.y > -deadzone)
             {
                 touchpad.y = 0;
             }
@@ -183,7 +196,7 @@ public class Player : MonoBehaviour
         }
         if (touchpad.x > 0)
         {
-            if (touchpad.x < 0.35)
+            if (touchpad.x < deadzone)
             {
                 touchpad.x = 0;
             }
@@ -194,7 +207,7 @@ public class Player : MonoBehaviour
         }
         else if (touchpad.x < 0)
         {
-            if (touchpad.x > -0.35)
+            if (touchpad.x > -deadzone)
             {
                 touchpad.x = 0;
             }
