@@ -977,7 +977,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2453588e7c2a1104ca964e1580045f64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 20
+  dashMultipler: 3
   gravity: 9.8
   turnAmount: 30
   terrain: {fileID: 0}
@@ -986,7 +987,6 @@ MonoBehaviour:
     type: 3}
   VRCam: {fileID: 8541003380518093758}
   model: {fileID: 9125903398340053495}
-  layer: 5
 --- !u!120 &8541003382185335095
 LineRenderer:
   m_ObjectHideFlags: 0
