@@ -558,7 +558,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 1
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -1423,11 +1423,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 533625296943751732, guid: e2107081c2902674d81d20ff00041c0e,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1635948342929288752, guid: e2107081c2902674d81d20ff00041c0e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1493,11 +1488,6 @@ PrefabInstance:
       propertyPath: terrain
       value: 
       objectReference: {fileID: 199567434396309808}
-    - target: {fileID: 2897069492020451884, guid: e2107081c2902674d81d20ff00041c0e,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2107081c2902674d81d20ff00041c0e, type: 3}
 --- !u!1001 &2475237981054646399

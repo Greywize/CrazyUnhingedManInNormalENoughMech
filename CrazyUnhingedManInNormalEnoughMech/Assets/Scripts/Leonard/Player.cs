@@ -25,10 +25,12 @@ public class Player : MonoBehaviour
     Vector3 velocity;
     LineRenderer lineRenderer;
     bool touchpadPressed = false;
-    public Weapon currentWeapon;
+    //public Weapon currentWeapon;
+    public GameObject currentWeaponMono;
     public Camera VRCam;
     private float fireTime;
     public GameObject model;
+    public int layer = 5;
 
     void Start()
     {
@@ -73,14 +75,15 @@ public class Player : MonoBehaviour
     {
 #if !UNITY_EDITOR
         Ray ray = new Ray(VRCam.transform.position, VRCam.transform.forward);
+        int layerMask = 1 << layer;
 
-        if (OVRInput.Get(OVRInput.Button.Back) && Physics.Raycast(ray, out RaycastHit hit))
+        if (OVRInput.Get(OVRInput.Button.Back) && Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask))
         {
             WeaponHolder newWeapon = hit.collider.GetComponent<WeaponHolder>();
 
             if (newWeapon)
             {
-                currentWeapon = newWeapon.weapon;
+                currentWeaponMono = newWeapon.weaponMono;
             }
         }
 #endif
@@ -91,7 +94,7 @@ public class Player : MonoBehaviour
 #if !UNITY_EDITOR
         Ray ray = new Ray(pointer.position, pointer.forward);
         lineRenderer.SetPosition(0, ray.origin);
-        lineRenderer.SetPosition(1, ray.origin + 5 * ray.direction);
+        lineRenderer.SetPosition(1, ray.origin + 3 * ray.direction);
 
         if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger))
         {
@@ -108,13 +111,13 @@ public class Player : MonoBehaviour
     private void FireWeapon(Ray ray)
     {
 #if !UNITY_EDITOR
-        if (currentWeapon)
+        if (currentWeaponMono)
         {
-            if (fireTime >= currentWeapon.fireRate)
+            if (fireTime >= currentWeaponMono.GetComponent<WeaponMono>().fireRate)
             {
                 fireTime = 0;
-                GameObject clone = Instantiate(currentWeapon.projectile, ray.origin + 5 * ray.direction, transform.rotation);
-                clone.GetComponent<Rigidbody>().velocity = ray.direction * currentWeapon.projectileSpeed;
+                GameObject clone = Instantiate(currentWeaponMono.GetComponent<WeaponMono>().projectile, ray.origin + 3 * ray.direction, transform.rotation);
+                clone.GetComponent<Rigidbody>().velocity = ray.direction * currentWeaponMono.GetComponent<WeaponMono>().projectileSpeed;
             }
         }
 #endif
@@ -123,17 +126,17 @@ public class Player : MonoBehaviour
     private void FireWeapon()
     {
 #if UNITY_EDITOR
-        if (currentWeapon)
+        if (currentWeaponMono)
         {
-            if (fireTime >= currentWeapon.fireRate)
+            if (fireTime >= currentWeaponMono.GetComponent<WeaponMono>().fireRate)
             {
                 fireTime = 0;
-                GameObject clone = Instantiate(currentWeapon.projectile, transform.position + 5 * transform.forward, transform.rotation);
-                clone.GetComponent<Rigidbody>().velocity = transform.forward * currentWeapon.projectileSpeed;
+                GameObject clone = Instantiate(currentWeaponMono.GetComponent<WeaponMono>().projectile, transform.position + 5 * transform.forward, transform.rotation);
+                clone.GetComponent<Rigidbody>().velocity = transform.forward * currentWeaponMono.GetComponent<WeaponMono>().projectileSpeed;
             }
         }
 
-        print($"Firing {currentWeapon.ToString()}");
+        print($"Firing {currentWeaponMono.GetComponent<WeaponMono>().ToString()}");
 #endif
     }
     void Move()
@@ -146,7 +149,7 @@ public class Player : MonoBehaviour
 
         if (touchpad.y > 0)
         {
-            if (touchpad.y < 0.4)
+            if (touchpad.y < 0.35)
             {
                 touchpad.y = 0;
             }
@@ -157,7 +160,7 @@ public class Player : MonoBehaviour
         }
         else if (touchpad.y < 0)
         {
-            if (touchpad.y > -0.4)
+            if (touchpad.y > -0.35)
             {
                 touchpad.y = 0;
             }
@@ -168,7 +171,7 @@ public class Player : MonoBehaviour
         }
         if (touchpad.x > 0)
         {
-            if (touchpad.x < 0.4)
+            if (touchpad.x < 0.35)
             {
                 touchpad.x = 0;
             }
@@ -179,7 +182,7 @@ public class Player : MonoBehaviour
         }
         else if (touchpad.x < 0)
         {
-            if (touchpad.x > -0.4)
+            if (touchpad.x > -0.35)
             {
                 touchpad.x = 0;
             }
@@ -217,7 +220,7 @@ public class Player : MonoBehaviour
 
         velocity = transform.forward * Input.GetAxis("Vertical") * speed;
 #endif
-        velocity.y = cc.isGrounded ? -cc.velocity.y : cc.velocity.y - gravity;
+        velocity.y = cc.isGrounded ? 0 : -gravity;
         cc.Move(velocity * Time.deltaTime);
     }
 }

@@ -6,6 +6,7 @@ ScriptsOnlyBuild:
     - Player
     - Projectile
     - WeaponHolder
+    - WeaponMono
     - Zacks.Terrain.CubeGenerator
     - Zacks.Terrain.MeshBuilder
     Oculus.VR.Editor.dll:
@@ -24,12 +25,6 @@ ScriptsOnlyBuild:
     - TMPro.TMP_SpriteAsset
     - TMPro.TMP_StyleSheet
     - TMPro.TextMeshProUGUI
-    UnityEditor.Graphs.dll:
-    - UnityEditor.Graphs.AnimationBlendTree.Graph
-    - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.Graph
-    - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -77,8 +72,6 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 109
-      Script: {instanceID: 0}
-    - Class: 114
       Script: {instanceID: 0}
     - Class: 114
       Script: {instanceID: 11236}
@@ -130,6 +123,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 13702}
     - Class: 114
       Script: {instanceID: 13742}
+    - Class: 114
+      Script: {instanceID: 38286}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -973,7 +968,7 @@ ScriptsOnlyBuild:
     className: SimpleScript
   - hash:
       serializedVersion: 2
-      Hash: 0ecbeaedf15a8a49556fdbcecb621b41
+      Hash: f7ec46cb415cd2acf11ac66f303b9975
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: WeaponHolder
@@ -1273,7 +1268,7 @@ ScriptsOnlyBuild:
     className: VertexShakeA
   - hash:
       serializedVersion: 2
-      Hash: d8b0a8c839b0bd1e05ebaa78bc6814ff
+      Hash: 311d228494ac94d0c6ec60b8a51c1023
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Player
@@ -1373,6 +1368,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 7e85f975930440e906f3886e43db7c4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: WeaponMono
   platform: 13
   scenePathNames:
   - Assets/Scenes/Programming/Leonard.unity

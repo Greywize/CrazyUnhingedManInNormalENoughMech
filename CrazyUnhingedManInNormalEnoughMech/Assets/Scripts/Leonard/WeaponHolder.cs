@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class WeaponHolder : MonoBehaviour
 {
-    public Weapon weapon;
+    //public Weapon weapon;
+    public GameObject weaponMono;
     Image thisImage;
     Player thePlayer;
 
@@ -17,7 +18,8 @@ public class WeaponHolder : MonoBehaviour
 
     void Update()
     {
-        if (thePlayer.currentWeapon.projectile == weapon.projectile)
+        //if (thePlayer.currentWeapon.projectile == weapon.projectile)
+        if (thePlayer.currentWeaponMono == weaponMono)
         {
             thisImage.color = Color.red;
         }
