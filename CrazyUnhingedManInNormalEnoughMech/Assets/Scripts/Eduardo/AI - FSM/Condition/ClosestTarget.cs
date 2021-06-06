@@ -29,7 +29,7 @@ namespace AI
             agent.enableSensor(true);
 
             // [2] if a target has been found
-            if (Vector3.Distance(agent.transform.position, agent.destination) > agent.sensor.detection)
+            if (Vector3.Distance(agent.transform.position, agent.destination) > agent.sensor.detectRadius)
             {
                 agent.sensor.closestTarget = false;
                 return true;

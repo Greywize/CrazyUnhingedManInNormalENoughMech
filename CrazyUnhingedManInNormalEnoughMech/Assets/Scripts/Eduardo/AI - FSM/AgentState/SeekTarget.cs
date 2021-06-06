@@ -30,7 +30,7 @@ namespace AI
             float distance = Vector3.Distance(agent.transform.position, agent.destination);
             Debug.DrawLine(agent.target.transform.position, agent.transform.position, Color.red);
 
-            if (distance > agent.sensor.detection)
+            if (distance > agent.sensor.detectRadius)
                 agent.MoveToward(agent.destination);
             else
             {

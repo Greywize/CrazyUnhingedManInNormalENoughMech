@@ -22,7 +22,7 @@ namespace AI
 
         [Space(10)]
         [Header("Agent State")]
-        public float timer = 1;
+        public float timer = 0.1f;
         public AgentState defaultState;
         public AgentState currState;
         public AgentState prevState;
@@ -40,7 +40,7 @@ namespace AI
         public Vector3 currPosition;
         public int currDestination = 0;
         public Vector3 destination;
-        public int moveSpeed;
+        [Range(5,100)] public int moveSpeed = 5;
         [Space(10)]
         #endregion
 
@@ -50,6 +50,27 @@ namespace AI
         #endregion
 
         #region MONOBEHAVIOUR
+
+        /// <summary>
+        /// Add this agent to the total agent count 
+        /// </summary>
+        private void OnEnable() => agentCounter++;
+
+        /// <summary>
+        /// Remove this agent from the totals agent count 
+        /// </summary>
+        private void OnDisable() => agentCounter--;
+
+        private void OnDrawGizmosSelected()
+        {
+            // Draw patrol points when agent is selected
+/*            if(defaultState.GetType() == typeof(PatrolState))
+                foreach(PatrolPoint p in PatrolState)
+                {
+
+                }*/
+        }
+
         private void Awake()
         {
             sensor = GetComponent<Sensor>();
@@ -84,7 +105,7 @@ namespace AI
             {
                 currState = defaultState;
                 currState.OnStateEnter(this);
-                timer = 0.2f;
+                timer = 0.1f;
             }
         }
         #endregion
@@ -164,8 +185,8 @@ namespace AI
             //  if (agent.currState != null)
             agent.currState = null;
 
-            if (agent.target != null)
-                agent.target = null;
+/*            if (agent.target != null)
+                agent.target = null;*/
 
             agent.destination = Vector3.zero;
         }

@@ -17,6 +17,10 @@ namespace AI
         [SerializeField] public SeekDestination[] destinations;
         [SerializeField] public PatrolParent patrolParent;
 
+        private void OnEnable()
+        {
+            
+        }
 
         /// <summary>
         /// Make suer to pass the current agent into the scriptable object to reference it 

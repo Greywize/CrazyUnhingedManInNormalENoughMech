@@ -9,9 +9,14 @@ namespace AI
     {
         public AgentBehaviour agent;
         public SphereCollider sphereCollider;
-        public float detection;
+        public float detectRadius;
         public float proximity;
         public bool closestTarget = false;
+
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.DrawWireSphere(agent.transform.position, proximity);
+        }
 
         private void Awake()
         {
