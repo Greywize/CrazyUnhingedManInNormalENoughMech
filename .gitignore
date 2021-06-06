@@ -10,8 +10,6 @@
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
 
-/CrazyUnhingedManInNormalEnoughMech/Library/
-
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
 /[Mm]emoryCaptures/
@@ -72,6 +70,5 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
-ADV_GP_YR2\repos\VR\GroupProject2\CrazyUnhingedManInNormalEnoughMech\Temp\*
-ADV_GP_YR2\repos\VR\GroupProject2\CrazyUnhingedManInNormalEnoughMech\Library\*
-CrazyUnhingedManInNormalEnoughMech/Temp/
+ADV_GP_YR2/repos/VR/GroupProject2/CrazyUnhingedManInNormalEnoughMech/Temp/*
+ADV_GP_YR2/repos/VR/GroupProject2/CrazyUnhingedManInNormalEnoughMech/Library/*
