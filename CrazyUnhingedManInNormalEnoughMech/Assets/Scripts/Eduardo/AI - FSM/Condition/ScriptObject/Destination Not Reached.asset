@@ -9,9 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da11b693727579a46ae589609772d801, type: 3}
-  m_Name: New Seek Destination 3
+  m_Script: {fileID: 11500000, guid: b857fae85e894a94899e394dd4bcfe58, type: 3}
+  m_Name: Destination Not Reached
   m_EditorClassIdentifier: 
-  destination: {x: -25, y: 0, z: 15}
-  actions:
-  - {fileID: 11400000, guid: eb83d43ec46b7964c94be86ba61b8dd2, type: 2}

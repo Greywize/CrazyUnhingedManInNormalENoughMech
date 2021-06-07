@@ -17,26 +17,29 @@ namespace AI
             // Find agent animator
             
         }
+        
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="agent"></param>
-        private void addAction(AgentBehaviour agent)
+        public override void Tick(AgentBehaviour agent, Condition cond)
         {
-            /*agent.performAction = this;*/
+            throw new System.NotImplementedException();
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="agent"></param>
-        public override void performAction(AgentBehaviour agent)
+        public override void Tick(AgentBehaviour agent)
         {
-            /*if (checkCondition(agent, condition))
-            {
-                agent.performAction = this;
-            }*/
+            if(condition)
+                performAction(agent);
+        }
+
+        public override void addAction(AgentBehaviour agent,int index)
+        {
+            AttackAction act = ScriptableObject.Instantiate(this);
+            agent.agentActions[index] = act;
+        }
+
+        public override AgentAction addinstance(AgentBehaviour agent)
+        {
+            AttackAction act = ScriptableObject.Instantiate(this);
+            return act;
         }
 
         /// <summary>
@@ -47,7 +50,7 @@ namespace AI
         public override void performAction(AgentBehaviour agent, AgentState target)
         {
             Debug.Log($"{agent} has {this} to {target}");
-            agent.agentActions[agent.currAction] = null;
+            agent.removeAction(agent, agent.currAction);
         }
 
         /// <summary>
@@ -57,9 +60,9 @@ namespace AI
         /// <param name="target"></param>
         public override void performAction(AgentBehaviour agent, AgentBehaviour target)
         {
-            if (checkCondition(agent, condition))
+            if (condition.CheckCondition(agent))
             {
-                addAction(agent);
+                Debug.Log($"{agent} has performed {this}");
             }
         }
     }

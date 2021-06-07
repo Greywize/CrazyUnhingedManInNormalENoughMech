@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da11b693727579a46ae589609772d801, type: 3}
-  m_Name: New Seek Destination 3
+  m_Script: {fileID: 11500000, guid: 81e11b9966e26f6419abaff81d08e417, type: 3}
+  m_Name: Seek Destination Action
   m_EditorClassIdentifier: 
-  destination: {x: -25, y: 0, z: 15}
-  actions:
-  - {fileID: 11400000, guid: eb83d43ec46b7964c94be86ba61b8dd2, type: 2}
+  condition: {fileID: 11400000, guid: aff083f835c98844e991826f8c85f807, type: 2}

@@ -9,6 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4847ab0d06504054fbcd52dd74542cf0, type: 3}
-  m_Name: New Null Destination
+  m_Script: {fileID: 11500000, guid: c4f006bb3acc0df48a0b914f483b3e14, type: 3}
+  m_Name: Seek Action
   m_EditorClassIdentifier: 
+  condition: {fileID: 11400000, guid: 0e74bf2faac543a48ac262d86daaafb7, type: 2}

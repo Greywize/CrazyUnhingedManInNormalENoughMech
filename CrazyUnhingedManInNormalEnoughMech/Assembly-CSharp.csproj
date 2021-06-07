@@ -243,6 +243,8 @@
      <Compile Include="Assets\Scripts\Eduardo\AI - FSM\AgentActions\AgentAction.cs" />
      <Compile Include="Assets\Scripts\Eduardo\AI - FSM\AgentActions\AttackAction.cs" />
      <Compile Include="Assets\Scripts\Eduardo\AI - FSM\AgentActions\IdleAction.cs" />
+     <Compile Include="Assets\Scripts\Eduardo\AI - FSM\AgentActions\SeekAction.cs" />
+     <Compile Include="Assets\Scripts\Eduardo\AI - FSM\AgentActions\SeekDestinationAction.cs" />
      <Compile Include="Assets\Scripts\Eduardo\AI - FSM\AgentBehaviour.cs" />
      <Compile Include="Assets\Scripts\Eduardo\AI - FSM\AgentState.cs" />
      <Compile Include="Assets\Scripts\Eduardo\AI - FSM\AgentState\AgentWander.cs" />
@@ -254,6 +256,8 @@
      <Compile Include="Assets\Scripts\Eduardo\AI - FSM\AgentState\SeekTarget.cs" />
      <Compile Include="Assets\Scripts\Eduardo\AI - FSM\Condition.cs" />
      <Compile Include="Assets\Scripts\Eduardo\AI - FSM\Condition\ClosestTarget.cs" />
+     <Compile Include="Assets\Scripts\Eduardo\AI - FSM\Condition\DestinationNotReached.cs" />
+     <Compile Include="Assets\Scripts\Eduardo\AI - FSM\Condition\DistanceFromTarget.cs" />
      <Compile Include="Assets\Scripts\Eduardo\AI - FSM\Condition\NullDestination.cs" />
      <Compile Include="Assets\Scripts\Eduardo\AI - FSM\Condition\NullState.cs" />
      <Compile Include="Assets\Scripts\Eduardo\AI - FSM\Condition\NullTarget.cs" />

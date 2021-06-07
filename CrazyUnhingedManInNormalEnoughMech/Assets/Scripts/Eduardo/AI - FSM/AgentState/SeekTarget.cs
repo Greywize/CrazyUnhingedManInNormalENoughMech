@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,8 +9,13 @@ namespace AI
     public class SeekTarget : AgentState
     {
         public AgentAction[] actions;
-        
-        
+
+        private void OnDrawGizmosSelected()
+        {
+            // Draw patrol points when agent is selected
+            // for(int i = 0; i < defaultState)
+        }
+
         public override void OnStateEnter(AgentBehaviour agent)
         {
             agent.enableSensor(true);
@@ -20,42 +26,43 @@ namespace AI
                 OnStateExit(agent);
                 return;
             }
+
+            addActions(agent, actions);
         }
 
         public override void Tick(AgentBehaviour agent)
         {
             if (agent.target == null)
             {
+                Debug.Log($"{agent} has no target!?");
                 OnStateExit(agent);
+                return;
             }
-
-            agent.destination = agent.target.transform.position;
-            float distance = Vector3.Distance(agent.transform.position, agent.destination);
-            Debug.DrawLine(agent.target.transform.position, agent.transform.position, Color.red);
-
-            if (distance > agent.sensor.detectRadius)
-                agent.MoveToward(agent.destination);
             else
             {
-                addActions(agent, actions);
-                agent.enableSensor(true);
-                OnStateExit(agent);
+                agent.destination = agent.target.transform.position;
             }
+
+            // Perform Actions
+            if (agent.currAction < agent.agentActions.Length)
+                agent.agentActions[agent.currAction].Tick(agent);
+            else if (agent.currAction >= agent.agentActions.Length)
+                OnStateExit(agent);
         }
 
         /// <summary>
-        /// Add the action to the agent
+        /// Add the action(s) to the agent
         /// </summary>
         /// <param name="agent"></param>
         /// <param name="action"></param>
-        private void addActions(AgentBehaviour agent, AgentAction[] action)
+        public override void addActions(AgentBehaviour agent, AgentAction[] actions)
         {
+            Array.Clear(agent.agentActions, 0, agent.agentActions.Length);
+
             for (int i = 0; i < actions.Length; i++)
             {
-               // actions[i] = ScriptableObject.CreateInstance(actions[i]);    
-                agent.agentActions[i] = actions[i];
+                agent.agentActions[i] = actions[i].addinstance(agent);
             }
-                
         }
     }
 }
