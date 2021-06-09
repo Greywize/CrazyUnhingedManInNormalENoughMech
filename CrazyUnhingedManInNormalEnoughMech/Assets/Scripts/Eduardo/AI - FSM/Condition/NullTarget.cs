@@ -4,15 +4,15 @@ using UnityEngine;
 
 namespace AI
 {
+    /// <summary>
+    /// Check if the the Agents current target is NULL
+    /// </summary>
     [CreateAssetMenu(menuName = "AI/Condition/NullTarget")]
     public class NullTarget : Condition
     {
         public override bool CheckCondition(AgentBehaviour agent)
         {
-            agent.enableSensor(true);
-
             return (agent.target == null);
         }
     }
-
 }

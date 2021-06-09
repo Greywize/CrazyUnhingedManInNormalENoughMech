@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace AI
 {
@@ -18,7 +19,6 @@ namespace AI
                 agent.currState = this;
 
             agent.destination = destination;
-            //agent.lookAtTarget();
             addActions(agent, actions);
         }
 
@@ -28,9 +28,11 @@ namespace AI
         /// <param name="agent"></param>
         public override void Tick(AgentBehaviour agent)
         {
-            if (agent.currAction < agent.agentActions.Length)
-                agent.agentActions[agent.currAction].Tick(agent);
-            else
+            agent.destination = destination;
+            
+            if (agent.actionIndex < agent.agentActions.Length)
+                agent.agentActions[agent.actionIndex].Tick(agent);
+            else if(agent.actionIndex >= agent.agentActions.Length)
                 OnStateExit(agent);
         }
 
@@ -53,8 +55,13 @@ namespace AI
 
         public override void addActions(AgentBehaviour agent, AgentAction[] actions)
         {
-            SeekDestination act = ScriptableObject.Instantiate(this);
-           // agent.agentActions[0] = act;
+            Array.Clear(agent.agentActions, 0, agent.agentActions.Length);
+
+            for (int i = 0; i < actions.Length; i++)
+            {
+                agent.agentActions[i] = actions[i].addinstance(agent);
+            }
+        
         }
     }
 }

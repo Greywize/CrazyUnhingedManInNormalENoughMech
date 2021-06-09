@@ -18,7 +18,7 @@ namespace AI
 
         public override void OnStateEnter(AgentBehaviour agent)
         {
-            agent.enableSensor(true);
+            agent.EnableSensor(true);
 
             if (agent.target == null)
             {
@@ -28,6 +28,7 @@ namespace AI
             }
 
             addActions(agent, actions);
+            agent.actionCondition = agent.agentActions[agent.actionIndex].getCondition();
         }
 
         public override void Tick(AgentBehaviour agent)
@@ -44,9 +45,9 @@ namespace AI
             }
 
             // Perform Actions
-            if (agent.currAction < agent.agentActions.Length)
-                agent.agentActions[agent.currAction].Tick(agent);
-            else if (agent.currAction >= agent.agentActions.Length)
+            if (agent.actionIndex < agent.agentActions.Length)
+                agent.agentActions[agent.actionIndex].Tick(agent);
+            else if (agent.actionIndex >= agent.agentActions.Length)
                 OnStateExit(agent);
         }
 

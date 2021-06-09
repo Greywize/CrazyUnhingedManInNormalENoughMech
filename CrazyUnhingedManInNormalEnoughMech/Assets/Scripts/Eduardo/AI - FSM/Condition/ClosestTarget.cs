@@ -3,6 +3,9 @@
 namespace AI
 {
 
+    /// <summary>
+    /// Check for the closest Agent
+    /// </summary>
     [CreateAssetMenu(menuName = "AI/Condition/ClosestTarget")]
     public class ClosestTarget : Condition
     {
@@ -26,12 +29,12 @@ namespace AI
                 return false;
             }
 
-            agent.enableSensor(true);
+            agent.EnableSensor(true);
 
             // [2] if a target has been found
-            if (Vector3.Distance(agent.transform.position, agent.destination) > agent.sensor.detectRadius)
+            if (Vector3.Distance(agent.transform.position, agent.destination) > agent.detectProximity)
             {
-                agent.sensor.closestTarget = false;
+                agent.closestTarget = false;
                 return true;
             }
 

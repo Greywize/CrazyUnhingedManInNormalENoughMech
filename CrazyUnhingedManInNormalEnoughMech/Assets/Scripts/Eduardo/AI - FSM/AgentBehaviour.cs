@@ -2,16 +2,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
+using UnityEngine.Serialization;
 
 namespace AI
 {
+    /// <summary>
+    /// Artificial behavioural unit
+    /// Finite State Machine
+    /// </summary>
+    [RequireComponent(typeof(SphereCollider))]
     public class AgentBehaviour : MonoBehaviour
     {
         #region CONTRUCTOR
+
         AgentBehaviour()
         {
             agentCounter++;
         }
+
         #endregion
 
         #region STATIC MEMBERS
@@ -24,120 +33,124 @@ namespace AI
 
         [Header("Required Objects")] 
         public Transform Body;
-        public Sensor sensor;
+       // public Sensor sensor;
         public AgentBehaviour agent;
 
-        [Space(10)]
-        [Header("Agent State")] 
-        public float timer = 0.1f;
+        [Space(15)] [Header("STATE")] 
+        public float timer;
         public AgentState defaultState;
+        public int currentTransition;
         public AgentState currState;
         public AgentState prevState;
-        public int currentTransition = 0;
-        
-        [Space(10)] 
-        [Header("Agent Actions")] 
-        public int currAction;
-        public AgentAction[] agentActions;
+        public Condition stateCondition;
 
-        [Space(10)] 
-        [Header("Agent Destination")]
+        [Space(15)] 
+        [Header("ACTIONS")]
+        [FormerlySerializedAs("currAction")] 
+        public int actionIndex;
+        [SerializeField] public AgentAction[] agentActions;
+        public Condition actionCondition;
+
+        [Space(15)] 
+        [Header("DESTINATION")] 
         public AgentBehaviour target;
         public Vector3 currPosition;
         public int currDestination = 0;
         public Vector3 destination;
         [Range(5, 100)] public int moveSpeed = 5;
 
+        [Space(15)]
+        [Header("SENSOR")] 
+        public SphereCollider SenseCollider;
+        public float actionRange;
+        public float detectProximity;
+        public bool closestTarget = false;
         [Space(10)]
-
         #endregion
 
         #region PRIVATE MEMBERS
 
-        [Header("State Transitions")]
+        [Header("TRANSITION")]
         [SerializeField] public Transitions[] Transitions;
 
         #endregion
 
         #region MONOBEHAVIOUR
-        /// <summary>
-        /// Remove this agent from the totals agent count 
-        /// </summary>
-        private void OnDisable() => agentCounter--;
 
         private void OnDrawGizmosSelected()
         {
-            // Draw patrol points when agent is selected
-            // for(int i = 0; i < defaultState)
-            
+            Gizmos.DrawWireSphere(transform.position, detectProximity);
         }
-
+        
         // #1
         private void Awake()
         {
-            sensor = GetComponent<Sensor>();
+            // sensor = GetComponent<Sensor>();
         }
-        
+
         // #2
         /// <summary>
         /// Add this agent to the total agent count 
         /// </summary>
         private void OnEnable() => agentCounter++;
-
+        
+        /// <summary>
+        /// Remove this agent from the totals agent count 
+        /// </summary>
+        private void OnDisable() => agentCounter--;
+        
         // #3
         private void Start()
         {
             AgentState State = ScriptableObject.Instantiate(defaultState);
             currState = State;
             currState.OnStateEnter(this);
+            SenseCollider = GetComponent<SphereCollider>();
+            SenseCollider.radius = detectProximity;
         }
-        //#4 - FIXED UPDATE 
         
+        //#4 - FIXED UPDATE 
+        private void FixedUpdate()
+        {
+            
+        }
+
         // #5 - Update
         private void Update()
         {
             currPosition = transform.position;
-
-            /*if (agentActions != null)
-                performActions();*/
-
+            
             if (currState == null)
                 checkTransitions(this);
             else if (agentActions != null)
+            {
+                Debug.DrawLine(destination, transform.position, Color.blue);
                 currState.Tick(this);
+            }
         }
 
+        // #6 - 
         private void LateUpdate()
         {
             // Limit check
-            if (currAction > agentActions.Length)
-                currAction = 0;
-
-            if (currState == null)
-                timer -= Time.deltaTime;
-            
-            
-            if (timer <= 0f)
-            {
-                currState = defaultState;
-                currState.OnStateEnter(this);
-                timer = 0.1f;
-            }
+            if (actionIndex >= agentActions.Length)
+                actionIndex = 0;
         }
 
         #endregion
 
         #region FUNCTIONS
+
         /// <summary>
-        /// Enable the senseor on the Agent
+        /// Enable the sensor on the Agent
         /// </summary>
         /// <param name="s"></param>
         /// <param name="b"></param>
-        public void enableSensor(bool b)
+        public void EnableSensor(bool b)
         {
             // s.enabled = b;
-            sensor.sphereCollider.enabled = b;
-            sensor.sphereCollider.isTrigger = b;
+            SenseCollider.enabled = b;
+            SenseCollider.isTrigger = b;
         }
 
         /// <summary>
@@ -148,7 +161,12 @@ namespace AI
         {
             for (int i = currentTransition; i < agent.Transitions.Length; i++)
             {
-                Transitions[i].checkTransition(agent, Transitions[i].state, Transitions[i].condition);
+                if (Transitions[i].condition != null)
+                    Transitions[i].checkTransition(agent, Transitions[i].state, Transitions[i].condition);
+                else
+                {
+                    // currState = Transitions[i].state;
+                }
             }
         }
 
@@ -196,6 +214,11 @@ namespace AI
             // https://docs.unity3d.com/ScriptReference/Vector3.RotateTowards.html
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="agent"></param>
+        /// <param name="s"></param>
         public void ResetAgent(AgentBehaviour agent, AgentState s)
         {
             agent.prevState = s;
@@ -203,12 +226,12 @@ namespace AI
             //  if (agent.currState != null)
             agent.currState = null;
 
-/*            if (agent.target != null)
-                agent.target = null;*/
+            if (agent.target != null)
+                agent.target = null;
 
             if (agent.agentActions.Length > 0)
             {
-                agent.currAction = 0;
+                agent.actionIndex = 0;
                 Array.Clear(agent.agentActions, 0, agent.agentActions.Length);
             }
 
@@ -222,9 +245,14 @@ namespace AI
             if (agent.currentTransition >= agent.Transitions.Length)
             {
                 agent.currentTransition = 0;
-                /*                agent.currState = agent.defaultState;
-                                agent.currState.OnStateEnter(agent);*/
             }
+        }
+
+        public void resetAction(AgentBehaviour agent)
+        {
+            IdleAction act = ScriptableObject.CreateInstance<IdleAction>();
+            agent.agentActions[0] = act;
+            agent.actionIndex = 0;
         }
 
         // TODO - return the current type of the state
@@ -235,10 +263,10 @@ namespace AI
                 Debug.Log($"The current state of the agent is {agent.currState}");
                 return t1;
             }
-            
+
             return null;
         }
-        
+
         // TODO - 
         public string checkStateType(AgentState t1)
         {
@@ -247,48 +275,135 @@ namespace AI
                 Debug.Log($"The current state of the agent is {agent.currState}");
                 return t1.GetType().ToString();
             }
-            
+
             return null;
         }
-        
+
         // TODO - 
         public string checkStateType(AgentAction action)
         {
             // return (action.GetType().ToString() ?
             return null;
         }
-    
+
         /// <summary>
         /// 
         /// </summary>
         private void performActions()
         {
             // Guard clause
-            if (agentActions == null && currAction == 0)
+            if (agentActions == null && actionIndex == 0)
                 return;
 
             if (agentActions.Length < 0)
             {
-                agentActions[currAction].performAction(this, target);
+                agentActions[actionIndex].performAction(this, target);
             }
 
-            currAction++;
+            actionIndex++;
 
             // Limit check
-            if (currAction > agentActions.Length)
-                currAction = 0;
+            if (actionIndex > agentActions.Length)
+                actionIndex = 0;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="agent"></param>
+        /// <param name="actionIndex"></param>
         public void removeAction(AgentBehaviour agent, int actionIndex)
         {
             agent.agentActions[actionIndex] = null;
-            agent.currAction++;
-            
+            agent.actionIndex++;
+
             // Limit check
-            if (currAction > agentActions.Length)
-                currAction = 0;
+            if (this.actionIndex > agentActions.Length)
+                this.actionIndex = 0;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="agent"></param>
+        /// <param name="countdown"></param>
+        public void resetBehaviour(AgentBehaviour agent, float countdown)
+        {
+            agent.timer -= Time.deltaTime;
+
+            if (agent.timer <= 0f)
+            {
+                if (agent.currState != null)
+                    agent.currState.OnStateExit(agent);
+                else
+                {
+                    agent.currState = agent.defaultState;
+                    agent.agent.currState.OnStateEnter(agent);
+                }
+
+                agent.timer = countdown;
+            }
         }
         
+        #endregion
+        
+         #region SENSOR
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>
+        private bool getAgent(Collider c)
+        {
+            return (c.GetComponent<AgentBehaviour>());
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="other"></param>
+        private void OnTriggerEnter(Collider other)
+        {
+            if (agent.target == null)
+            {
+                if (getAgent(other))
+                {
+                    AgentBehaviour enemy = other.GetComponent<AgentBehaviour>();
+                    if (!enemy.name.Contains("Seeker"))
+                        agent.target = enemy;
+                    // agent.target = enemy;
+                    //  Debug.DrawLine(enemy.transform.position, agent.transform.position);
+                }
+            }
+            else if (agent.target != null)
+            {
+                if (getAgent(other))
+                {
+                    AgentBehaviour enemy = other.GetComponent<AgentBehaviour>();
+                    float enemyDist = Vector3.Distance(agent.transform.position, enemy.transform.position);
+                    float targetDist = Vector3.Distance(agent.transform.position, agent.target.transform.position);
+
+                    // Seek furtherest target
+                    if (closestTarget)
+                    {
+                        if (enemyDist < targetDist)
+                        {
+                            if (!enemy.name.Contains("Seeker"))
+                                agent.target = enemy;
+                        }
+                    }
+                    else if (!closestTarget)
+                    {
+                        if (enemyDist > targetDist)
+                        {
+                            if (!enemy.name.Contains("Seeker"))
+                                agent.target = enemy;
+                        }
+                    }
+                }
+            }
+        }
         
         #endregion
     }

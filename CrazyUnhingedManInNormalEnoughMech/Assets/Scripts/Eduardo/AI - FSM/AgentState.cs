@@ -7,6 +7,13 @@ namespace AI
 {
     public abstract class AgentState : ScriptableObject
     {
+        [SerializeField] protected AgentAction[] _actions;
+
+        public virtual AgentAction[] GETActions()
+        {
+            return _actions;
+        }
+        
         public abstract void OnStateEnter(AgentBehaviour agent);
 
         public abstract void Tick(AgentBehaviour agent);
@@ -34,7 +41,7 @@ namespace AI
         {
             agent.ResetAgent(agent, agent.currState);
             agent.ResetTransition(agent);
-            Array.Clear(agent.agentActions, 0, agent.agentActions.Length);
+            agent.resetAction(agent);
         }
 
         public abstract void addActions(AgentBehaviour agent, AgentAction[] actions);

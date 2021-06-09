@@ -1,24 +1,25 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace AI
 {
+
     /// <summary>
-    /// Make the agent idle
+    /// Detect all agents in proximity (sensorProximity)
     /// </summary>
-    [CreateAssetMenu(menuName = "AI/AgentAction/IdleAction")]
-    public class IdleAction : AgentAction
+    [CreateAssetMenu(menuName = "AI/AgentAction/DectectAgentAction")]
+    public class DetectAgentAction : AgentAction
     {
+
         public override void performAction(AgentBehaviour agent, AgentBehaviour target)
         {
-           
+            throw new System.NotImplementedException();
         }
 
         public override void performAction(AgentBehaviour agent)
         {
-            agent.resetBehaviour(agent, 1.2f);
+            throw new System.NotImplementedException();
         }
 
         public override void Tick(AgentBehaviour agent, Condition cond)
@@ -26,20 +27,14 @@ namespace AI
             throw new System.NotImplementedException();
         }
 
-        public override void Tick(AgentBehaviour agent)
-        {
-            performAction(agent);
-        }
-
         public override void addAction(AgentBehaviour agent, int index)
         {
-            IdleAction act = ScriptableObject.Instantiate(this);
-            //   agent.agentActions[index] = act;
+            throw new System.NotImplementedException();
         }
 
         public override AgentAction addinstance(AgentBehaviour agent)
         {
-            IdleAction act = ScriptableObject.Instantiate(this);
+            DetectAgentAction act = ScriptableObject.Instantiate(this);
             return act;
         }
     }

@@ -7,17 +7,10 @@ namespace AI
     [CreateAssetMenu(menuName = "AI/AgentAction/AttackAction")]
     public class AttackAction : AgentAction
     {
-        public Animator animator;
-        public Condition condition;
-        public float cooldown = 2.0f;
-
-        private void Awake()
+        public override void performAction(AgentBehaviour agent)
         {
-            // TODO
-            // Find agent animator
-            
+            throw new System.NotImplementedException();
         }
-        
 
         public override void Tick(AgentBehaviour agent, Condition cond)
         {
@@ -26,11 +19,11 @@ namespace AI
 
         public override void Tick(AgentBehaviour agent)
         {
-            if(condition)
+            if (_condition)
                 performAction(agent);
         }
 
-        public override void addAction(AgentBehaviour agent,int index)
+        public override void addAction(AgentBehaviour agent, int index)
         {
             AttackAction act = ScriptableObject.Instantiate(this);
             agent.agentActions[index] = act;
@@ -50,7 +43,7 @@ namespace AI
         public override void performAction(AgentBehaviour agent, AgentState target)
         {
             Debug.Log($"{agent} has {this} to {target}");
-            agent.removeAction(agent, agent.currAction);
+            agent.removeAction(agent, agent.actionIndex);
         }
 
         /// <summary>
@@ -60,7 +53,7 @@ namespace AI
         /// <param name="target"></param>
         public override void performAction(AgentBehaviour agent, AgentBehaviour target)
         {
-            if (condition.CheckCondition(agent))
+            if (_condition.CheckCondition(agent))
             {
                 Debug.Log($"{agent} has performed {this}");
             }

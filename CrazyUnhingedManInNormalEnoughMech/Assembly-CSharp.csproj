@@ -242,9 +242,10 @@
      <Compile Include="Assets\Scripts\CrossPlatformSwitcher.cs" />
      <Compile Include="Assets\Scripts\Eduardo\AI - FSM\AgentActions\AgentAction.cs" />
      <Compile Include="Assets\Scripts\Eduardo\AI - FSM\AgentActions\AttackAction.cs" />
+     <Compile Include="Assets\Scripts\Eduardo\AI - FSM\AgentActions\DetectAgentAction.cs" />
      <Compile Include="Assets\Scripts\Eduardo\AI - FSM\AgentActions\IdleAction.cs" />
+     <Compile Include="Assets\Scripts\Eduardo\AI - FSM\AgentActions\MoveToDestinationAction.cs" />
      <Compile Include="Assets\Scripts\Eduardo\AI - FSM\AgentActions\SeekAction.cs" />
-     <Compile Include="Assets\Scripts\Eduardo\AI - FSM\AgentActions\SeekDestinationAction.cs" />
      <Compile Include="Assets\Scripts\Eduardo\AI - FSM\AgentBehaviour.cs" />
      <Compile Include="Assets\Scripts\Eduardo\AI - FSM\AgentState.cs" />
      <Compile Include="Assets\Scripts\Eduardo\AI - FSM\AgentState\AgentWander.cs" />

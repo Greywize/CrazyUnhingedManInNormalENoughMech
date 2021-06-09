@@ -39122,11 +39122,82 @@ PrefabInstance:
       propertyPath: m_Name
       value: 'AI -FSM '
       objectReference: {fileID: 0}
+    - target: {fileID: 1962140952398050352, guid: 682a9d014f0f36c4a8f46a06d9c08da1,
+        type: 3}
+      propertyPath: proximity
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962140952398050352, guid: 682a9d014f0f36c4a8f46a06d9c08da1,
+        type: 3}
+      propertyPath: detectRadius
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962140952398050352, guid: 682a9d014f0f36c4a8f46a06d9c08da1,
+        type: 3}
+      propertyPath: closestTarget
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2517165648921854828, guid: 682a9d014f0f36c4a8f46a06d9c08da1,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4270417432471654246, guid: 682a9d014f0f36c4a8f46a06d9c08da1,
         type: 3}
       propertyPath: Body
       value: 
       objectReference: {fileID: 6306485466831448805}
+    - target: {fileID: 4270417432471654246, guid: 682a9d014f0f36c4a8f46a06d9c08da1,
+        type: 3}
+      propertyPath: timer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4270417432471654246, guid: 682a9d014f0f36c4a8f46a06d9c08da1,
+        type: 3}
+      propertyPath: moveSpeed
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 4270417432471654246, guid: 682a9d014f0f36c4a8f46a06d9c08da1,
+        type: 3}
+      propertyPath: Transitions.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4270417432471654246, guid: 682a9d014f0f36c4a8f46a06d9c08da1,
+        type: 3}
+      propertyPath: Transitions.Array.data[0].state
+      value: 
+      objectReference: {fileID: 11400000, guid: e32eee1f6b2f2f849aed0a3dd071c987,
+        type: 2}
+    - target: {fileID: 4270417432471654246, guid: 682a9d014f0f36c4a8f46a06d9c08da1,
+        type: 3}
+      propertyPath: Transitions.Array.data[1].state
+      value: 
+      objectReference: {fileID: 11400000, guid: 8e02d1260f3ea7c4990c120d79e92781,
+        type: 2}
+    - target: {fileID: 4270417432471654246, guid: 682a9d014f0f36c4a8f46a06d9c08da1,
+        type: 3}
+      propertyPath: Transitions.Array.data[2].state
+      value: 
+      objectReference: {fileID: 11400000, guid: 1854d4a47360ae241aba49c6f710fc6e,
+        type: 2}
+    - target: {fileID: 4270417432471654246, guid: 682a9d014f0f36c4a8f46a06d9c08da1,
+        type: 3}
+      propertyPath: Transitions.Array.data[0].condition
+      value: 
+      objectReference: {fileID: 11400000, guid: 0e74bf2faac543a48ac262d86daaafb7,
+        type: 2}
+    - target: {fileID: 4270417432471654246, guid: 682a9d014f0f36c4a8f46a06d9c08da1,
+        type: 3}
+      propertyPath: Transitions.Array.data[1].condition
+      value: 
+      objectReference: {fileID: 11400000, guid: 630bbb9537cff0d4b9d9cbc24048e9b9,
+        type: 2}
+    - target: {fileID: 4270417432471654246, guid: 682a9d014f0f36c4a8f46a06d9c08da1,
+        type: 3}
+      propertyPath: Transitions.Array.data[2].condition
+      value: 
+      objectReference: {fileID: 11400000, guid: 630bbb9537cff0d4b9d9cbc24048e9b9,
+        type: 2}
     - target: {fileID: 6576269253011434771, guid: 682a9d014f0f36c4a8f46a06d9c08da1,
         type: 3}
       propertyPath: m_RootOrder
