@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/Programming/Leonard.unity
+- path: Assets/Scenes/Programming/Sam.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
