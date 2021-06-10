@@ -29,6 +29,11 @@ namespace AI
 
         }
 
+        public override void addActions(AgentBehaviour agent, AgentAction[] actions)
+        {
+            throw new System.NotImplementedException();
+        }
+
         private void DrawSphere(AgentBehaviour agent)
         {
             Gizmos.color = Color.yellow;

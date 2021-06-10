@@ -15,39 +15,31 @@ namespace AI
         {
             // TODO
             // Find agent animator
-              
+            
+        }
+        
+
+        public override void Tick(AgentBehaviour agent, Condition cond)
+        {
+            throw new System.NotImplementedException();
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="agent"></param>
-        private void addAction(AgentBehaviour agent)
+        public override void Tick(AgentBehaviour agent)
         {
-<<<<<<< HEAD
-            agent.performAction = this;
-=======
-            /*agent.performAction = this;*/
->>>>>>> parent of bf8c73b ([Spider functional] Major refactor: AgentConditions, AgentState, AgentActions)
+            if(condition)
+                performAction(agent);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="agent"></param>
-        public override void performAction(AgentBehaviour agent)
+        public override void addAction(AgentBehaviour agent,int index)
         {
-<<<<<<< HEAD
-            if (checkCondition(agent, condition))
-            {
-                agent.performAction = this;
-            }
-=======
-            /*if (checkCondition(agent, condition))
-            {
-                agent.performAction = this;
-            }*/
->>>>>>> parent of bf8c73b ([Spider functional] Major refactor: AgentConditions, AgentState, AgentActions)
+            AttackAction act = ScriptableObject.Instantiate(this);
+            agent.agentActions[index] = act;
+        }
+
+        public override AgentAction addinstance(AgentBehaviour agent)
+        {
+            AttackAction act = ScriptableObject.Instantiate(this);
+            return act;
         }
 
         /// <summary>
@@ -57,15 +49,8 @@ namespace AI
         /// <param name="s"></param>
         public override void performAction(AgentBehaviour agent, AgentState target)
         {
-<<<<<<< HEAD
-            if (checkCondition(agent, condition))
-            {
-                addAction(agent);
-            }
-=======
             Debug.Log($"{agent} has {this} to {target}");
-            agent.agentActions[agent.currAction] = null;
->>>>>>> parent of bf8c73b ([Spider functional] Major refactor: AgentConditions, AgentState, AgentActions)
+            agent.removeAction(agent, agent.currAction);
         }
 
         /// <summary>
@@ -75,9 +60,9 @@ namespace AI
         /// <param name="target"></param>
         public override void performAction(AgentBehaviour agent, AgentBehaviour target)
         {
-            if (checkCondition(agent, condition))
+            if (condition.CheckCondition(agent))
             {
-                addAction(agent);
+                Debug.Log($"{agent} has performed {this}");
             }
         }
     }

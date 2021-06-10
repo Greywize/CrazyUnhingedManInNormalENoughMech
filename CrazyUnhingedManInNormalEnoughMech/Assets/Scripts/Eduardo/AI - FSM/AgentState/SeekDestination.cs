@@ -6,7 +6,8 @@ namespace AI
     public class SeekDestination : AgentState
     {
         [SerializeField] public Vector3 destination;
-
+        public AgentAction[] actions;
+        
         /// <summary>
         /// When this state becomes the instantiated behaviour
         /// </summary>
@@ -17,7 +18,8 @@ namespace AI
                 agent.currState = this;
 
             agent.destination = destination;
-            agent.lookAtTarget();
+            //agent.lookAtTarget();
+            addActions(agent, actions);
         }
 
         /// <summary>
@@ -26,12 +28,8 @@ namespace AI
         /// <param name="agent"></param>
         public override void Tick(AgentBehaviour agent)
         {
-            Debug.DrawLine(agent.transform.position, agent.destination, Color.green);
-            agent.destination = destination;
-            float distance = Vector3.Distance(agent.transform.position, agent.destination);
-
-            if (distance > 2.0f)
-                agent.MoveToward(destination);
+            if (agent.currAction < agent.agentActions.Length)
+                agent.agentActions[agent.currAction].Tick(agent);
             else
                 OnStateExit(agent);
         }
@@ -53,6 +51,10 @@ namespace AI
                 ps.nextDestination(agent, ps);
         }
 
+        public override void addActions(AgentBehaviour agent, AgentAction[] actions)
+        {
+            SeekDestination act = ScriptableObject.Instantiate(this);
+           // agent.agentActions[0] = act;
+        }
     }
-
 }

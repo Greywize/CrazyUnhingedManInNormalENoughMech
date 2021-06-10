@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Programming/Leonard.unity
+    guid: d1405352e1605cc4699f11c4e7e007f6
   m_configObjects: {}

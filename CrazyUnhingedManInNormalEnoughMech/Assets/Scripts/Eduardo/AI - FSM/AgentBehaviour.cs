@@ -1,90 +1,65 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace AI
 {
     public class AgentBehaviour : MonoBehaviour
     {
-<<<<<<< HEAD
-        #region CONTRUCTOR 
-=======
         #region CONTRUCTOR
-
->>>>>>> parent of bf8c73b ([Spider functional] Major refactor: AgentConditions, AgentState, AgentActions)
         AgentBehaviour()
         {
             agentCounter++;
         }
-
         #endregion
 
         #region STATIC MEMBERS
+
         private static int agentCounter = 0;
+
         #endregion
 
         #region PUBLIC MEMBERS
-<<<<<<< HEAD
-        [Header("Required Objects")]
+
+        [Header("Required Objects")] 
+        public Transform Body;
         public Sensor sensor;
         public AgentBehaviour agent;
 
         [Space(10)]
-        [Header("Agent State")]
+        [Header("Agent State")] 
         public float timer = 0.1f;
-=======
-
-        [Header("Required Objects")] public Sensor sensor;
-        public AgentBehaviour agent;
-
-        [Space(10)] [Header("Agent State")] public float timer = 0.1f;
->>>>>>> parent of bf8c73b ([Spider functional] Major refactor: AgentConditions, AgentState, AgentActions)
         public AgentState defaultState;
         public AgentState currState;
         public AgentState prevState;
         public int currentTransition = 0;
-<<<<<<< HEAD
-        [Space(10)]
-
-        [Header("Agent Actions")]
+        
+        [Space(10)] 
+        [Header("Agent Actions")] 
         public int currAction;
-        public AgentAction performAction;
-=======
-        [Space(10)] [Header("Agent Actions")] public int currAction;
->>>>>>> parent of bf8c73b ([Spider functional] Major refactor: AgentConditions, AgentState, AgentActions)
         public AgentAction[] agentActions;
-        [Space(10)]
 
-<<<<<<< HEAD
+        [Space(10)] 
         [Header("Agent Destination")]
-=======
-        [Space(10)] [Header("Agent Destination")]
->>>>>>> parent of bf8c73b ([Spider functional] Major refactor: AgentConditions, AgentState, AgentActions)
         public AgentBehaviour target;
-
         public Vector3 currPosition;
         public int currDestination = 0;
         public Vector3 destination;
-        [Range(5,100)] public int moveSpeed = 5;
+        [Range(5, 100)] public int moveSpeed = 5;
+
         [Space(10)]
+
         #endregion
 
         #region PRIVATE MEMBERS
-        [Header("State Transitions")]
-<<<<<<< HEAD
-        [SerializeField] public Transitions[] Transitions;
-=======
-        [SerializeField]
-        public Transitions[] Transitions;
 
->>>>>>> parent of bf8c73b ([Spider functional] Major refactor: AgentConditions, AgentState, AgentActions)
+        [Header("State Transitions")]
+        [SerializeField] public Transitions[] Transitions;
+
         #endregion
 
         #region MONOBEHAVIOUR
-
-        /// <summary>
-        /// Add this agent to the total agent count 
-        /// </summary>
-        private void OnEnable() => agentCounter++;
-
         /// <summary>
         /// Remove this agent from the totals agent count 
         /// </summary>
@@ -93,48 +68,55 @@ namespace AI
         private void OnDrawGizmosSelected()
         {
             // Draw patrol points when agent is selected
-/*            if(defaultState.GetType() == typeof(PatrolState))
-                foreach(PatrolPoint p in PatrolState)
-                {
-
-                }*/
+            // for(int i = 0; i < defaultState)
+            
         }
 
+        // #1
         private void Awake()
         {
             sensor = GetComponent<Sensor>();
         }
+        
+        // #2
+        /// <summary>
+        /// Add this agent to the total agent count 
+        /// </summary>
+        private void OnEnable() => agentCounter++;
 
+        // #3
         private void Start()
         {
             AgentState State = ScriptableObject.Instantiate(defaultState);
             currState = State;
             currState.OnStateEnter(this);
         }
-
+        //#4 - FIXED UPDATE 
+        
+        // #5 - Update
         private void Update()
         {
             currPosition = transform.position;
 
-<<<<<<< HEAD
-            if (agentActions.Length > 0)
-                agentActions[0].performAction(this, target);
-=======
-            if (agentActions != null)
-                performActions();
->>>>>>> parent of bf8c73b ([Spider functional] Major refactor: AgentConditions, AgentState, AgentActions)
+            /*if (agentActions != null)
+                performActions();*/
 
             if (currState == null)
                 checkTransitions(this);
-            else
+            else if (agentActions != null)
                 currState.Tick(this);
         }
 
         private void LateUpdate()
         {
+            // Limit check
+            if (currAction > agentActions.Length)
+                currAction = 0;
+
             if (currState == null)
                 timer -= Time.deltaTime;
-
+            
+            
             if (timer <= 0f)
             {
                 currState = defaultState;
@@ -142,10 +124,10 @@ namespace AI
                 timer = 0.1f;
             }
         }
+
         #endregion
 
         #region FUNCTIONS
-
         /// <summary>
         /// Enable the senseor on the Agent
         /// </summary>
@@ -159,7 +141,7 @@ namespace AI
         }
 
         /// <summary>
-        /// Change agent state then 
+        /// Change agent state when condition is met
         /// </summary>
         /// <param name="agent"></param>
         private void checkTransitions(AgentBehaviour agent)
@@ -177,7 +159,7 @@ namespace AI
         public void MoveToward(Vector3 destination)
         {
             Vector3 direction = GetDirection(destination);
-            float distance = Vector3.Distance(transform.position, destination);
+            float distance = Vector3.Distance(Body.position, destination);
 
             if (Vector3.Dot(direction, destination) >= 0.2f)
             {
@@ -185,12 +167,8 @@ namespace AI
                 lookAtTarget();
 
                 if (distance >= 2.0f)
-<<<<<<< HEAD
-                    transform.position = Vector3.MoveTowards(transform.position, destination, moveSpeed * Time.deltaTime);
-=======
-                    transform.position =
-                        Vector3.MoveTowards(transform.position, destination, moveSpeed * Time.deltaTime);
->>>>>>> parent of bf8c73b ([Spider functional] Major refactor: AgentConditions, AgentState, AgentActions)
+                    Body.position =
+                        Vector3.MoveTowards(Body.position, destination, moveSpeed * Time.deltaTime);
             }
         }
 
@@ -203,7 +181,7 @@ namespace AI
         {
             // To get the direction we need to move in 
             // we need to subtract the destination from our current position 
-            return (destination - transform.position).normalized;
+            return (destination - Body.position).normalized;
         }
 
         /// <summary>
@@ -213,8 +191,8 @@ namespace AI
         {
             Vector3 targetDirection = GetDirection(agent.destination);
             float singleStep = moveSpeed * Time.deltaTime;
-            Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
-            transform.rotation = Quaternion.LookRotation(newDirection);
+            Vector3 newDirection = Vector3.RotateTowards(Body.forward, targetDirection, singleStep, 0.0f);
+            Body.rotation = Quaternion.LookRotation(newDirection);
             // https://docs.unity3d.com/ScriptReference/Vector3.RotateTowards.html
         }
 
@@ -227,6 +205,12 @@ namespace AI
 
 /*            if (agent.target != null)
                 agent.target = null;*/
+
+            if (agent.agentActions.Length > 0)
+            {
+                agent.currAction = 0;
+                Array.Clear(agent.agentActions, 0, agent.agentActions.Length);
+            }
 
             agent.destination = Vector3.zero;
         }
@@ -243,31 +227,69 @@ namespace AI
             }
         }
 
-        private void checkStateType(AgentState t1)
+        // TODO - return the current type of the state
+        public AgentState getStateType(AgentState t1)
         {
             if (t1.GetType() == typeof(PatrolState))
             {
                 Debug.Log($"The current state of the agent is {agent.currState}");
+                return t1;
             }
+            
+            return null;
         }
-<<<<<<< HEAD
-=======
-
+        
+        // TODO - 
+        public string checkStateType(AgentState t1)
+        {
+            if (t1.GetType() == typeof(PatrolState))
+            {
+                Debug.Log($"The current state of the agent is {agent.currState}");
+                return t1.GetType().ToString();
+            }
+            
+            return null;
+        }
+        
+        // TODO - 
+        public string checkStateType(AgentAction action)
+        {
+            // return (action.GetType().ToString() ?
+            return null;
+        }
+    
+        /// <summary>
+        /// 
+        /// </summary>
         private void performActions()
         {
+            // Guard clause
             if (agentActions == null && currAction == 0)
                 return;
-            
+
             if (agentActions.Length < 0)
+            {
                 agentActions[currAction].performAction(this, target);
-            
+            }
+
             currAction++;
 
+            // Limit check
             if (currAction > agentActions.Length)
                 currAction = 0;
         }
 
->>>>>>> parent of bf8c73b ([Spider functional] Major refactor: AgentConditions, AgentState, AgentActions)
+        public void removeAction(AgentBehaviour agent, int actionIndex)
+        {
+            agent.agentActions[actionIndex] = null;
+            agent.currAction++;
+            
+            // Limit check
+            if (currAction > agentActions.Length)
+                currAction = 0;
+        }
+        
+        
         #endregion
     }
 }

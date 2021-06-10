@@ -32,6 +32,11 @@ namespace AI
             throw new System.NotImplementedException();
         }
 
+        public override void addActions(AgentBehaviour agent, AgentAction[] actions)
+        {
+            throw new System.NotImplementedException();
+        }
+
         #endregion
 
     }

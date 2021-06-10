@@ -10,8 +10,10 @@ public class PointerOptions : MonoBehaviour
     private float initialMoveSpeed = 0;
     public float boxSpeed = 10.0f;
     public float moveSpeed = 3;
+    public float turnAmount = 15;
     private LineRenderer lineRenderer;
-    private int toggleOptions = 1;
+    private int toggleOptions = 0;
+    private bool touchpadPressed = false;
 
     void Start()
     {
@@ -26,7 +28,7 @@ public class PointerOptions : MonoBehaviour
         Ray ray = new Ray(pointer.position, pointer.forward);
         RaycastHit hit;
         lineRenderer.SetPosition(0, ray.origin);
-        lineRenderer.SetPosition(1, ray.origin + 100 * ray.direction);
+        lineRenderer.SetPosition(1, ray.origin + 2500 * ray.direction);
 
         if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger))
         {
@@ -42,13 +44,68 @@ public class PointerOptions : MonoBehaviour
                     }
                 }
             }
-            if (toggleOptions == 0)
+        }
+
+        Vector3 forward = playerTransform.forward;
+        forward.y = 0;
+        forward.Normalize();
+        Vector2 touchpad = OVRInput.Get(OVRInput.Axis2D.PrimaryTouchpad);
+
+        if (touchpad.y > 0)
+        {
+            if (touchpad.y < 0.4)
             {
-                Vector3 fwd = ray.direction;
-                fwd.y = 0;
-                fwd.Normalize();
-                playerTransform.position += fwd * moveSpeed * Time.deltaTime;
+                touchpad.y = 0;
             }
+            else
+            {
+                touchpad.y = 1;
+            }
+        }
+        else if (touchpad.y < 0)
+        {
+            if (touchpad.y > -0.4)
+            {
+                touchpad.y = 0;
+            }
+            else
+            {
+                touchpad.y = -1;
+            }
+        }
+        if (touchpad.x > 0)
+        {
+            if (touchpad.x < 0.4)
+            {
+                touchpad.x = 0;
+            }
+            else
+            {
+                touchpad.x = 1;
+            }
+        }
+        else if (touchpad.x < 0)
+        {
+            if (touchpad.x > -0.4)
+            {
+                touchpad.x = 0;
+            }
+            else
+            {
+                touchpad.x = -1;
+            }
+        }
+
+        playerTransform.position += playerTransform.forward * touchpad.y * moveSpeed * Time.deltaTime;
+
+        if (OVRInput.GetDown(OVRInput.Button.PrimaryTouchpad) && !touchpadPressed)
+        {
+            playerTransform.eulerAngles += Vector3.up * touchpad.x * turnAmount;
+            touchpadPressed = true;
+        }
+        else if (!OVRInput.GetDown(OVRInput.Button.PrimaryTouchpad) && touchpadPressed)
+        {
+            touchpadPressed = false;
         }
     }
 

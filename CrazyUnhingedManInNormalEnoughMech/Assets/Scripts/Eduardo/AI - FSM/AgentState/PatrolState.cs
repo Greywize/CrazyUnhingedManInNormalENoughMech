@@ -60,6 +60,11 @@ namespace AI
             }
         }
 
+        public override void addActions(AgentBehaviour agent, AgentAction[] actions)
+        {
+            throw new System.NotImplementedException();
+        }
+
         /// <summary>
         /// Set location towardss the next destination in the patrol path
         /// </summary>
