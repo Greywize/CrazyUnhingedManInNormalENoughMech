@@ -4,52 +4,49 @@ namespace AI
 {
     public class AgentBehaviour : MonoBehaviour
     {
-        #region CONTRUCTOR
-
+        #region CONTRUCTOR 
         AgentBehaviour()
         {
             agentCounter++;
         }
-
         #endregion
 
         #region STATIC MEMBERS
-
         private static int agentCounter = 0;
-
         #endregion
 
         #region PUBLIC MEMBERS
-
-        [Header("Required Objects")] public Sensor sensor;
+        [Header("Required Objects")]
+        public Sensor sensor;
         public AgentBehaviour agent;
 
-        [Space(10)] [Header("Agent State")] public float timer = 0.1f;
+        [Space(10)]
+        [Header("Agent State")]
+        public float timer = 0.1f;
         public AgentState defaultState;
         public AgentState currState;
         public AgentState prevState;
         public int currentTransition = 0;
-        [Space(10)] [Header("Agent Actions")] public int currAction;
+        [Space(10)]
+
+        [Header("Agent Actions")]
+        public int currAction;
+        public AgentAction performAction;
         public AgentAction[] agentActions;
+        [Space(10)]
 
-        [Space(10)] [Header("Agent Destination")]
+        [Header("Agent Destination")]
         public AgentBehaviour target;
-
         public Vector3 currPosition;
         public int currDestination = 0;
         public Vector3 destination;
-        [Range(5, 100)] public int moveSpeed = 5;
-
+        [Range(5,100)] public int moveSpeed = 5;
         [Space(10)]
-
         #endregion
 
         #region PRIVATE MEMBERS
-
         [Header("State Transitions")]
-        [SerializeField]
-        public Transitions[] Transitions;
-
+        [SerializeField] public Transitions[] Transitions;
         #endregion
 
         #region MONOBEHAVIOUR
@@ -90,12 +87,12 @@ namespace AI
         {
             currPosition = transform.position;
 
-            if (agentActions != null)
-                performActions();
+            if (agentActions.Length > 0)
+                agentActions[0].performAction(this, target);
 
             if (currState == null)
                 checkTransitions(this);
-            else if (agentActions != null)
+            else
                 currState.Tick(this);
         }
 
@@ -111,11 +108,9 @@ namespace AI
                 timer = 0.1f;
             }
         }
-
         #endregion
 
         #region FUNCTIONS
-
         /// <summary>
         /// Enable the senseor on the Agent
         /// </summary>
@@ -155,8 +150,7 @@ namespace AI
                 lookAtTarget();
 
                 if (distance >= 2.0f)
-                    transform.position =
-                        Vector3.MoveTowards(transform.position, destination, moveSpeed * Time.deltaTime);
+                    transform.position = Vector3.MoveTowards(transform.position, destination, moveSpeed * Time.deltaTime);
             }
         }
 
@@ -216,21 +210,6 @@ namespace AI
                 Debug.Log($"The current state of the agent is {agent.currState}");
             }
         }
-
-        private void performActions()
-        {
-            if (agentActions == null && currAction == 0)
-                return;
-            
-            if (agentActions.Length < 0)
-                agentActions[currAction].performAction(this, target);
-            
-            currAction++;
-
-            if (currAction > agentActions.Length)
-                currAction = 0;
-        }
-
         #endregion
     }
 }

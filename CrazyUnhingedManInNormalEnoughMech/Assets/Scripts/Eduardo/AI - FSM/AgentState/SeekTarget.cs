@@ -7,9 +7,6 @@ namespace AI
     [CreateAssetMenu(menuName = "AI/AgentState/SeekTarget")]
     public class SeekTarget : AgentState
     {
-        public AgentAction[] actions;
-        
-        
         public override void OnStateEnter(AgentBehaviour agent)
         {
             agent.enableSensor(true);
@@ -37,25 +34,9 @@ namespace AI
                 agent.MoveToward(agent.destination);
             else
             {
-                addActions(agent, actions);
                 agent.enableSensor(true);
                 OnStateExit(agent);
             }
-        }
-
-        /// <summary>
-        /// Add the action to the agent
-        /// </summary>
-        /// <param name="agent"></param>
-        /// <param name="action"></param>
-        private void addActions(AgentBehaviour agent, AgentAction[] action)
-        {
-            for (int i = 0; i < actions.Length; i++)
-            {
-               // actions[i] = ScriptableObject.CreateInstance(actions[i]);    
-                agent.agentActions[i] = actions[i];
-            }
-                
         }
     }
 }

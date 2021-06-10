@@ -325,8 +325,8 @@ MonoBehaviour:
   prevState: {fileID: 0}
   currentTransition: 0
   currAction: 0
-  agentActions:
-  - {fileID: 11400000, guid: bec2be5043a1b98479f36dbe3a9c439e, type: 2}
+  performAction: {fileID: 0}
+  agentActions: []
   target: {fileID: 0}
   currPosition: {x: 0, y: 0, z: 0}
   currDestination: 0
@@ -419,8 +419,8 @@ MonoBehaviour:
   prevState: {fileID: 0}
   currentTransition: 0
   currAction: 0
-  agentActions:
-  - {fileID: 11400000, guid: bec2be5043a1b98479f36dbe3a9c439e, type: 2}
+  performAction: {fileID: 0}
+  agentActions: []
   target: {fileID: 0}
   currPosition: {x: 0, y: 0, z: 0}
   currDestination: 0
@@ -602,8 +602,8 @@ MonoBehaviour:
   prevState: {fileID: 0}
   currentTransition: 0
   currAction: 0
-  agentActions:
-  - {fileID: 11400000, guid: bec2be5043a1b98479f36dbe3a9c439e, type: 2}
+  performAction: {fileID: 0}
+  agentActions: []
   target: {fileID: 0}
   currPosition: {x: 0, y: 0, z: 0}
   currDestination: 0
@@ -696,8 +696,8 @@ MonoBehaviour:
   prevState: {fileID: 0}
   currentTransition: 0
   currAction: 0
-  agentActions:
-  - {fileID: 11400000, guid: bec2be5043a1b98479f36dbe3a9c439e, type: 2}
+  performAction: {fileID: 0}
+  agentActions: []
   target: {fileID: 0}
   currPosition: {x: 0, y: 0, z: 0}
   currDestination: 0
@@ -820,8 +820,8 @@ MonoBehaviour:
   prevState: {fileID: 0}
   currentTransition: 0
   currAction: 0
-  agentActions:
-  - {fileID: 11400000, guid: bec2be5043a1b98479f36dbe3a9c439e, type: 2}
+  performAction: {fileID: 0}
+  agentActions: []
   target: {fileID: 0}
   currPosition: {x: 0, y: 0, z: 0}
   currDestination: 0
@@ -997,8 +997,8 @@ MonoBehaviour:
   prevState: {fileID: 0}
   currentTransition: 0
   currAction: 0
-  agentActions:
-  - {fileID: 11400000, guid: bec2be5043a1b98479f36dbe3a9c439e, type: 2}
+  performAction: {fileID: 0}
+  agentActions: []
   target: {fileID: 0}
   currPosition: {x: 0, y: 0, z: 0}
   currDestination: 0
@@ -1501,8 +1501,8 @@ MonoBehaviour:
   prevState: {fileID: 0}
   currentTransition: 0
   currAction: 0
-  agentActions:
-  - {fileID: 11400000, guid: bec2be5043a1b98479f36dbe3a9c439e, type: 2}
+  performAction: {fileID: 0}
+  agentActions: []
   target: {fileID: 0}
   currPosition: {x: 0, y: 0, z: 0}
   currDestination: 0
@@ -1729,7 +1729,7 @@ PrefabInstance:
     - target: {fileID: 6306485466831448805, guid: a7376ca5b3a58b84cac1db480953dfc4,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.58
+      value: -0.8
       objectReference: {fileID: 0}
     - target: {fileID: 6306485466831448805, guid: a7376ca5b3a58b84cac1db480953dfc4,
         type: 3}
@@ -1789,7 +1789,7 @@ PrefabInstance:
     - target: {fileID: 7760348957756442001, guid: a7376ca5b3a58b84cac1db480953dfc4,
         type: 3}
       propertyPath: closestTarget
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8548936460254331180, guid: a7376ca5b3a58b84cac1db480953dfc4,
         type: 3}
@@ -1814,11 +1814,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8548936460254331180, guid: a7376ca5b3a58b84cac1db480953dfc4,
         type: 3}
-      propertyPath: currAction
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8548936460254331180, guid: a7376ca5b3a58b84cac1db480953dfc4,
-        type: 3}
       propertyPath: defaultState
       value: 
       objectReference: {fileID: 11400000, guid: e32eee1f6b2f2f849aed0a3dd071c987,
@@ -1828,17 +1823,6 @@ PrefabInstance:
       propertyPath: Transitions.Array.size
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 8548936460254331180, guid: a7376ca5b3a58b84cac1db480953dfc4,
-        type: 3}
-      propertyPath: agentActions.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8548936460254331180, guid: a7376ca5b3a58b84cac1db480953dfc4,
-        type: 3}
-      propertyPath: agentActions.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: e5c1e68cd28c69546b16b90ce17cd696,
-        type: 2}
     - target: {fileID: 8548936460254331180, guid: a7376ca5b3a58b84cac1db480953dfc4,
         type: 3}
       propertyPath: Transitions.Array.data[0].state

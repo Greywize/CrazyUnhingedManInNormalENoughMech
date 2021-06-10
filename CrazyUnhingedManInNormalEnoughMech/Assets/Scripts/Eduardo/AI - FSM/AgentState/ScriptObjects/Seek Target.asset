@@ -12,5 +12,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0adeb416b7c6bd34baf7d418139275ee, type: 3}
   m_Name: Seek Target
   m_EditorClassIdentifier: 
-  actions:
-  - {fileID: 11400000, guid: e5c1e68cd28c69546b16b90ce17cd696, type: 2}

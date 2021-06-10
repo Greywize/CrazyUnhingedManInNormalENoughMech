@@ -15,7 +15,7 @@ namespace AI
         {
             // TODO
             // Find agent animator
-            
+              
         }
 
         /// <summary>
@@ -24,7 +24,7 @@ namespace AI
         /// <param name="agent"></param>
         private void addAction(AgentBehaviour agent)
         {
-            /*agent.performAction = this;*/
+            agent.performAction = this;
         }
 
         /// <summary>
@@ -33,10 +33,10 @@ namespace AI
         /// <param name="agent"></param>
         public override void performAction(AgentBehaviour agent)
         {
-            /*if (checkCondition(agent, condition))
+            if (checkCondition(agent, condition))
             {
                 agent.performAction = this;
-            }*/
+            }
         }
 
         /// <summary>
@@ -46,8 +46,10 @@ namespace AI
         /// <param name="s"></param>
         public override void performAction(AgentBehaviour agent, AgentState target)
         {
-            Debug.Log($"{agent} has {this} to {target}");
-            agent.agentActions[agent.currAction] = null;
+            if (checkCondition(agent, condition))
+            {
+                addAction(agent);
+            }
         }
 
         /// <summary>
