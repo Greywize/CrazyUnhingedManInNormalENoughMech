@@ -80,5 +80,10 @@ namespace AI
         {
             agent.actionIndex++;
         }
+
+        public virtual Color GetColor()
+        {
+            return _color;
+        }
     }
 }

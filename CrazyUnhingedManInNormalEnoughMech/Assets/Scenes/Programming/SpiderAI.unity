@@ -1725,6 +1725,12 @@ PrefabInstance:
       propertyPath: closestTarget
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8298160945507130760, guid: a7376ca5b3a58b84cac1db480953dfc4,
+        type: 3}
+      propertyPath: actionCondition
+      value: 
+      objectReference: {fileID: 11400000, guid: a3de98bd5a3e7594dad4eb5903b2b0e9,
+        type: 2}
     m_RemovedComponents:
     - {fileID: 2169922896656452293, guid: a7376ca5b3a58b84cac1db480953dfc4, type: 3}
     - {fileID: 6003724508157814494, guid: a7376ca5b3a58b84cac1db480953dfc4, type: 3}

@@ -15,4 +15,4 @@ MonoBehaviour:
   _condition: {fileID: 11400000, guid: 0e74bf2faac543a48ac262d86daaafb7, type: 2}
   _animator: {fileID: 0}
   _cooldown: 0
-  _color: {r: 0.32856813, g: 1, b: 0.07075471, a: 1}
+  _color: {r: 1, g: 0.07058823, b: 0.10053555, a: 1}

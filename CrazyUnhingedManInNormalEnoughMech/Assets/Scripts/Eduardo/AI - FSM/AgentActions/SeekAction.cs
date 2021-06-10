@@ -47,7 +47,7 @@ namespace AI
                 agent.MoveToward(agent.destination);
             else
             {
-                agent.removeAction(agent, agent.actionIndex);
+              //  agent.removeAction(agent, agent.actionIndex);
                 agent.EnableSensor(true);
             }
         }
