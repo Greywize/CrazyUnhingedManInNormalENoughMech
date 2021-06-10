@@ -1056,6 +1056,10 @@
      <Compile Include="Assets\Scripts\CrossPlatformSwitcher.cs" />
      <Compile Include="Assets\Scripts\Eduardo\AI - FSM\AgentActions\AgentAction.cs" />
      <Compile Include="Assets\Scripts\Eduardo\AI - FSM\AgentActions\AttackAction.cs" />
+<<<<<<< HEAD
+=======
+     <Compile Include="Assets\Scripts\Eduardo\AI - FSM\AgentActions\IdleAction.cs" />
+>>>>>>> parent of bf8c73b ([Spider functional] Major refactor: AgentConditions, AgentState, AgentActions)
      <Compile Include="Assets\Scripts\Eduardo\AI - FSM\AgentBehaviour.cs" />
      <Compile Include="Assets\Scripts\Eduardo\AI - FSM\AgentState.cs" />
      <Compile Include="Assets\Scripts\Eduardo\AI - FSM\AgentState\AgentWander.cs" />

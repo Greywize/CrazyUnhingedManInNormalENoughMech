@@ -4,11 +4,17 @@ namespace AI
 {
     public class AgentBehaviour : MonoBehaviour
     {
+<<<<<<< HEAD
         #region CONTRUCTOR 
+=======
+        #region CONTRUCTOR
+
+>>>>>>> parent of bf8c73b ([Spider functional] Major refactor: AgentConditions, AgentState, AgentActions)
         AgentBehaviour()
         {
             agentCounter++;
         }
+
         #endregion
 
         #region STATIC MEMBERS
@@ -16,6 +22,7 @@ namespace AI
         #endregion
 
         #region PUBLIC MEMBERS
+<<<<<<< HEAD
         [Header("Required Objects")]
         public Sensor sensor;
         public AgentBehaviour agent;
@@ -23,20 +30,36 @@ namespace AI
         [Space(10)]
         [Header("Agent State")]
         public float timer = 0.1f;
+=======
+
+        [Header("Required Objects")] public Sensor sensor;
+        public AgentBehaviour agent;
+
+        [Space(10)] [Header("Agent State")] public float timer = 0.1f;
+>>>>>>> parent of bf8c73b ([Spider functional] Major refactor: AgentConditions, AgentState, AgentActions)
         public AgentState defaultState;
         public AgentState currState;
         public AgentState prevState;
         public int currentTransition = 0;
+<<<<<<< HEAD
         [Space(10)]
 
         [Header("Agent Actions")]
         public int currAction;
         public AgentAction performAction;
+=======
+        [Space(10)] [Header("Agent Actions")] public int currAction;
+>>>>>>> parent of bf8c73b ([Spider functional] Major refactor: AgentConditions, AgentState, AgentActions)
         public AgentAction[] agentActions;
         [Space(10)]
 
+<<<<<<< HEAD
         [Header("Agent Destination")]
+=======
+        [Space(10)] [Header("Agent Destination")]
+>>>>>>> parent of bf8c73b ([Spider functional] Major refactor: AgentConditions, AgentState, AgentActions)
         public AgentBehaviour target;
+
         public Vector3 currPosition;
         public int currDestination = 0;
         public Vector3 destination;
@@ -46,7 +69,13 @@ namespace AI
 
         #region PRIVATE MEMBERS
         [Header("State Transitions")]
+<<<<<<< HEAD
         [SerializeField] public Transitions[] Transitions;
+=======
+        [SerializeField]
+        public Transitions[] Transitions;
+
+>>>>>>> parent of bf8c73b ([Spider functional] Major refactor: AgentConditions, AgentState, AgentActions)
         #endregion
 
         #region MONOBEHAVIOUR
@@ -87,8 +116,13 @@ namespace AI
         {
             currPosition = transform.position;
 
+<<<<<<< HEAD
             if (agentActions.Length > 0)
                 agentActions[0].performAction(this, target);
+=======
+            if (agentActions != null)
+                performActions();
+>>>>>>> parent of bf8c73b ([Spider functional] Major refactor: AgentConditions, AgentState, AgentActions)
 
             if (currState == null)
                 checkTransitions(this);
@@ -111,6 +145,7 @@ namespace AI
         #endregion
 
         #region FUNCTIONS
+
         /// <summary>
         /// Enable the senseor on the Agent
         /// </summary>
@@ -150,7 +185,12 @@ namespace AI
                 lookAtTarget();
 
                 if (distance >= 2.0f)
+<<<<<<< HEAD
                     transform.position = Vector3.MoveTowards(transform.position, destination, moveSpeed * Time.deltaTime);
+=======
+                    transform.position =
+                        Vector3.MoveTowards(transform.position, destination, moveSpeed * Time.deltaTime);
+>>>>>>> parent of bf8c73b ([Spider functional] Major refactor: AgentConditions, AgentState, AgentActions)
             }
         }
 
@@ -210,6 +250,24 @@ namespace AI
                 Debug.Log($"The current state of the agent is {agent.currState}");
             }
         }
+<<<<<<< HEAD
+=======
+
+        private void performActions()
+        {
+            if (agentActions == null && currAction == 0)
+                return;
+            
+            if (agentActions.Length < 0)
+                agentActions[currAction].performAction(this, target);
+            
+            currAction++;
+
+            if (currAction > agentActions.Length)
+                currAction = 0;
+        }
+
+>>>>>>> parent of bf8c73b ([Spider functional] Major refactor: AgentConditions, AgentState, AgentActions)
         #endregion
     }
 }

@@ -24,7 +24,11 @@ namespace AI
         /// <param name="agent"></param>
         private void addAction(AgentBehaviour agent)
         {
+<<<<<<< HEAD
             agent.performAction = this;
+=======
+            /*agent.performAction = this;*/
+>>>>>>> parent of bf8c73b ([Spider functional] Major refactor: AgentConditions, AgentState, AgentActions)
         }
 
         /// <summary>
@@ -33,10 +37,17 @@ namespace AI
         /// <param name="agent"></param>
         public override void performAction(AgentBehaviour agent)
         {
+<<<<<<< HEAD
             if (checkCondition(agent, condition))
             {
                 agent.performAction = this;
             }
+=======
+            /*if (checkCondition(agent, condition))
+            {
+                agent.performAction = this;
+            }*/
+>>>>>>> parent of bf8c73b ([Spider functional] Major refactor: AgentConditions, AgentState, AgentActions)
         }
 
         /// <summary>
@@ -46,10 +57,15 @@ namespace AI
         /// <param name="s"></param>
         public override void performAction(AgentBehaviour agent, AgentState target)
         {
+<<<<<<< HEAD
             if (checkCondition(agent, condition))
             {
                 addAction(agent);
             }
+=======
+            Debug.Log($"{agent} has {this} to {target}");
+            agent.agentActions[agent.currAction] = null;
+>>>>>>> parent of bf8c73b ([Spider functional] Major refactor: AgentConditions, AgentState, AgentActions)
         }
 
         /// <summary>
