@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace AI
 {
-    [CreateAssetMenu(menuName = "AI/AgentState/SeekTarget")]
+    [CreateAssetMenu(menuName = "AI/State/SeekTarget")]
     public class SeekTarget : AgentState
     {
         public AgentAction[] actions;
@@ -59,11 +59,13 @@ namespace AI
         public override void addActions(AgentBehaviour agent, AgentAction[] actions)
         {
             Array.Clear(agent.agentActions, 0, agent.agentActions.Length);
+            // Array.Copy(actions, 0, agent.agentActions, 0, actions.Length);  
+            agent.agentActions = actions;
 
-            for (int i = 0; i < actions.Length; i++)
+            /*for (int i = 0; i < actions.Length; i++)
             {
                 agent.agentActions[i] = actions[i].addinstance(agent);
-            }
+            }*/
         }
     }
 }

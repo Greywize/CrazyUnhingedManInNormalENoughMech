@@ -6,9 +6,9 @@ using UnityEngine;
 namespace AI
 {
     /// <summary>
-    /// 
+    /// Action: Make the agent move towards a location 
     /// </summary>
-    [CreateAssetMenu(menuName = "AI/AgentAction/SeekAction")]
+    [CreateAssetMenu(menuName = "AI/Action/SeekAction")]
     public class SeekAction : AgentAction
     {
         private void OnEnable()
@@ -22,7 +22,8 @@ namespace AI
 
         private void Awake()
         {
-            _condition = ScriptableObject.CreateInstance<DestinationNotReached>();
+            if (_condition == null)
+                _condition = ScriptableObject.CreateInstance<DestinationNotReached>();
         }
 
         public override void performAction(AgentBehaviour agent, AgentBehaviour target)
@@ -38,10 +39,11 @@ namespace AI
         public override void Tick(AgentBehaviour agent, Condition cond)
         {
             agent.destination = agent.target.transform.position;
+
             float distance = Vector3.Distance(agent.transform.position, agent.destination);
             Debug.DrawLine(agent.target.transform.position, agent.transform.position, _color);
 
-            if (distance > agent.detectProximity)
+            if (distance >= agent.detectProximity)
                 agent.MoveToward(agent.destination);
             else
             {
@@ -56,15 +58,11 @@ namespace AI
             {
                 if (agent.currState.GetType() == typeof(SeekTarget))
                     agent.destination = agent.target.transform.position;
-                
-                float distance = Vector3.Distance(agent.transform.position, agent.destination);
+
                 agent.MoveToward(agent.destination);
             }
             else
-            {
-                agent.actionIndex++;
-                agent.EnableSensor(true);
-            }
+                ExitAction(agent, this);
         }
 
         public override void addAction(AgentBehaviour agent, int index)
@@ -76,7 +74,6 @@ namespace AI
         public override AgentAction addinstance(AgentBehaviour agent)
         {
             SeekAction act = ScriptableObject.CreateInstance<SeekAction>();
-           // Debug.Log($"Seek action: {agent} : {act.GetInstanceID().ToString()}");
             return act;
         }
     }

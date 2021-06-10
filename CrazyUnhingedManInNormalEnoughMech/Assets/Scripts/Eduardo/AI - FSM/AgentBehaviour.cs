@@ -122,7 +122,7 @@ namespace AI
             
             if (currState == null)
                 checkTransitions(this);
-            else if (agentActions != null)
+             if (agentActions != null)
             {
                 Debug.DrawLine(destination, transform.position, Color.blue);
                 currState.Tick(this);
@@ -184,7 +184,7 @@ namespace AI
                 // https://stuartspixelgames.com/2018/06/21/move-an-object-towards-a-target-in-unity/
                 lookAtTarget();
 
-                if (distance >= 2.0f)
+               // if (distance >= 2.0f)
                     Body.position =
                         Vector3.MoveTowards(Body.position, destination, moveSpeed * Time.deltaTime);
             }
@@ -253,6 +253,7 @@ namespace AI
             IdleAction act = ScriptableObject.CreateInstance<IdleAction>();
             agent.agentActions[0] = act;
             agent.actionIndex = 0;
+            agent.actionCondition = null;
         }
 
         // TODO - return the current type of the state

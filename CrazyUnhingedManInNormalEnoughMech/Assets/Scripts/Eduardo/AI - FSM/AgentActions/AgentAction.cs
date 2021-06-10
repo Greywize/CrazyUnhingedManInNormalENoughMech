@@ -75,5 +75,10 @@ namespace AI
         {
             Debug.Log($"{agent} : removeAction() not implemented {action}");
         }
+
+        public virtual void ExitAction(AgentBehaviour agent, AgentAction action)
+        {
+            agent.actionIndex++;
+        }
     }
 }

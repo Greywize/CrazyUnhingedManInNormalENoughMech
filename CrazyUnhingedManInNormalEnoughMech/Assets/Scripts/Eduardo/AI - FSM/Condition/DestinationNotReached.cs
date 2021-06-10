@@ -10,7 +10,7 @@ namespace AI
     {
         public override bool CheckCondition(AgentBehaviour agent)
         {
-            return (Vector3.Distance(agent.currPosition, agent.destination) > agent.detectProximity ? true : false);
+            return (Vector3.Distance(agent.currPosition, agent.destination) >= agent.actionRange ? true : false);
         }
     }
 }

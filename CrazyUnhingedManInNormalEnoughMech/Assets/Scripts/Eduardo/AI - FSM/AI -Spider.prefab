@@ -45,13 +45,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Body: {fileID: 0}
-  sensor: {fileID: 0}
   agent: {fileID: 4270417432471654246}
   timer: 1
-  defaultState: {fileID: 11400000, guid: e32eee1f6b2f2f849aed0a3dd071c987, type: 2}
+  defaultState: {fileID: 11400000, guid: e48d7352fb1c60e48a2c1b38465a8ef6, type: 2}
+  currentTransition: 0
   currState: {fileID: 0}
   prevState: {fileID: 0}
-  currentTransition: 0
   stateCondition: {fileID: 0}
   actionIndex: 0
   agentActions:
@@ -62,7 +61,7 @@ MonoBehaviour:
   currDestination: 0
   destination: {x: 0, y: 0, z: 0}
   moveSpeed: 35
-  sphereCollider: {fileID: 2517165648921854828}
+  SenseCollider: {fileID: 0}
   actionRange: 6.5
   detectProximity: 50
   closestTarget: 1

@@ -7,7 +7,7 @@ namespace AI
     /// <summary>
     /// Move agent to the destination
     /// </summary>
-    [CreateAssetMenu(menuName = "AI/AgentAction/MoveToDestinationAction")]
+    [CreateAssetMenu(menuName = "AI/Action/MoveToDestinationAction")]
     public class MoveToDestinationAction : AgentAction
     {
         public override void performAction(AgentBehaviour agent, AgentBehaviour target)
@@ -39,7 +39,7 @@ namespace AI
             if (_condition.CheckCondition(agent))
             {
                 float distance = Vector3.Distance(agent.transform.position, agent.destination);
-                Debug.DrawLine(agent.target.transform.position, agent.transform.position, _color);
+                Debug.DrawLine(agent.destination, agent.transform.position, _color);
 
                 if (distance > agent.detectProximity)
                     agent.MoveToward(agent.destination);

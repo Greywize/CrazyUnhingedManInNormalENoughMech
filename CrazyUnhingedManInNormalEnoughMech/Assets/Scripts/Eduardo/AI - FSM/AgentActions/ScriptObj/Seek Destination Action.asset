@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81e11b9966e26f6419abaff81d08e417, type: 3}
   m_Name: Seek Destination Action
   m_EditorClassIdentifier: 
-  condition: {fileID: 11400000, guid: aff083f835c98844e991826f8c85f807, type: 2}
+  _condition: {fileID: 11400000, guid: 0e74bf2faac543a48ac262d86daaafb7, type: 2}
+  _animator: {fileID: 0}
+  _cooldown: 0
+  _color: {r: 1, g: 0.015686274, b: 0.6579183, a: 1}

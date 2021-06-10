@@ -8,17 +8,16 @@ namespace AI
     /// <summary>
     /// Make the agent idle
     /// </summary>
-    [CreateAssetMenu(menuName = "AI/AgentAction/IdleAction")]
+    [CreateAssetMenu(menuName = "AI/Action/IdleAction")]
     public class IdleAction : AgentAction
     {
         public override void performAction(AgentBehaviour agent, AgentBehaviour target)
         {
-           
         }
 
         public override void performAction(AgentBehaviour agent)
         {
-            agent.resetBehaviour(agent, 1.2f);
+            agent.resetBehaviour(agent, 0.8f);
         }
 
         public override void Tick(AgentBehaviour agent, Condition cond)
@@ -34,7 +33,6 @@ namespace AI
         public override void addAction(AgentBehaviour agent, int index)
         {
             IdleAction act = ScriptableObject.Instantiate(this);
-            //   agent.agentActions[index] = act;
         }
 
         public override AgentAction addinstance(AgentBehaviour agent)

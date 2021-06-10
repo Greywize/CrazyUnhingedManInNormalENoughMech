@@ -8,7 +8,7 @@ namespace AI
     /// <summary>
     /// Detect all agents in proximity (sensorProximity)
     /// </summary>
-    [CreateAssetMenu(menuName = "AI/AgentAction/DectectAgentAction")]
+    [CreateAssetMenu(menuName = "AI/Action/DectectAgentAction")]
     public class DetectAgentAction : AgentAction
     {
 

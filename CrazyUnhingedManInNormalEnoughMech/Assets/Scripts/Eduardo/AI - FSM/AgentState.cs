@@ -41,7 +41,7 @@ namespace AI
         {
             agent.ResetAgent(agent, agent.currState);
             agent.ResetTransition(agent);
-            agent.resetAction(agent);
+          //  agent.resetAction(agent);
         }
 
         public abstract void addActions(AgentBehaviour agent, AgentAction[] actions);
