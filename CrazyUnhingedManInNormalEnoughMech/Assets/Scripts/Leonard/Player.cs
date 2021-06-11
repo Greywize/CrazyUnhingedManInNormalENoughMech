@@ -27,8 +27,10 @@ public class Player : MonoBehaviour
     CharacterController cc;
     Vector3 velocity;
     LineRenderer lineRenderer;
-    bool didDash = false;
-    bool dashing = false;
+    [HideInInspector]
+    public bool didDash = false;
+    [HideInInspector]
+    public bool dashing = false;
     bool touchpadPressed = false;
     //public Weapon[] currentWeapon;
     [HideInInspector]
@@ -36,9 +38,11 @@ public class Player : MonoBehaviour
     public Camera VRCam;
     private float fireTime;
     public float maximumFiringLine = 20;
-    private float initialDashWarmupTime;
+    [HideInInspector]
+    public float initialDashWarmupTime;
     public float dashWarmupTime = 0.1f;
-    private float initialDashTime;
+    [HideInInspector]
+    public float initialDashTime;
     public float dashTime = 0.65f;
     public float dashCooldownMultiplier = 7;
     public float deadzone = 0.3f;
@@ -112,6 +116,7 @@ public class Player : MonoBehaviour
                 for (int e = 0; e < i; e++)
                 {
                     newWeapon.weaponMono.GetComponent<WeaponMono>().invert = e % 2;
+                    newWeapon.weaponMono.transform.position = new Vector3(e % 2 == 0 ? newWeapon.weaponMono.transform.position.x : -newWeapon.weaponMono.transform.position.x, newWeapon.weaponMono.transform.position.y, newWeapon.weaponMono.transform.position.z);
                     currentWeaponMono.Add(Instantiate(newWeapon.weaponMono, transform));
                 }
             }
@@ -139,6 +144,7 @@ public class Player : MonoBehaviour
                 for (int e = 0; e < i; e++)
                 {
                     newWeapon.weaponMono.GetComponent<WeaponMono>().invert = e % 2;
+                    newWeapon.weaponMono.transform.position = new Vector3(e % 2 == 0 ? newWeapon.weaponMono.transform.position.x : -newWeapon.weaponMono.transform.position.x, newWeapon.weaponMono.transform.position.y, newWeapon.weaponMono.transform.position.z);
                     currentWeaponMono.Add(Instantiate(newWeapon.weaponMono, transform));
                 }
             }
@@ -170,17 +176,6 @@ public class Player : MonoBehaviour
 
         private void FireWeapon(Ray ray)
     {
-#if !UNITY_EDITOR
-        if (currentWeaponMono[0].GetComponent<WeaponMono>())
-        {
-            if (fireTime >= currentWeaponMono[0].GetComponent<WeaponMono>().fireRate)
-            {
-                fireTime = 0;
-                GameObject clone = Instantiate(currentWeaponMono[0].GetComponent<WeaponMono>().projectilePrefab, ray.origin + 3 * ray.direction, transform.rotation);
-                clone.GetComponent<Rigidbody>().velocity = ray.direction * currentWeaponMono[0].GetComponent<WeaponMono>().projectileSpeed;
-            }
-        }
-#else
         if (currentWeaponMono[0].GetComponent<WeaponMono>())
         {
             if (fireTime >= currentWeaponMono[0].GetComponent<WeaponMono>().fireRate)
@@ -189,12 +184,11 @@ public class Player : MonoBehaviour
 
                 foreach (GameObject weapon in currentWeaponMono)
                 {
-                    GameObject clone = Instantiate(weapon.GetComponent<WeaponMono>().projectilePrefab, weapon.GetComponentInChildren<Transform>().transform.position + 5 * weapon.GetComponentInChildren<Transform>().transform.forward, transform.rotation);
+                    GameObject clone = Instantiate(weapon.GetComponent<WeaponMono>().projectilePrefab, weapon.GetComponentInChildren<Transform>().transform.position + 2 * weapon.GetComponentInChildren<Transform>().transform.forward, transform.rotation);
                     clone.GetComponent<Rigidbody>().velocity = weapon.GetComponentInChildren<Transform>().transform.forward * weapon.GetComponent<WeaponMono>().projectileSpeed;
                 }
             }
         }
-#endif
     }
 
     void Move()
@@ -303,6 +297,7 @@ public class Player : MonoBehaviour
             }
             else if (dashTime > 0 && !didDash)
             {
+                dashWarmupTime = 0;
                 velocity += transform.forward * speed * dashMultipler;
                 dashTime -= Time.deltaTime;
             }

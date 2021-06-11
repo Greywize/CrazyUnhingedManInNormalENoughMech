@@ -273,6 +273,8 @@
     <Compile Include="Assets\Scripts\Eduardo\PhysicsPusher.cs" />
     <Compile Include="Assets\Scripts\Eduardo\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Eduardo\SimpleLocomotion.cs" />
+    <Compile Include="Assets\Scripts\Leonard\DashSlider.cs" />
+    <Compile Include="Assets\Scripts\Leonard\HideLights.cs" />
     <Compile Include="Assets\Scripts\Leonard\Player.cs" />
     <Compile Include="Assets\Scripts\Leonard\PointerOptions.cs" />
     <Compile Include="Assets\Scripts\Leonard\Projectile.cs" />
