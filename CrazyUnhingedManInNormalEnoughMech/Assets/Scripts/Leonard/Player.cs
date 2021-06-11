@@ -174,7 +174,7 @@ public class Player : MonoBehaviour
         }
     }
 
-        private void FireWeapon(Ray ray)
+    private void FireWeapon(Ray ray)
     {
         if (currentWeaponMono[0].GetComponent<WeaponMono>())
         {
@@ -246,6 +246,8 @@ public class Player : MonoBehaviour
         }
         if (OVRInput.GetDown(OVRInput.Button.PrimaryTouchpad) && !touchpadPressed)
         {
+            touchpadPressed = true;
+
             if (touchpad.y > touchpad.x && touchpad.y > -touchpad.x)
             {
                 if (!dashing)
@@ -253,12 +255,15 @@ public class Player : MonoBehaviour
                     dashing = true;
                 }
             }
-            else
+            else if (touchpad.y < -deadzone)
             {
-                transform.eulerAngles += Vector3.up * touchpad.x * turnAmount;
+                transform.eulerAngles += Vector3.up * 180;
             }
-
-            touchpadPressed = true;
+        }
+        else if (OVRInput.Get(OVRInput.Button.PrimaryTouchpad) && (touchpad.x > deadzone || touchpad.x < -deadzone))
+        {
+            transform.eulerAngles += Vector3.up * touchpad.x * turnAmount * Time.deltaTime;
+            touchpadPressed = false;
         }
         else if (!OVRInput.GetDown(OVRInput.Button.PrimaryTouchpad) && touchpadPressed)
         {
@@ -271,15 +276,27 @@ public class Player : MonoBehaviour
             dashing = true;
             touchpadPressed = true;
         }
-        if (Input.GetKeyDown(KeyCode.A) && !touchpadPressed && (!dashing || dashTime <= 0))
+        //if (Input.GetKeyDown(KeyCode.A) && !touchpadPressed && (!dashing || dashTime <= 0))
+        //{
+        //    transform.eulerAngles -= Vector3.up * turnAmount;
+        //    touchpadPressed = true;
+        //}
+        //else if (Input.GetKeyDown(KeyCode.D) && !touchpadPressed && (!dashing || dashTime <= 0))
+        //{
+        //    transform.eulerAngles += Vector3.up * turnAmount;
+        //    touchpadPressed = true;
+        //}
+        if (Input.GetKeyDown(KeyCode.S) && (!dashing || dashTime <= 0))
         {
-            transform.eulerAngles -= Vector3.up * turnAmount;
-            touchpadPressed = true;
+            transform.eulerAngles -= Vector3.up * 180;
         }
-        else if (Input.GetKeyDown(KeyCode.D) && !touchpadPressed && (!dashing || dashTime <= 0))
+        else if (Input.GetKey(KeyCode.A) && (!dashing || dashTime <= 0))
         {
-            transform.eulerAngles += Vector3.up * turnAmount;
-            touchpadPressed = true;
+            transform.eulerAngles -= Vector3.up * turnAmount * Time.deltaTime;
+        }
+        else if (Input.GetKey(KeyCode.D) && (!dashing || dashTime <= 0))
+        {
+            transform.eulerAngles += Vector3.up * turnAmount * Time.deltaTime;
         }
         else
         {
@@ -316,9 +333,15 @@ public class Player : MonoBehaviour
             }
         }
 #if !UNITY_EDITOR
-        velocity += transform.forward * dashCancel * touchpad.y * speed;
+        if (touchpad.y > deadzone)
+        {
+            velocity += transform.forward * dashCancel * touchpad.y * speed;
+        }
 #else
-        velocity += transform.forward * dashCancel * Input.GetAxis("Vertical") * speed;
+        if (Input.GetAxis("Vertical") > deadzone)
+        {
+            velocity += transform.forward * dashCancel * Input.GetAxis("Vertical") * speed;
+        }
 #endif
         velocity.y = cc.isGrounded ? 0 : -gravity;
         cc.Move(velocity * Time.deltaTime);

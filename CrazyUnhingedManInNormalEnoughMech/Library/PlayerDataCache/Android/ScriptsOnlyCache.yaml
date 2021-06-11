@@ -141,9 +141,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 14762}
     - Class: 114
-      Script: {instanceID: 14812}
+      Script: {instanceID: 14796}
     - Class: 114
-      Script: {instanceID: 20858}
+      Script: {instanceID: 14814}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -2371,6 +2371,12 @@ ScriptsOnlyBuild:
     className: SignalEmitter
   - hash:
       serializedVersion: 2
+      Hash: 1028c39545bcfa841aaab54121e69a47
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: DashSlider
+  - hash:
+      serializedVersion: 2
       Hash: cd06391f9225499fb9ea605ab668b015
     assemblyName: Assembly-CSharp.dll
     namespaceName: Oculus.Platform.Samples.VrHoops
@@ -2411,12 +2417,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: 1028c39545bcfa841aaab54121e69a47
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: DashSlider
   platform: 13
   scenePathNames:
   - Assets/Scenes/Programming/Leonard.unity
