@@ -54,7 +54,7 @@ namespace AI
         public override void addAction(AgentBehaviour agent, int index)
         {
             MoveToDestinationAction act = ScriptableObject.Instantiate(this);
-            agent.agentActions[index] = act;
+            agent.ActionList[index] = act;
         }
 
         public override AgentAction addinstance(AgentBehaviour agent)

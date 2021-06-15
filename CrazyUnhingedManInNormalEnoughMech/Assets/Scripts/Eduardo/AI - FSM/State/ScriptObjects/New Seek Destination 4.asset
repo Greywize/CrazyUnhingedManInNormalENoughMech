@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da11b693727579a46ae589609772d801, type: 3}
   m_Name: New Seek Destination 4
   m_EditorClassIdentifier: 
-  destination: {x: 12, y: 0, z: 15}
-  actions:
+  _actions:
   - {fileID: 11400000, guid: eb83d43ec46b7964c94be86ba61b8dd2, type: 2}
+  destination: {x: 12, y: 0, z: 15}

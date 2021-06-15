@@ -28,16 +28,16 @@ namespace AI
         public override void Tick(AgentBehaviour agent)
         {
             // No actions are loaded into this state
-            if (agent.actionIndex < agent.agentActions.Length)
-                agent.agentActions[agent.actionIndex].Tick(agent);
-            else if (agent.actionIndex >= agent.agentActions.Length)
+            if (agent.actionIndex < agent.ActionList.Length)
+                agent.ActionList[agent.actionIndex].Tick(agent);
+            else if (agent.actionIndex >= agent.ActionList.Length)
                 OnStateExit(agent);
         }
 
         public override void addActions(AgentBehaviour agent, AgentAction[] actions)
         {
-            Array.Clear(agent.agentActions, 0, agent.agentActions.Length);
-            agent.agentActions = actions;
+            Array.Clear(agent.ActionList, 0, agent.ActionList.Length);
+            agent.ActionList = actions;
         }
     }
     

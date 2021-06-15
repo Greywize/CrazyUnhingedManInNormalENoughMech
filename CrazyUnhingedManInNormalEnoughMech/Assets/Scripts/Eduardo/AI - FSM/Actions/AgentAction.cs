@@ -39,7 +39,7 @@ namespace AI
         /// <param name="agent"></param>
         public virtual void onExit(AgentBehaviour agent)
         {
-            agent.agentActions[agent.actionIndex] = null;
+            agent.ActionList[agent.actionIndex] = null;
             agent.actionIndex++;
         }
 

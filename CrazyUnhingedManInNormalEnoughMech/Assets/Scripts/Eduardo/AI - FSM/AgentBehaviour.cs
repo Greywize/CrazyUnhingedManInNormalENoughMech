@@ -31,48 +31,48 @@ namespace AI
 
         #region PUBLIC MEMBERS
 
-        [Header("Required Objects")]
-        public Transform Body;
+        [Header("Required Objects")] public Transform Body;
+
         // public Sensor sensor;
         public AgentBehaviour agent;
 
-        [Space(15)]
-        [Header("STATE")]
-        public float timer;
+        [Space(15)] [Header("STATE")] public float timer;
         public AgentState defaultState;
         public int currentTransition;
         public AgentState currState;
         public AgentState prevState;
         public Condition stateCondition;
 
-        [Space(15)]
-        [Header("ACTIONS")]
-        [FormerlySerializedAs("currAction")]
+        [Space(15)] [Header("ACTIONS")] [FormerlySerializedAs("currAction")]
         public int actionIndex;
-        [SerializeField] public AgentAction[] agentActions;
-        public Condition actionCondition;
 
-        [Space(15)]
-        [Header("DESTINATION")]
+        [FormerlySerializedAs("agentActions")] 
+        [SerializeField] public AgentAction[] ActionList;
+        public Condition actionCondition;
+        
+        [Space(15)] [Header("TRACKING")] 
         public AgentBehaviour target;
+
+        [Space(15)] [Header("DESTINATION")] 
+        [FormerlySerializedAs("currDestination")] public int DestinationIndex = 0;
         public Vector3 currPosition;
-        public int currDestination = 0;
         public Vector3 destination;
         [Range(5, 100)] public int moveSpeed = 5;
 
-        [Space(15)]
-        [Header("SENSOR")]
-        public SphereCollider SenseCollider;
+        [Space(15)] [Header("SENSOR")] public SphereCollider SenseCollider;
         public float actionRange;
         public float detectProximity;
         public bool closestTarget = false;
+
         [Space(10)]
+
         #endregion
 
         #region PRIVATE MEMBERS
 
         [Header("TRANSITION")]
-        [SerializeField] public Transitions[] Transitions;
+        [SerializeField]
+        public Transitions[] Transitions;
 
         #endregion
 
@@ -113,7 +113,6 @@ namespace AI
         //#4 - FIXED UPDATE 
         private void FixedUpdate()
         {
-
         }
 
         // #5 - Update
@@ -123,9 +122,8 @@ namespace AI
 
             if (currState == null)
                 checkTransitions(this);
-            else if (agentActions.Length > 0 || agentActions != null)
+            else if (ActionList.Length > 0 || ActionList != null)
             {
-                Debug.DrawLine(destination, transform.position, agentActions[actionIndex].GetColor());
                 currState.Tick(this);
             }
         }
@@ -133,13 +131,7 @@ namespace AI
         // #6 - 
         private void LateUpdate()
         {
-            // Action Limit check
-            if (actionIndex >= agentActions.Length)
-                actionIndex = 0;
-
-            if (currentTransition >= Transitions.Length)
-                currentTransition = 0;
-
+ 
         }
 
         #endregion
@@ -153,7 +145,6 @@ namespace AI
         /// <param name="b"></param>
         public void EnableSensor(bool b)
         {
-            // s.enabled = b;
             SenseCollider.enabled = b;
             SenseCollider.isTrigger = b;
         }
@@ -177,21 +168,19 @@ namespace AI
         public void MoveToward(Vector3 destination)
         {
             Vector3 direction = GetDirection(destination);
-            float distance = Vector3.Distance(Body.position, destination);
 
             if (Vector3.Dot(direction, destination) >= 0.2f)
             {
                 // https://stuartspixelgames.com/2018/06/21/move-an-object-towards-a-target-in-unity/
-                lookAtTarget();
+                RotateToTarget();
 
-                // if (distance >= 2.0f)
                 Body.position =
                     Vector3.MoveTowards(Body.position, destination, moveSpeed * Time.deltaTime);
             }
         }
 
         /// <summary>
-        /// Reurn the normal of the direction the agent is travelling
+        /// Return the normal of the direction the agent is travelling
         /// </summary>
         /// <param name="destination"></param>
         /// <returns></returns>
@@ -205,7 +194,7 @@ namespace AI
         /// <summary>
         /// 
         /// </summary>
-        public void lookAtTarget()
+        public void RotateToTarget()
         {
             Vector3 targetDirection = GetDirection(agent.destination);
             float singleStep = moveSpeed * Time.deltaTime;
@@ -219,22 +208,10 @@ namespace AI
         /// </summary>
         /// <param name="agent"></param>
         /// <param name="s"></param>
-        public void ResetAgent(AgentBehaviour agent, AgentState s)
+        public void ResetState(AgentBehaviour agent, AgentState s)
         {
             agent.prevState = s;
-
-            //  if (agent.currState != null)
             agent.currState = null;
-
-            if (agent.target != null)
-                agent.target = null;
-
-            if (agent.agentActions.Length > 0)
-            {
-                agent.actionIndex = 0;
-                Array.Clear(agent.agentActions, 0, agent.agentActions.Length);
-            }
-
             agent.destination = Vector3.zero;
         }
 
@@ -244,24 +221,23 @@ namespace AI
         /// <param name="agent"></param>
         public void ResetTransition(AgentBehaviour agent)
         {
-            agent.currentTransition++;
-
             if (agent.currentTransition >= agent.Transitions.Length)
-            {
                 agent.currentTransition = 0;
-            }
         }
 
         /// <summary>
-        /// 
+        /// Reset the agents actions if they have all been performed
+        /// (actionIndex is out of bounds)
         /// </summary>
         /// <param name="agent"></param>
         public void resetAction(AgentBehaviour agent)
         {
+            Array.Clear(agent.ActionList, 0, agent.ActionList.Length);
+
             IdleAction act = ScriptableObject.CreateInstance<IdleAction>();
             IdleCondition cond = ScriptableObject.CreateInstance<IdleCondition>();
-            
-            agent.agentActions[0] = act;
+
+            agent.ActionList[0] = act;
             agent.actionIndex = 0;
             agent.actionCondition = cond;
         }
@@ -304,11 +280,11 @@ namespace AI
         /// <param name="actionIndex"></param>
         public void removeAction(AgentBehaviour agent, int actionIndex)
         {
-            agent.agentActions[actionIndex] = null;
+            agent.ActionList[actionIndex] = null;
             agent.actionIndex++;
 
             // Limit check
-            if (this.actionIndex > agentActions.Length)
+            if (this.actionIndex > ActionList.Length)
                 this.actionIndex = 0;
         }
 
@@ -323,14 +299,7 @@ namespace AI
 
             if (agent.timer <= 0f)
             {
-/*                if (agent.currState != null)
-                    agent.currState.OnStateExit(agent);
-                else
-                {
-                    agent.currState = agent.defaultState;
-                    agent.agent.currState.OnStateEnter(agent);
-                }*/
-
+                //  agent.currentTransition++;
                 agent.timer = countdown;
             }
         }

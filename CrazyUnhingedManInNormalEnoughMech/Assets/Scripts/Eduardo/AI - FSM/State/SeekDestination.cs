@@ -7,8 +7,7 @@ namespace AI
     public class SeekDestination : AgentState
     {
         [SerializeField] public Vector3 destination;
-        public AgentAction[] actions;
-        
+
         /// <summary>
         /// When this state becomes the instantiated behaviour
         /// </summary>
@@ -19,7 +18,7 @@ namespace AI
                 agent.currState = this;
 
             agent.destination = destination;
-            addActions(agent, actions);
+            addActions(agent, _actions);
         }
 
         /// <summary>
@@ -28,11 +27,9 @@ namespace AI
         /// <param name="agent"></param>
         public override void Tick(AgentBehaviour agent)
         {
-            agent.destination = destination;
-            
-            if (agent.actionIndex < agent.agentActions.Length)
-                agent.agentActions[agent.actionIndex].Tick(agent);
-            else if(agent.actionIndex >= agent.agentActions.Length)
+            if (agent.actionIndex < agent.ActionList.Length)
+                agent.ActionList[agent.actionIndex].Tick(agent);
+            else if(agent.actionIndex >= agent.ActionList.Length)
                 OnStateExit(agent);
         }
 
@@ -43,7 +40,6 @@ namespace AI
         /// <param name="ps"></param>
         public override void Tick(AgentBehaviour agent, PatrolState ps)
         {
-            Debug.DrawLine(agent.transform.position, agent.destination, Color.blue);
             agent.destination = destination;
             float distance = Vector3.Distance(agent.transform.position, agent.destination);
 
@@ -53,15 +49,15 @@ namespace AI
                 ps.nextDestination(agent, ps);
         }
 
-        public override void addActions(AgentBehaviour agent, AgentAction[] actions)
+        /*public override void addActions(AgentBehaviour agent, AgentAction[] actions)
         {
-            Array.Clear(agent.agentActions, 0, agent.agentActions.Length);
+            Array.Clear(agent.ActionList, 0, agent.ActionList.Length);
 
             for (int i = 0; i < actions.Length; i++)
             {
-                agent.agentActions[i] = actions[i].addinstance(agent);
+                agent.ActionList[i] = actions[i].addinstance(agent);
             }
         
-        }
+        }*/
     }
 }

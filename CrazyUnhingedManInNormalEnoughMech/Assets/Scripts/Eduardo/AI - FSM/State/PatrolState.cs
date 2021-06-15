@@ -12,7 +12,7 @@ namespace AI
         }
         #endregion
 
-        // [SerializeField] public int currDestination = 0;
+        // [SerializeField] public int DestinationIndex = 0;
         [SerializeField] public int StateWeight = 0;
         [SerializeField] public SeekDestination[] destinations;
         [SerializeField] public PatrolParent patrolParent;
@@ -29,15 +29,15 @@ namespace AI
         public override void OnStateEnter(AgentBehaviour agent)
         {
             agent.currState = this;
-            agent.currDestination = 0;
+            agent.DestinationIndex = 0;
             patrolParent = agent.GetComponentInChildren<PatrolParent>();
         }
 
         public override void Tick(AgentBehaviour agent)
         {
-            // destinations[currDestination].destination = agent.destination;
-            //  if (agent.currDestination < destinations.Length)
-            //    destinations[agent.currDestination].Tick(agent, this);
+            // destinations[DestinationIndex].destination = agent.destination;
+            //  if (agent.DestinationIndex < destinations.Length)
+            //    destinations[agent.DestinationIndex].Tick(agent, this);
 
             if (!patrolParent)
             {
@@ -46,16 +46,16 @@ namespace AI
                 return;
             }
 
-            if (agent.currDestination < patrolParent.PatrolPoints.Length)
+            if (agent.DestinationIndex < patrolParent.PatrolPoints.Length)
             {
-                for (int i = agent.currDestination; i < patrolParent.PatrolPoints.Length; i++)
+                for (int i = agent.DestinationIndex; i < patrolParent.PatrolPoints.Length; i++)
                 {
                     agent.destination = patrolParent.PatrolPoints[i].point;
 
                     if (Vector3.Distance(agent.transform.position, agent.destination) >= 2.0f)
                         agent.MoveToward(agent.destination);
                     else
-                        agent.currDestination++;
+                        agent.DestinationIndex++;
                 }
             }
         }
@@ -72,9 +72,9 @@ namespace AI
         /// <param name="s"></param>
         public void nextDestination(AgentBehaviour agent, PatrolState s)
         {
-            agent.currDestination++;
+            agent.DestinationIndex++;
 
-            if (agent.currDestination >= destinations.Length)
+            if (agent.DestinationIndex >= destinations.Length)
                 OnStateExit(agent);
         }
 

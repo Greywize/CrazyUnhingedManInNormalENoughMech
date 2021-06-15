@@ -10,7 +10,8 @@ namespace AI
     {
         public override bool CheckCondition(AgentBehaviour agent)
         {
-            return (Vector3.Distance(agent.currPosition, agent.destination) >= agent.actionRange ? true : false);
+            float distFromDestination = Vector3.Distance(agent.currPosition, agent.destination);
+            return (distFromDestination >= agent.actionRange ? true : false);
         }
     }
 }

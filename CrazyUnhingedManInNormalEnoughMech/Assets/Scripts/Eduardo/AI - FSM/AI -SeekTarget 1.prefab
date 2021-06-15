@@ -53,12 +53,12 @@ MonoBehaviour:
   prevState: {fileID: 0}
   stateCondition: {fileID: 0}
   actionIndex: 0
-  agentActions:
+  ActionList:
   - {fileID: 11400000, guid: bec2be5043a1b98479f36dbe3a9c439e, type: 2}
   actionCondition: {fileID: 11400000, guid: 630bbb9537cff0d4b9d9cbc24048e9b9, type: 2}
   target: {fileID: 0}
+  DestinationIndex: 0
   currPosition: {x: 0, y: 0, z: 0}
-  currDestination: 0
   destination: {x: 0, y: 0, z: 0}
   moveSpeed: 18
   SenseCollider: {fileID: 4733712903685231808}
@@ -68,6 +68,8 @@ MonoBehaviour:
   Transitions:
   - state: {fileID: 11400000, guid: e32eee1f6b2f2f849aed0a3dd071c987, type: 2}
     condition: {fileID: 11400000, guid: 65e22bd0b03298549a44a2f9bc5dfabc, type: 2}
+  - state: {fileID: 11400000, guid: e48d7352fb1c60e48a2c1b38465a8ef6, type: 2}
+    condition: {fileID: 11400000, guid: 0e74bf2faac543a48ac262d86daaafb7, type: 2}
 --- !u!135 &4733712903685231808
 SphereCollider:
   m_ObjectHideFlags: 0

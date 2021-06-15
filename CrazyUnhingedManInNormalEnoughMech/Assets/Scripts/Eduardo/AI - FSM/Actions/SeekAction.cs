@@ -41,13 +41,13 @@ namespace AI
             agent.destination = agent.target.transform.position;
 
             float distance = Vector3.Distance(agent.transform.position, agent.destination);
-            Debug.DrawLine(agent.target.transform.position, agent.transform.position, _color);
+            // Debug.DrawLine(agent.target.transform.position, agent.transform.position, _color);
 
             if (distance >= agent.detectProximity)
                 agent.MoveToward(agent.destination);
             else
             {
-              //  agent.removeAction(agent, agent.actionIndex);
+                //  agent.removeAction(agent, agent.actionIndex);
                 agent.EnableSensor(true);
             }
         }
@@ -55,20 +55,15 @@ namespace AI
         public override void Tick(AgentBehaviour agent)
         {
             if (_condition.CheckCondition(agent, _condition))
-            {
-                if (agent.currState.GetType() == typeof(SeekTarget))
-                    agent.destination = agent.target.transform.position;
-
                 agent.MoveToward(agent.destination);
-            }
             else
-                ExitAction(agent, this);
+                ExitAction(agent,agent.ActionList[agent.actionIndex]);
         }
 
         public override void addAction(AgentBehaviour agent, int index)
         {
             SeekAction act = ScriptableObject.Instantiate(this);
-            agent.agentActions[index] = act;
+            agent.ActionList[index] = act;
         }
 
         public override AgentAction addinstance(AgentBehaviour agent)

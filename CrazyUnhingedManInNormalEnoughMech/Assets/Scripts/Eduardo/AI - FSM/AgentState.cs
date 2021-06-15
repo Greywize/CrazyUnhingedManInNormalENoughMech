@@ -22,6 +22,7 @@ namespace AI
         {
             Debug.Log($"{agent} has no definition for PatrolState Tick {p}");
         }
+
         public virtual void Tick(AgentBehaviour agent, SeekDestination sd)
         {
             Debug.Log($"{agent} has no definition for SeekDestination tick {sd}");
@@ -39,12 +40,26 @@ namespace AI
 
         public virtual void OnStateExit(AgentBehaviour agent)
         {
-            agent.ResetAgent(agent, agent.currState);
-            agent.ResetTransition(agent);
+            agent.ResetState(agent, agent.currState);
             agent.resetAction(agent);
+            agent.ResetTransition(agent);
+            
+            agent.currentTransition++;
+
+            if (agent.currentTransition >= agent.Transitions.Length)
+                agent.currentTransition = 0;
         }
 
-        public abstract void addActions(AgentBehaviour agent, AgentAction[] actions);
-    }
+        public virtual void addActions(AgentBehaviour agent, AgentAction[] actions)
+        {
+            Array.Clear(agent.ActionList, 0, agent.ActionList.Length);
+            agent.ActionList = actions;
+        }
 
+        protected virtual void drawLineDestination(AgentBehaviour agent)
+        {
+            if (agent.destination != Vector3.zero)
+                Debug.DrawLine(agent.currPosition, agent.destination, Color.blue);
+        }
+    }
 }

@@ -7,11 +7,11 @@ namespace AI
     /// <summary>
     /// Make agent wander around the environment 
     /// </summary>
-    [CreateAssetMenu(menuName = "AI/AgentState/WanderState")]
-    public class AgentWander : AgentState
+    [CreateAssetMenu(menuName = "AI/State/WanderState")]
+    public class WanderState : AgentState
     {
         #region CONSTRUCTOR
-        public AgentWander()
+        public WanderState()
         {
 
         }
