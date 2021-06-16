@@ -780,6 +780,8 @@ MonoBehaviour:
   dashCooldownMultiplier: 7
   deadzone: 0.3
   model: {fileID: 237756042347831674}
+  gunRotationXLock: 40
+  gunRotationYLock: 30
 --- !u!120 &823780794473361850
 LineRenderer:
   m_ObjectHideFlags: 0

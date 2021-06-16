@@ -47,6 +47,8 @@ public class Player : MonoBehaviour
     public float dashCooldownMultiplier = 7;
     public float deadzone = 0.3f;
     public GameObject model;
+    public float gunRotationXLock = 60f;
+    public float gunRotationYLock = 75f;
 
     void Start()
     {
@@ -160,7 +162,12 @@ public class Player : MonoBehaviour
 
         foreach (GameObject weapon in currentWeaponMono)
         {
+            float tempWeaponX = weapon.transform.eulerAngles.x;
+            float tempWeaponY = weapon.transform.eulerAngles.y;
             weapon.transform.LookAt(ray.origin + maximumFiringLine * ray.direction);
+            float weaponTransformX = pointer.eulerAngles.x > gunRotationXLock && pointer.eulerAngles.x < 360 - gunRotationXLock ? tempWeaponX : pointer.eulerAngles.x;
+            float weaponTransformY = pointer.eulerAngles.y > gunRotationYLock && pointer.eulerAngles.y < 360 - gunRotationYLock ? tempWeaponY : pointer.eulerAngles.y;
+            weapon.transform.eulerAngles = new Vector3(weaponTransformX, weaponTransformY, weapon.transform.eulerAngles.z);
         }
 
 #if !UNITY_EDITOR
