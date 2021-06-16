@@ -1281,6 +1281,7 @@ MonoBehaviour:
   pointer: {fileID: 8374274571962589274}
   didDash: 0
   dashing: 0
+  snapTransform: {x: 0, y: 0, z: 0}
   currentWeaponMono: []
   VRCam: {fileID: 8374594058339397442}
   maximumFiringLine: 75
@@ -1291,6 +1292,9 @@ MonoBehaviour:
   dashCooldownMultiplier: 7
   deadzone: 0.3
   model: {fileID: 8942615540808901899}
+  snapTurnSpeed: 1
+  gunRotationXLock: 60
+  gunRotationYLock: 75
 --- !u!120 &8374594056785409483
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -2591,6 +2595,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Mech_
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 24a1ffe7f3475c841bcacb2f17dd60dc,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24a1ffe7f3475c841bcacb2f17dd60dc, type: 3}
