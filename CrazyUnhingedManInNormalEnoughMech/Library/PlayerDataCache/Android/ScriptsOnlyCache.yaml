@@ -2231,7 +2231,7 @@ ScriptsOnlyBuild:
     className: VertexShakeA
   - hash:
       serializedVersion: 2
-      Hash: ff91477da15612069d050fc698ee8336
+      Hash: f372e5d3f12f4320d582a9eefcaa42f6
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Player

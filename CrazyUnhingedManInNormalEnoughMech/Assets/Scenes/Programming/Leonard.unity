@@ -874,6 +874,11 @@ PrefabInstance:
       propertyPath: terrain
       value: 
       objectReference: {fileID: 199567434396309808}
+    - target: {fileID: 823780794473361841, guid: e7d7d9c90946dec47b7f5fbd3a1b2b56,
+        type: 3}
+      propertyPath: snapTurnSpeed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 823780796142794959, guid: e7d7d9c90946dec47b7f5fbd3a1b2b56,
         type: 3}
       propertyPath: m_Name

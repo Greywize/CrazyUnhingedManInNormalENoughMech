@@ -31,7 +31,10 @@ public class Player : MonoBehaviour
     public bool didDash = false;
     [HideInInspector]
     public bool dashing = false;
-    bool touchpadPressed = false;
+    private bool snapTurning = false;
+    [SerializeField]
+    private Vector3 snapTransform = new Vector3();
+    private bool touchpadPressed = false;
     //public Weapon[] currentWeapon;
     [HideInInspector]
     public List<GameObject> currentWeaponMono = new List<GameObject>();
@@ -47,6 +50,9 @@ public class Player : MonoBehaviour
     public float dashCooldownMultiplier = 7;
     public float deadzone = 0.3f;
     public GameObject model;
+    public float snapTurnSpeed = 1;
+    public float gunRotationXLock = 60f;
+    public float gunRotationYLock = 75f;
 
     void Start()
     {
@@ -160,7 +166,12 @@ public class Player : MonoBehaviour
 
         foreach (GameObject weapon in currentWeaponMono)
         {
+            float tempWeaponX = weapon.transform.eulerAngles.x;
+            float tempWeaponY = weapon.transform.eulerAngles.y;
             weapon.transform.LookAt(ray.origin + maximumFiringLine * ray.direction);
+            float weaponTransformX = pointer.eulerAngles.x > gunRotationXLock && pointer.eulerAngles.x < 360 - gunRotationXLock ? tempWeaponX : pointer.eulerAngles.x;
+            float weaponTransformY = pointer.eulerAngles.y > gunRotationYLock && pointer.eulerAngles.y < 360 - gunRotationYLock ? tempWeaponY : pointer.eulerAngles.y;
+            weapon.transform.eulerAngles = new Vector3(weaponTransformX, weaponTransformY, weapon.transform.eulerAngles.z);
         }
 
 #if !UNITY_EDITOR
@@ -257,7 +268,13 @@ public class Player : MonoBehaviour
             }
             else if (touchpad.y < -deadzone)
             {
-                transform.eulerAngles += Vector3.up * 180;
+                snapTurning = true;
+                snapTransform = transform.eulerAngles + Vector3.up * 180;
+
+                if (snapTransform.y >= 360)
+                {
+                    snapTransform.y -= 360;
+                }
             }
         }
         else if (OVRInput.Get(OVRInput.Button.PrimaryTouchpad) && (touchpad.x > deadzone || touchpad.x < -deadzone))
@@ -288,7 +305,13 @@ public class Player : MonoBehaviour
         //}
         if (Input.GetKeyDown(KeyCode.S) && (!dashing || dashTime <= 0))
         {
-            transform.eulerAngles -= Vector3.up * 180;
+            snapTurning = true;
+            snapTransform = transform.eulerAngles + Vector3.up * 180;
+            
+            if (snapTransform.y >= 360)
+            {
+                snapTransform.y -= 360;
+            }
         }
         else if (Input.GetKey(KeyCode.A) && (!dashing || dashTime <= 0))
         {
@@ -305,6 +328,15 @@ public class Player : MonoBehaviour
 #endif
         float dashCancel = 1;
 
+        if (snapTurning)
+        {
+            transform.eulerAngles = Vector3.MoveTowards(transform.eulerAngles, snapTransform, snapTurnSpeed * 180 * Time.deltaTime);
+
+            if (transform.eulerAngles == snapTransform)
+            {
+                snapTurning = false;
+            }
+        }
         if (dashing)
         {
             if (dashWarmupTime >= 0 && dashTime > 0)
