@@ -46,8 +46,6 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.RawImage
     - UnityEngine.UI.Slider
     - UnityEngine.UI.VerticalLayoutGroup
-    com.unity.multiplayer-hlapi.Runtime.dll:
-    - UnityEngine.Networking.NetworkCallbacks
   sceneClasses:
     Assets/Scenes/Design/Seth.unity:
     - Class: 1
@@ -89,63 +87,63 @@ ScriptsOnlyBuild:
     - Class: 109
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11324}
+      Script: {instanceID: 11328}
     - Class: 114
-      Script: {instanceID: 11406}
+      Script: {instanceID: 11410}
     - Class: 114
-      Script: {instanceID: 11446}
+      Script: {instanceID: 11450}
     - Class: 114
-      Script: {instanceID: 11488}
+      Script: {instanceID: 11492}
     - Class: 114
-      Script: {instanceID: 11558}
+      Script: {instanceID: 11562}
     - Class: 114
-      Script: {instanceID: 11594}
+      Script: {instanceID: 11598}
     - Class: 114
-      Script: {instanceID: 11692}
+      Script: {instanceID: 11696}
     - Class: 114
-      Script: {instanceID: 11972}
+      Script: {instanceID: 11976}
     - Class: 114
-      Script: {instanceID: 12032}
+      Script: {instanceID: 12036}
     - Class: 114
-      Script: {instanceID: 12282}
+      Script: {instanceID: 12286}
     - Class: 114
-      Script: {instanceID: 12436}
+      Script: {instanceID: 12440}
     - Class: 114
-      Script: {instanceID: 12490}
+      Script: {instanceID: 12494}
     - Class: 114
-      Script: {instanceID: 12596}
+      Script: {instanceID: 12600}
     - Class: 114
-      Script: {instanceID: 12792}
+      Script: {instanceID: 12796}
     - Class: 114
-      Script: {instanceID: 13254}
+      Script: {instanceID: 13258}
     - Class: 114
-      Script: {instanceID: 13378}
+      Script: {instanceID: 13382}
     - Class: 114
-      Script: {instanceID: 13588}
+      Script: {instanceID: 13592}
     - Class: 114
-      Script: {instanceID: 13614}
+      Script: {instanceID: 13618}
     - Class: 114
-      Script: {instanceID: 13788}
+      Script: {instanceID: 13792}
     - Class: 114
-      Script: {instanceID: 13972}
+      Script: {instanceID: 13976}
     - Class: 114
-      Script: {instanceID: 14078}
+      Script: {instanceID: 14082}
     - Class: 114
-      Script: {instanceID: 14150}
+      Script: {instanceID: 14154}
     - Class: 114
-      Script: {instanceID: 14260}
+      Script: {instanceID: 14264}
     - Class: 114
-      Script: {instanceID: 14410}
+      Script: {instanceID: 14414}
     - Class: 114
-      Script: {instanceID: 14576}
+      Script: {instanceID: 14580}
     - Class: 114
-      Script: {instanceID: 14598}
+      Script: {instanceID: 14602}
     - Class: 114
-      Script: {instanceID: 14782}
+      Script: {instanceID: 14786}
     - Class: 114
-      Script: {instanceID: 14816}
+      Script: {instanceID: 14820}
     - Class: 114
-      Script: {instanceID: 14834}
+      Script: {instanceID: 14838}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -2231,7 +2229,7 @@ ScriptsOnlyBuild:
     className: VertexShakeA
   - hash:
       serializedVersion: 2
-      Hash: f372e5d3f12f4320d582a9eefcaa42f6
+      Hash: beda5fe6b1d10b044c81835415383109
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Player
@@ -2424,4 +2422,4 @@ ScriptsOnlyBuild:
   platform: 13
   scenePathNames:
   - Assets/Scenes/Design/Seth.unity
-  playerPath: C:/Users/s192248/Desktop/oh my god,.apk
+  playerPath: C:/Users/s181696/Desktop/yes.apk
