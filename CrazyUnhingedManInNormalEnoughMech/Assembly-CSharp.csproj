@@ -273,6 +273,11 @@
     <Compile Include="Assets\Scripts\Eduardo\AI - FSM\Transition.cs" />
     <Compile Include="Assets\Scripts\Eduardo\CameraController.cs" />
     <Compile Include="Assets\Scripts\Eduardo\CharacterStats.cs" />
+    <Compile Include="Assets\Scripts\Eduardo\CharacterStats\CharStats.cs" />
+    <Compile Include="Assets\Scripts\Eduardo\CharacterStats\Player1.cs" />
+    <Compile Include="Assets\Scripts\Eduardo\CharacterStats\PlayerMech.cs" />
+    <Compile Include="Assets\Scripts\Eduardo\CharacterStats\PlayerStats.cs" />
+    <Compile Include="Assets\Scripts\Eduardo\GameManager\GameManager.cs" />
     <Compile Include="Assets\Scripts\Eduardo\PhysicsPusher.cs" />
     <Compile Include="Assets\Scripts\Eduardo\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Eduardo\SimpleLocomotion.cs" />

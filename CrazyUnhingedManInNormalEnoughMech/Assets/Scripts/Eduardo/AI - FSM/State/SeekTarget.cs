@@ -27,7 +27,6 @@ namespace AI
                 agent.ActionList[agent.actionIndex].Tick(agent);
             }
                 
-
             if (agent.actionIndex >= agent.ActionList.Length)
                 OnStateExit(agent);
         }

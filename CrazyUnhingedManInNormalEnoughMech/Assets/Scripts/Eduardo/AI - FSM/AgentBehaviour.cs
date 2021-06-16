@@ -18,14 +18,13 @@ namespace AI
 
         AgentBehaviour()
         {
-            agentCounter++;
+            // agentCounter++;
         }
 
         #endregion
 
         #region STATIC MEMBERS
 
-        private static int agentCounter = 0;
 
         #endregion
 
@@ -34,6 +33,7 @@ namespace AI
         [Header("Required Objects")] public Transform Body;
 
         // public Sensor sensor;
+        public GameManager GM;
         public AgentBehaviour agent;
 
         [Space(15)] [Header("STATE")] public float timer;
@@ -93,12 +93,12 @@ namespace AI
         /// <summary>
         /// Add this agent to the total agent count 
         /// </summary>
-        private void OnEnable() => agentCounter++;
+      //  private void OnEnable() => GM.AllAgents.;
 
         /// <summary>
         /// Remove this agent from the totals agent count 
         /// </summary>
-        private void OnDisable() => agentCounter--;
+      //  private void OnDisable() => GM.agents.Remove(this);
 
         // #3
         private void Start()

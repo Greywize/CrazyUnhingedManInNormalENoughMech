@@ -16,14 +16,20 @@ namespace AI
             {
                 Debug.Log($"{name} has attacked {agent.target.name} : Animator not implemented");
                 onExit(agent);
-            } else if (_animator)
+            }
+            else if (_animator)
             {
                 Debug.Log($" {name} has attacked {agent.target.name} using {_animator.name}");
                 _animator.SetBool("AttackTarget", true);
                 onExit(agent);
             }
 
-            _animator.SetBool("AttackTarget", false);
+            if (_cooldown >= 0)
+            {
+                agent.moveSpeed = 0;
+            }
+            
+            // _animator.SetBool("AttackTarget", false);
         }
 
         public override void Tick(AgentBehaviour agent, Condition cond)
@@ -71,6 +77,11 @@ namespace AI
             {
                 Debug.Log($"{agent} has performed {this}");
             }
+        }
+
+        public void attackPlayer(AgentBehaviour agent)
+        {
+
         }
     }
 }
