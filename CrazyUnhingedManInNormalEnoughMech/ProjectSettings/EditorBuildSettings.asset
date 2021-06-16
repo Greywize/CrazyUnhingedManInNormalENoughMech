@@ -5,7 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Programming/Leonard.unity
     guid: d1405352e1605cc4699f11c4e7e007f6
+  - enabled: 1
+    path: Assets/Scenes/Design/Seth.unity
+    guid: 5d83a11cbde944c49b6a1f6978832be6
   m_configObjects: {}
