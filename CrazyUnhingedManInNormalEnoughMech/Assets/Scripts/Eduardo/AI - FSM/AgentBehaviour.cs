@@ -11,7 +11,7 @@ namespace AI
     /// Artificial behavioural unit
     /// Finite State Machine
     /// </summary>
-    [RequireComponent(typeof(SphereCollider))]
+    [RequireComponent(typeof(SphereCollider), typeof(Animator))]
     public class AgentBehaviour : MonoBehaviour
     {
         #region CONTRUCTOR
@@ -30,13 +30,13 @@ namespace AI
 
         #region PUBLIC MEMBERS
 
-        [Header("Required Objects")] public Transform Body;
-
-        // public Sensor sensor;
+        [Header("Required Objects")] 
+        public Transform Body;
         public GameManager GM;
         public AgentBehaviour agent;
 
-        [Space(15)] [Header("STATE")] public float timer;
+        [Space(15)] [Header("STATE")] 
+        public float timer;
         public AgentState defaultState;
         public int currentTransition;
         public AgentState currState;
