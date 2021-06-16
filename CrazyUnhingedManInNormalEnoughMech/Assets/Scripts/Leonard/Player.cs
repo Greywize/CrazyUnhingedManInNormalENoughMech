@@ -166,12 +166,12 @@ public class Player : MonoBehaviour
 
         foreach (GameObject weapon in currentWeaponMono)
         {
-            float tempWeaponX = weapon.transform.eulerAngles.x;
-            float tempWeaponY = weapon.transform.eulerAngles.y;
+            float tempWeaponX = weapon.transform.localEulerAngles.x;
+            float tempWeaponY = weapon.transform.localEulerAngles.y;
             weapon.transform.LookAt(ray.origin + maximumFiringLine * ray.direction);
-            float weaponTransformX = pointer.eulerAngles.x > gunRotationXLock && pointer.eulerAngles.x < 360 - gunRotationXLock ? tempWeaponX : pointer.eulerAngles.x;
-            float weaponTransformY = pointer.eulerAngles.y > gunRotationYLock && pointer.eulerAngles.y < 360 - gunRotationYLock ? tempWeaponY : pointer.eulerAngles.y;
-            weapon.transform.eulerAngles = new Vector3(weaponTransformX, weaponTransformY, weapon.transform.eulerAngles.z);
+            float weaponTransformX = pointer.localEulerAngles.x > gunRotationXLock && pointer.localEulerAngles.x < 360 - gunRotationXLock ? tempWeaponX : pointer.localEulerAngles.x;
+            float weaponTransformY = pointer.localEulerAngles.y > gunRotationYLock && pointer.localEulerAngles.y < 360 - gunRotationYLock ? tempWeaponY : pointer.localEulerAngles.y;
+            weapon.transform.localEulerAngles = new Vector3(weaponTransformX, weaponTransformY, weapon.transform.localEulerAngles.z);
         }
 
 #if !UNITY_EDITOR
@@ -303,7 +303,7 @@ public class Player : MonoBehaviour
         //    transform.eulerAngles += Vector3.up * turnAmount;
         //    touchpadPressed = true;
         //}
-        if (Input.GetKeyDown(KeyCode.S) && (!dashing || dashTime <= 0))
+        if (Input.GetKeyDown(KeyCode.Q) && (!dashing || dashTime <= 0))
         {
             snapTurning = true;
             snapTransform = transform.eulerAngles + Vector3.up * 180;
@@ -365,10 +365,7 @@ public class Player : MonoBehaviour
             }
         }
 #if !UNITY_EDITOR
-        if (touchpad.y > deadzone)
-        {
-            velocity += transform.forward * dashCancel * touchpad.y * speed;
-        }
+        velocity += touchpad.y * transform.forward * dashCancel * touchpad.y * speed;
 #else
         if (Input.GetAxis("Vertical") > deadzone)
         {
