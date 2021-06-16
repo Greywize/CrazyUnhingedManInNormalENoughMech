@@ -14,6 +14,11 @@ namespace Zacks.Terrain
     [RequireComponent(typeof(MeshBuilder))]
     public class CubeGenerator : MonoBehaviour
     {
+        [Header("Spawnable Objects")]
+        public TerrainObject[] terrainObjects;
+        [Range(1, 20)]
+        public float spawnChance = 1f;
+        [Space]
         [Header("Size Variables")]
         //[SerializeField]
         [Tooltip("How many cubes wide the terrain will be (Range 1 - inf)")]
@@ -230,6 +235,27 @@ namespace Zacks.Terrain
                         Vector3.forward * cubeScale,
                         gradient.Evaluate(perlin)
                         );
+
+                    float randomSpawn = Random.Range(0, spawnChance);
+                    float runningSpawn = 0f;
+                    bool spawned = false;
+
+                    foreach (TerrainObject TO in terrainObjects)
+                    {
+                        if (!spawned)
+                        {
+                            runningSpawn += TO.spawnChance;
+
+                            if (randomSpawn < runningSpawn)
+                            {
+                                GameObject terrainObj = Instantiate(TO.model, transform);
+                                terrainObj.transform.up = Vector3.up;
+                                terrainObj.transform.localScale = new Vector3(TO.scale, TO.scale, TO.scale);
+                                terrainObj.transform.position += new Vector3(pos.x, pos.y + TO.heightOffset, pos.z);
+                                spawned = true;
+                            }
+                        }
+                    }
 
                     m_cubes[x, z] = pos;
                     perlinVals[x, z] = perlin;

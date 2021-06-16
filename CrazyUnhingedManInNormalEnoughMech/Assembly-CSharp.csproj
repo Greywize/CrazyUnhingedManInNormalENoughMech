@@ -278,6 +278,7 @@
     <Compile Include="Assets\Scripts\Leonard\Player.cs" />
     <Compile Include="Assets\Scripts\Leonard\PointerOptions.cs" />
     <Compile Include="Assets\Scripts\Leonard\Projectile.cs" />
+    <Compile Include="Assets\Scripts\Leonard\TerrainObjects.cs" />
     <Compile Include="Assets\Scripts\Leonard\WeaponHolder.cs" />
     <Compile Include="Assets\Scripts\Leonard\WeaponMono.cs" />
     <Compile Include="Assets\Scripts\Leonard\WeaponScript.cs" />
