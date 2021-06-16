@@ -49,7 +49,7 @@ ScriptsOnlyBuild:
     com.unity.multiplayer-hlapi.Runtime.dll:
     - UnityEngine.Networking.NetworkCallbacks
   sceneClasses:
-    Assets/Scenes/Programming/Leonard.unity:
+    Assets/Scenes/Design/Seth.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -80,6 +80,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 84
       Script: {instanceID: 0}
+    - Class: 89
+      Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
     - Class: 108
@@ -87,63 +89,63 @@ ScriptsOnlyBuild:
     - Class: 109
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11304}
+      Script: {instanceID: 11324}
     - Class: 114
-      Script: {instanceID: 11386}
+      Script: {instanceID: 11406}
     - Class: 114
-      Script: {instanceID: 11426}
+      Script: {instanceID: 11446}
     - Class: 114
-      Script: {instanceID: 11468}
+      Script: {instanceID: 11488}
     - Class: 114
-      Script: {instanceID: 11538}
+      Script: {instanceID: 11558}
     - Class: 114
-      Script: {instanceID: 11574}
+      Script: {instanceID: 11594}
     - Class: 114
-      Script: {instanceID: 11672}
+      Script: {instanceID: 11692}
     - Class: 114
-      Script: {instanceID: 11952}
+      Script: {instanceID: 11972}
     - Class: 114
-      Script: {instanceID: 12012}
+      Script: {instanceID: 12032}
     - Class: 114
-      Script: {instanceID: 12262}
+      Script: {instanceID: 12282}
     - Class: 114
-      Script: {instanceID: 12416}
+      Script: {instanceID: 12436}
     - Class: 114
-      Script: {instanceID: 12470}
+      Script: {instanceID: 12490}
     - Class: 114
-      Script: {instanceID: 12576}
+      Script: {instanceID: 12596}
     - Class: 114
-      Script: {instanceID: 12772}
+      Script: {instanceID: 12792}
     - Class: 114
-      Script: {instanceID: 13234}
+      Script: {instanceID: 13254}
     - Class: 114
-      Script: {instanceID: 13358}
+      Script: {instanceID: 13378}
     - Class: 114
-      Script: {instanceID: 13568}
+      Script: {instanceID: 13588}
     - Class: 114
-      Script: {instanceID: 13594}
+      Script: {instanceID: 13614}
     - Class: 114
-      Script: {instanceID: 13768}
+      Script: {instanceID: 13788}
     - Class: 114
-      Script: {instanceID: 13952}
+      Script: {instanceID: 13972}
     - Class: 114
-      Script: {instanceID: 14058}
+      Script: {instanceID: 14078}
     - Class: 114
-      Script: {instanceID: 14130}
+      Script: {instanceID: 14150}
     - Class: 114
-      Script: {instanceID: 14240}
+      Script: {instanceID: 14260}
     - Class: 114
-      Script: {instanceID: 14390}
+      Script: {instanceID: 14410}
     - Class: 114
-      Script: {instanceID: 14556}
+      Script: {instanceID: 14576}
     - Class: 114
-      Script: {instanceID: 14578}
+      Script: {instanceID: 14598}
     - Class: 114
-      Script: {instanceID: 14762}
+      Script: {instanceID: 14782}
     - Class: 114
-      Script: {instanceID: 14796}
+      Script: {instanceID: 14816}
     - Class: 114
-      Script: {instanceID: 14814}
+      Script: {instanceID: 14834}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -165,6 +167,8 @@ ScriptsOnlyBuild:
     - Class: 223
       Script: {instanceID: 0}
     - Class: 224
+      Script: {instanceID: 0}
+    - Class: 258
       Script: {instanceID: 0}
   scriptHashData:
   - hash:
@@ -2419,5 +2423,5 @@ ScriptsOnlyBuild:
     className: PlayableTrack
   platform: 13
   scenePathNames:
-  - Assets/Scenes/Programming/Leonard.unity
-  playerPath: C:/Users/s181696/source/build.apk
+  - Assets/Scenes/Design/Seth.unity
+  playerPath: C:/Users/s192248/Desktop/oh my god,.apk
