@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f6be43a132a26145b4e9d5fa42e0b80, type: 3}
   m_Name: Attack Action
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
-  condition: {fileID: 0}
-  cooldown: 2
+  _condition: {fileID: 11400000, guid: 0e74bf2faac543a48ac262d86daaafb7, type: 2}
+  _animator: {fileID: 0}
+  _cooldown: -2
+  _color: {r: 1, g: 0, b: 0, a: 1}

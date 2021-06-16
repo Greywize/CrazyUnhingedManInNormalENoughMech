@@ -9,7 +9,21 @@ namespace AI
     {
         public override void performAction(AgentBehaviour agent)
         {
-            throw new System.NotImplementedException();
+            // Implement Animator 
+            _animator = agent.GetComponent<Animator>();
+
+            if (_animator == null)
+            {
+                Debug.Log($"{name} has attacked {agent.target.name} : Animator not implemented");
+                onExit(agent);
+            } else if (_animator)
+            {
+                Debug.Log($" {name} has attacked {agent.target.name} using {_animator.name}");
+                _animator.SetBool("AttackTarget", true);
+                onExit(agent);
+            }
+
+            _animator.SetBool("AttackTarget", false);
         }
 
         public override void Tick(AgentBehaviour agent, Condition cond)
