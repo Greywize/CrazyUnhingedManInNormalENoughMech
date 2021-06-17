@@ -10,4 +10,10 @@ public class TerrainObject : ScriptableObject
     public float scale = 1f;
     [Range(0, 1)]
     public float spawnChance = 0f;
+    public float health = 100f;
+
+    private void Awake()
+    {
+        model.tag = "Enemy";
+    }
 }
