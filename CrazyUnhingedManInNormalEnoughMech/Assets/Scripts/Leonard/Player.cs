@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
     private bool touchpadPressed = false;
     //public Weapon[] currentWeapon;
     [HideInInspector]
-    public List<GameObject> currentWeaponMono = new List<GameObject>();
+    public List<GameObject> currentWeapon = new List<GameObject>();
     public Camera VRCam;
     private float fireTime;
     public float maximumFiringLine = 20;
@@ -61,8 +61,8 @@ public class Player : MonoBehaviour
             model.SetActive(false);
         }
 
-        currentWeaponMono.Add(new GameObject());
-        currentWeaponMono.Add(new GameObject());
+        currentWeapon.Add(new GameObject());
+        currentWeapon.Add(new GameObject());
         cc = GetComponent<CharacterController>();
         lineRenderer = GetComponent<LineRenderer>();
         fireTime = 0;
@@ -99,63 +99,37 @@ public class Player : MonoBehaviour
 
     void SwapWeapon()
     {
+        Ray ray = new Ray(VRCam.transform.position, VRCam.transform.forward);
+        int layerMask = 1 << 5;
+
+        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask)
 #if !UNITY_EDITOR
-        Ray ray = new Ray(VRCam.transform.position, VRCam.transform.forward);
-        int layerMask = 1 << 5;
-
-        if (OVRInput.Get(OVRInput.Button.Back) && Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask))
-        {
-            WeaponHolder newWeapon = hit.collider.GetComponent<WeaponHolder>();
-
-            if (newWeapon)
-            {
-                int i = 0;
-
-                foreach (GameObject weapon in currentWeaponMono)
-                {
-                    Destroy(weapon);
-                    i++;
-                }
-
-                currentWeaponMono.Clear();
-
-                for (int e = 0; e < i; e++)
-                {
-                    newWeapon.weaponMono.GetComponent<WeaponMono>().invert = e % 2;
-                    newWeapon.weaponMono.transform.position = new Vector3(e % 2 == 0 ? newWeapon.weaponMono.transform.position.x : -newWeapon.weaponMono.transform.position.x, newWeapon.weaponMono.transform.position.y, newWeapon.weaponMono.transform.position.z);
-                    currentWeaponMono.Add(Instantiate(newWeapon.weaponMono, transform));
-                }
-            }
-        }
-#else
-        Ray ray = new Ray(VRCam.transform.position, VRCam.transform.forward);
-        int layerMask = 1 << 5;
-
-        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask))
-        {
-            WeaponHolder newWeapon = hit.collider.GetComponent<WeaponHolder>();
-
-            if (newWeapon)
-            {
-                int i = 0;
-
-                foreach (GameObject weapon in currentWeaponMono)
-                {
-                    Destroy(weapon);
-                    i++;
-                }
-
-                currentWeaponMono.Clear();
-
-                for (int e = 0; e < i; e++)
-                {
-                    newWeapon.weaponMono.GetComponent<WeaponMono>().invert = e % 2;
-                    newWeapon.weaponMono.transform.position = new Vector3(e % 2 == 0 ? newWeapon.weaponMono.transform.position.x : -newWeapon.weaponMono.transform.position.x, newWeapon.weaponMono.transform.position.y, newWeapon.weaponMono.transform.position.z);
-                    currentWeaponMono.Add(Instantiate(newWeapon.weaponMono, transform));
-                }
-            }
-        }
+        && OVRInput.Get(OVRInput.Button.Back)
 #endif
+            )
+        {
+            WeaponHolder newWeapon = hit.collider.GetComponent<WeaponHolder>();
+
+            if (newWeapon)
+            {
+                int i = 0;
+
+                foreach (GameObject weapon in currentWeapon)
+                {
+                    Destroy(weapon);
+                    i++;
+                }
+
+                currentWeapon.Clear();
+
+                for (int e = 0; e < i; e++)
+                {
+                    newWeapon.weapon.GetComponent<WeaponMono>().invert = e % 2;
+                    newWeapon.weapon.transform.position = new Vector3(e % 2 == 0 ? newWeapon.weapon.transform.position.x : -newWeapon.weapon.transform.position.x, newWeapon.weapon.transform.position.y, newWeapon.weapon.transform.position.z);
+                    currentWeapon.Add(Instantiate(newWeapon.weapon, transform));
+                }
+            }
+        }
     }
 
     void Shoot()
@@ -164,7 +138,7 @@ public class Player : MonoBehaviour
         lineRenderer.SetPosition(0, ray.origin);
         lineRenderer.SetPosition(1, ray.origin + maximumFiringLine * ray.direction);
 
-        foreach (GameObject weapon in currentWeaponMono)
+        foreach (GameObject weapon in currentWeapon)
         {
             float tempWeaponX = weapon.transform.localEulerAngles.x;
             float tempWeaponY = weapon.transform.localEulerAngles.y;
@@ -176,24 +150,23 @@ public class Player : MonoBehaviour
 
 #if !UNITY_EDITOR
         if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger))
-        {
 #else
         if (Input.GetMouseButton(0))
-        {
 #endif
+        {
             FireWeapon(ray);
         }
     }
 
     private void FireWeapon(Ray ray)
     {
-        if (currentWeaponMono[0].GetComponent<WeaponMono>())
+        if (currentWeapon[0].GetComponent<WeaponMono>())
         {
-            if (fireTime >= currentWeaponMono[0].GetComponent<WeaponMono>().fireRate)
+            if (fireTime >= currentWeapon[0].GetComponent<WeaponMono>().fireRate)
             {
                 fireTime = 0;
 
-                foreach (GameObject weapon in currentWeaponMono)
+                foreach (GameObject weapon in currentWeapon)
                 {
                     GameObject clone = Instantiate(weapon.GetComponent<WeaponMono>().projectilePrefab, weapon.GetComponentInChildren<Transform>().transform.position + 2 * weapon.GetComponentInChildren<Transform>().transform.forward, transform.rotation);
                     clone.GetComponent<Rigidbody>().velocity = weapon.GetComponentInChildren<Transform>().transform.forward * weapon.GetComponent<WeaponMono>().projectileSpeed;
