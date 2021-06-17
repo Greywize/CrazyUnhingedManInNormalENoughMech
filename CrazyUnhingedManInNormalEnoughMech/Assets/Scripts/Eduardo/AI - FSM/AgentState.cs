@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -41,10 +40,11 @@ namespace AI
         {
             agent.ResetAgent(agent, agent.currState);
             agent.ResetTransition(agent);
+<<<<<<< HEAD
             agent.resetAction(agent);
+=======
+>>>>>>> af34cea9e93e08ee2efab9b93d0052f1cdb96dc4
         }
-
-        public abstract void addActions(AgentBehaviour agent, AgentAction[] actions);
     }
 
 }

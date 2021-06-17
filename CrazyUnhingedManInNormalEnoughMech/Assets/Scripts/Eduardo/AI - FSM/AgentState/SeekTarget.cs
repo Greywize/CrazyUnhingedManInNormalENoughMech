@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,14 +7,12 @@ namespace AI
     [CreateAssetMenu(menuName = "AI/AgentState/SeekTarget")]
     public class SeekTarget : AgentState
     {
+<<<<<<< HEAD
+=======
         public AgentAction[] actions;
-
-        private void OnDrawGizmosSelected()
-        {
-            // Draw patrol points when agent is selected
-            // for(int i = 0; i < defaultState)
-        }
-
+        
+        
+>>>>>>> parent of bf8c73b ([Spider functional] Major refactor: AgentConditions, AgentState, AgentActions)
         public override void OnStateEnter(AgentBehaviour agent)
         {
             agent.EnableSensor(true);
@@ -26,44 +23,65 @@ namespace AI
                 OnStateExit(agent);
                 return;
             }
+<<<<<<< HEAD
 
             addActions(agent, actions);
             agent.actionCondition = agent.agentActions[agent.actionIndex].getCondition();
+=======
+>>>>>>> af34cea9e93e08ee2efab9b93d0052f1cdb96dc4
         }
 
         public override void Tick(AgentBehaviour agent)
         {
             if (agent.target == null)
             {
-                Debug.Log($"{agent} has no target!?");
                 OnStateExit(agent);
-                return;
-            }
-            else
-            {
-                agent.destination = agent.target.transform.position;
             }
 
+            agent.destination = agent.target.transform.position;
+            float distance = Vector3.Distance(agent.transform.position, agent.destination);
+            Debug.DrawLine(agent.target.transform.position, agent.transform.position, Color.red);
+<<<<<<< HEAD
+
+            if (distance > agent.sensor.detectRadius)
+                agent.MoveToward(agent.destination);
+            else
+            {
+                agent.enableSensor(true);
+                OnStateExit(agent);
+=======
+
+<<<<<<< HEAD
             // Perform Actions
             if (agent.actionIndex < agent.agentActions.Length)
                 agent.agentActions[agent.actionIndex].Tick(agent);
             else if (agent.actionIndex >= agent.agentActions.Length)
+=======
+            if (distance > agent.sensor.detectRadius)
+                agent.MoveToward(agent.destination);
+            else
+            {
+                addActions(agent, actions);
+                agent.enableSensor(true);
+>>>>>>> af34cea9e93e08ee2efab9b93d0052f1cdb96dc4
                 OnStateExit(agent);
+            }
         }
 
         /// <summary>
-        /// Add the action(s) to the agent
+        /// Add the action to the agent
         /// </summary>
         /// <param name="agent"></param>
         /// <param name="action"></param>
-        public override void addActions(AgentBehaviour agent, AgentAction[] actions)
+        private void addActions(AgentBehaviour agent, AgentAction[] action)
         {
-            Array.Clear(agent.agentActions, 0, agent.agentActions.Length);
-
             for (int i = 0; i < actions.Length; i++)
             {
-                agent.agentActions[i] = actions[i].addinstance(agent);
+               // actions[i] = ScriptableObject.CreateInstance(actions[i]);    
+                agent.agentActions[i] = actions[i];
+>>>>>>> parent of bf8c73b ([Spider functional] Major refactor: AgentConditions, AgentState, AgentActions)
             }
+                
         }
     }
 }

@@ -3,9 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Terrain
-  - LoadingCanvas
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -15,8 +13,8 @@ TagManager:
   - UI
   - 
   - 
-  - Terrain
-  - Player
+  - 
+  - 
   - 
   - 
   - 

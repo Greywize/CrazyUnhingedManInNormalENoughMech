@@ -25,7 +25,7 @@ namespace AI
         {
             if (agent.target != null)
             {
-                Debug.Log($"{agent} already has a target: {agent.target} : Condition = {this}");
+                Debug.Log($"{agent} already has a target: {agent.target}");
                 return false;
             }
 

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +9,7 @@ namespace AI
     /// </summary>
     public abstract class AgentAction : ScriptableObject
     {
+<<<<<<< HEAD
         [SerializeField] protected Condition _condition;
         [SerializeField] protected Animator _animator;
         [SerializeField] protected float _cooldown;
@@ -75,5 +75,23 @@ namespace AI
         {
             Debug.Log($"{agent} : removeAction() not implemented {action}");
         }
+=======
+        public virtual bool checkCondition(AgentBehaviour agent, Condition c)
+        {
+            if (c.CheckCondition(agent))
+                performAction(agent);
+
+            return false;
+        }
+
+        public abstract void performAction(AgentBehaviour agent, AgentBehaviour target);
+
+        public virtual void performAction(AgentBehaviour agent, AgentState s) { }
+
+        public virtual void performAction(AgentBehaviour agent) { }
+
+>>>>>>> af34cea9e93e08ee2efab9b93d0052f1cdb96dc4
     }
+
 }
+

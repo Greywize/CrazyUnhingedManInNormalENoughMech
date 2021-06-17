@@ -38327,7 +38327,7 @@ Transform:
   - {fileID: 6306485466007849086}
   - {fileID: 6306485466080875656}
   m_Father: {fileID: 6306485466831448805}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6306485465730919739
 GameObject:
@@ -38465,7 +38465,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6306485466080875663}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.05, y: -3, z: -1}
+  m_LocalPosition: {x: 0.5, y: -3, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6306485465654379933}
@@ -38623,7 +38623,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6306485466489051128}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.08, y: -3, z: 1}
+  m_LocalPosition: {x: -0.5, y: -3, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6306485465654379933}
@@ -38683,7 +38683,7 @@ Transform:
   - {fileID: 6306485465534421401}
   - {fileID: 6306485465813540802}
   m_Father: {fileID: 6306485466831448805}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6306485466535693792
 MonoBehaviour:
@@ -38909,6 +38909,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6306485466831448805}
+  - component: {fileID: 8548936460254331180}
+  - component: {fileID: 7760348957756442001}
+  - component: {fileID: 119036612079376334}
   m_Layer: 0
   m_Name: 'AI- ParticleSpider '
   m_TagString: Untagged
@@ -38927,12 +38930,69 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: -12.18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 6801679703629272038}
   - {fileID: 6306485465654379933}
   - {fileID: 6306485466535693794}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8548936460254331180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6306485466831448804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 489000675f3875b44b55049d80b33760, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sensor: {fileID: 7760348957756442001}
+  agent: {fileID: 8548936460254331180}
+  timer: 1
+  defaultState: {fileID: 0}
+  currState: {fileID: 0}
+  prevState: {fileID: 0}
+  currentTransition: 0
+  currAction: 0
+  performAction: {fileID: 0}
+  agentActions: []
+  target: {fileID: 0}
+  currPosition: {x: 0, y: 0, z: 0}
+  currDestination: 0
+  destination: {x: 0, y: 0, z: 0}
+  moveSpeed: 0
+  Transitions: []
+--- !u!114 &7760348957756442001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6306485466831448804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ee743843da01fe4cbea2729eb7e869a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 8548936460254331180}
+  sphereCollider: {fileID: 119036612079376334}
+  detection: 0
+  proximity: 0
+  closestTarget: 0
+--- !u!135 &119036612079376334
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6306485466831448804}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6306485466852169031
 GameObject:
   m_ObjectHideFlags: 0
@@ -39110,6 +39170,7 @@ MonoBehaviour:
   Iterations: 10
   Delta: 0.001
   SnapBackStrength: 1
+<<<<<<< HEAD
 --- !u!1001 &371531216792289013
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39261,3 +39322,5 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 371531216792289013}
   m_PrefabAsset: {fileID: 0}
+=======
+>>>>>>> af34cea9e93e08ee2efab9b93d0052f1cdb96dc4

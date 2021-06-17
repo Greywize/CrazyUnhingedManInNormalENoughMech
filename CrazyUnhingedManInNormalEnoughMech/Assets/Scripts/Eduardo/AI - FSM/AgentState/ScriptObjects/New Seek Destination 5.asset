@@ -13,5 +13,3 @@ MonoBehaviour:
   m_Name: New Seek Destination 5
   m_EditorClassIdentifier: 
   destination: {x: 25, y: 0, z: -45}
-  actions:
-  - {fileID: 11400000, guid: eb83d43ec46b7964c94be86ba61b8dd2, type: 2}
