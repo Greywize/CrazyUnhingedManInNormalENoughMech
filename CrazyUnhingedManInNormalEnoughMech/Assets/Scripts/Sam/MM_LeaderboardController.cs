@@ -5,20 +5,6 @@ using UnityEngine.UI;
 
 public class MM_LeaderboardController : MonoBehaviour
 {
-    public struct Entry
-    {
-        public Entry(string name, float score)
-        {
-            Name =          name;
-            Score =         score;
-            Placement =     0;
-        }
-
-        public string Name      { get; set; }
-        public float Score      { get; set; }
-        public int Placement    { get; set; }
-    }
-
     [SerializeField]
     private string testName;
     [SerializeField]
@@ -38,7 +24,8 @@ public class MM_LeaderboardController : MonoBehaviour
 
     // List containing all current leaderboard entries
     [SerializeField]
-    private List<Entry> entryList;
+    private List<MM_LeaderboardEntry> entryList;
+    private List<GameObject> objectyList;
 
     private void Start()
     {
@@ -47,64 +34,38 @@ public class MM_LeaderboardController : MonoBehaviour
             Debug.LogWarning("GameoBject " + entryContainer.name + "should contain a horizontal layout group.");
         }
     }
-    public void CreateEntry(string name, float score)
-    {
-        Entry entry = new Entry(name, score);
 
-        AddEntry(entry);
-    }
-    public void CreateTestEntry()
+    public MM_LeaderboardEntry CreateEntry(string playerName, int score)
     {
-        Entry entry = new Entry(testName, testScore);
+        MM_LeaderboardEntry entry = new MM_LeaderboardEntry();
 
-        AddEntry(entry);
+        // Set name and score - placement is handled when the list is sorted
+        entry.playerName = playerName;
+        entry.score = score;
+
+        return entry;
     }
-    public void AddEntry(Entry entry)
+
+    public void AddEntry(MM_LeaderboardEntry entry)
     {
-        if (entryList.Count < maxEntries)
-        {
-            entryList.Add(entry);
-        }
-        else
-        {
-            Debug.LogWarning("Cannot add entry " + entry.Name + " to " + gameObject.name + "; Leaderboard is full.");
-        }
+        entryList.Add(entry);
     }
-    public void RemoveEntry(Entry entry)
-    {
-        entryList.Remove(entry);
-    }
-    public void SortList()
+    public void SortByScore()
     {
         entryList.Sort(
-            delegate(Entry entry1, Entry entry2)
+            delegate (MM_LeaderboardEntry entry1, MM_LeaderboardEntry entry2)
             {
-                return entry1.Score.CompareTo(entry2.Score);
-            });
+                return entry1.score.CompareTo(entry2.score);
+            }
+        );
     }
-    public void InstantiateListObjects()
+    public void DrawListObjects()
     {
-        // Delete old leaderboard objects, if any
-        foreach (Transform child in entryContainer.transform)
+        foreach (MM_LeaderboardEntry e in entryList)
         {
-            Destroy(child.transform);
-        }
-        // Create new objects
-        foreach (Entry entry in entryList)
-        {
-            GameObject entryObject = Instantiate(entryPrefab, entryContainer.transform);
+            GameObject entry = Instantiate(entryPrefab, entryContainer.transform);
 
-            entryObject.transform.Find("Placement").GetComponent<TMPro.TMP_Text>().text = entry.Placement.ToString();
-            entryObject.transform.Find("Name").GetComponent<TMPro.TMP_Text>().text = entry.Name;
-            entryObject.transform.Find("Score").GetComponent<TMPro.TMP_Text>().text = entry.Score.ToString();
+            
         }
-    }
-    public void ClearList()
-    {
-        foreach (Transform child in entryContainer.transform)
-        {
-            Destroy(child.transform);
-        }
-        entryList.Clear();
     }
 }
