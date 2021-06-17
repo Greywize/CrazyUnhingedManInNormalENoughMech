@@ -1134,11 +1134,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2349979958786171215, guid: d47bed5c82043b348881e9b1b7e4c12a,
         type: 3}
-      propertyPath: terrainObjects.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2349979958786171215, guid: d47bed5c82043b348881e9b1b7e4c12a,
-        type: 3}
       propertyPath: width
       value: 250
       objectReference: {fileID: 0}
@@ -1177,23 +1172,6 @@ PrefabInstance:
       propertyPath: power
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 2349979958786171215, guid: d47bed5c82043b348881e9b1b7e4c12a,
-        type: 3}
-      propertyPath: spawnChance
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2349979958786171215, guid: d47bed5c82043b348881e9b1b7e4c12a,
-        type: 3}
-      propertyPath: terrainObjects.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: e045cf4aa5ff3904ba839e209079c2ad,
-        type: 2}
-    - target: {fileID: 2349979958786171215, guid: d47bed5c82043b348881e9b1b7e4c12a,
-        type: 3}
-      propertyPath: terrainObjects.Array.data[1]
-      value: 
-      objectReference: {fileID: 11400000, guid: a87be0dad9bc6c54dbb4d9569aa95ed3,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d47bed5c82043b348881e9b1b7e4c12a, type: 3}
 --- !u!1001 &5609610115220981664
