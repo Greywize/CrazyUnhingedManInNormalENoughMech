@@ -1115,6 +1115,16 @@ PrefabInstance:
       propertyPath: m_Size.y
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 1913507033069225231, guid: fe077501ef558f645818fc397e7faf5b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 84de7f954d83bfb4b9030a45fc6ac9e7, type: 2}
+    - target: {fileID: 1913507033069225231, guid: fe077501ef558f645818fc397e7faf5b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: db754062f7d79f640bdfc4bed07f31a0, type: 2}
     - target: {fileID: 3346981000481084675, guid: fe077501ef558f645818fc397e7faf5b,
         type: 3}
       propertyPath: m_Size.x
@@ -1295,6 +1305,11 @@ PrefabInstance:
       propertyPath: terrain
       value: 
       objectReference: {fileID: 1779368363}
+    - target: {fileID: 8374594056785409484, guid: fe077501ef558f645818fc397e7faf5b,
+        type: 3}
+      propertyPath: m_Height
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8374594058339924444, guid: fe077501ef558f645818fc397e7faf5b,
         type: 3}
       propertyPath: m_LocalPosition.z
