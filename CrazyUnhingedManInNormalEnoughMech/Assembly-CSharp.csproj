@@ -1057,9 +1057,16 @@
      <Compile Include="Assets\Scripts\Eduardo\AI - FSM\AgentActions\AgentAction.cs" />
      <Compile Include="Assets\Scripts\Eduardo\AI - FSM\AgentActions\AttackAction.cs" />
 <<<<<<< HEAD
+     <Compile Include="Assets\Scripts\Eduardo\AI - FSM\AgentActions\DetectAgentAction.cs" />
+     <Compile Include="Assets\Scripts\Eduardo\AI - FSM\AgentActions\IdleAction.cs" />
+     <Compile Include="Assets\Scripts\Eduardo\AI - FSM\AgentActions\MoveToDestinationAction.cs" />
+     <Compile Include="Assets\Scripts\Eduardo\AI - FSM\AgentActions\SeekAction.cs" />
+=======
+<<<<<<< HEAD
 =======
      <Compile Include="Assets\Scripts\Eduardo\AI - FSM\AgentActions\IdleAction.cs" />
 >>>>>>> parent of bf8c73b ([Spider functional] Major refactor: AgentConditions, AgentState, AgentActions)
+>>>>>>> af34cea9e93e08ee2efab9b93d0052f1cdb96dc4
      <Compile Include="Assets\Scripts\Eduardo\AI - FSM\AgentBehaviour.cs" />
      <Compile Include="Assets\Scripts\Eduardo\AI - FSM\AgentState.cs" />
      <Compile Include="Assets\Scripts\Eduardo\AI - FSM\AgentState\AgentWander.cs" />

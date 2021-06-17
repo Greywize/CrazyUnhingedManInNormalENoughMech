@@ -7,12 +7,25 @@ namespace AI
     [CreateAssetMenu(menuName = "AI/AgentAction/AttackAction")]
     public class AttackAction : AgentAction
     {
-        public Animator animator;
-        public Condition condition;
-        public float cooldown = 2.0f;
-
-        private void Awake()
+        public override void performAction(AgentBehaviour agent)
         {
+<<<<<<< HEAD
+            throw new System.NotImplementedException();
+        }
+
+        public override void Tick(AgentBehaviour agent, Condition cond)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override void Tick(AgentBehaviour agent)
+        {
+            if (_condition)
+                performAction(agent);
+        }
+
+        public override void addAction(AgentBehaviour agent, int index)
+=======
             // TODO
             // Find agent animator
               
@@ -23,6 +36,7 @@ namespace AI
         /// </summary>
         /// <param name="agent"></param>
         private void addAction(AgentBehaviour agent)
+>>>>>>> af34cea9e93e08ee2efab9b93d0052f1cdb96dc4
         {
 <<<<<<< HEAD
             agent.performAction = this;
@@ -64,8 +78,12 @@ namespace AI
             }
 =======
             Debug.Log($"{agent} has {this} to {target}");
+<<<<<<< HEAD
+            agent.removeAction(agent, agent.actionIndex);
+=======
             agent.agentActions[agent.currAction] = null;
 >>>>>>> parent of bf8c73b ([Spider functional] Major refactor: AgentConditions, AgentState, AgentActions)
+>>>>>>> af34cea9e93e08ee2efab9b93d0052f1cdb96dc4
         }
 
         /// <summary>
@@ -75,7 +93,11 @@ namespace AI
         /// <param name="target"></param>
         public override void performAction(AgentBehaviour agent, AgentBehaviour target)
         {
+<<<<<<< HEAD
+            if (_condition.CheckCondition(agent))
+=======
             if (checkCondition(agent, condition))
+>>>>>>> af34cea9e93e08ee2efab9b93d0052f1cdb96dc4
             {
                 addAction(agent);
             }

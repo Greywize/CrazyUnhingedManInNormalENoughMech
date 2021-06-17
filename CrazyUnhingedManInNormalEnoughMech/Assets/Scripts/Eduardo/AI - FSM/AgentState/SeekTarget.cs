@@ -15,7 +15,7 @@ namespace AI
 >>>>>>> parent of bf8c73b ([Spider functional] Major refactor: AgentConditions, AgentState, AgentActions)
         public override void OnStateEnter(AgentBehaviour agent)
         {
-            agent.enableSensor(true);
+            agent.EnableSensor(true);
 
             if (agent.target == null)
             {
@@ -23,6 +23,12 @@ namespace AI
                 OnStateExit(agent);
                 return;
             }
+<<<<<<< HEAD
+
+            addActions(agent, actions);
+            agent.actionCondition = agent.agentActions[agent.actionIndex].getCondition();
+=======
+>>>>>>> af34cea9e93e08ee2efab9b93d0052f1cdb96dc4
         }
 
         public override void Tick(AgentBehaviour agent)
@@ -45,12 +51,19 @@ namespace AI
                 OnStateExit(agent);
 =======
 
+<<<<<<< HEAD
+            // Perform Actions
+            if (agent.actionIndex < agent.agentActions.Length)
+                agent.agentActions[agent.actionIndex].Tick(agent);
+            else if (agent.actionIndex >= agent.agentActions.Length)
+=======
             if (distance > agent.sensor.detectRadius)
                 agent.MoveToward(agent.destination);
             else
             {
                 addActions(agent, actions);
                 agent.enableSensor(true);
+>>>>>>> af34cea9e93e08ee2efab9b93d0052f1cdb96dc4
                 OnStateExit(agent);
             }
         }

@@ -1,7 +1,21 @@
+<<<<<<< HEAD
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Assertions.Must;
+using UnityEngine.Serialization;
+=======
 ﻿using UnityEngine;
+>>>>>>> af34cea9e93e08ee2efab9b93d0052f1cdb96dc4
 
 namespace AI
 {
+    /// <summary>
+    /// Artificial behavioural unit
+    /// Finite State Machine
+    /// </summary>
+    [RequireComponent(typeof(SphereCollider))]
     public class AgentBehaviour : MonoBehaviour
     {
 <<<<<<< HEAD
@@ -9,7 +23,10 @@ namespace AI
 =======
         #region CONTRUCTOR
 
+<<<<<<< HEAD
+=======
 >>>>>>> parent of bf8c73b ([Spider functional] Major refactor: AgentConditions, AgentState, AgentActions)
+>>>>>>> af34cea9e93e08ee2efab9b93d0052f1cdb96dc4
         AgentBehaviour()
         {
             agentCounter++;
@@ -22,6 +39,16 @@ namespace AI
         #endregion
 
         #region PUBLIC MEMBERS
+<<<<<<< HEAD
+
+        [Header("Required Objects")] 
+        public Transform Body;
+       // public Sensor sensor;
+        public AgentBehaviour agent;
+
+        [Space(15)] [Header("STATE")] 
+        public float timer;
+=======
 <<<<<<< HEAD
         [Header("Required Objects")]
         public Sensor sensor;
@@ -37,9 +64,24 @@ namespace AI
 
         [Space(10)] [Header("Agent State")] public float timer = 0.1f;
 >>>>>>> parent of bf8c73b ([Spider functional] Major refactor: AgentConditions, AgentState, AgentActions)
+>>>>>>> af34cea9e93e08ee2efab9b93d0052f1cdb96dc4
         public AgentState defaultState;
+        public int currentTransition;
         public AgentState currState;
         public AgentState prevState;
+<<<<<<< HEAD
+        public Condition stateCondition;
+
+        [Space(15)] 
+        [Header("ACTIONS")]
+        [FormerlySerializedAs("currAction")] 
+        public int actionIndex;
+        [SerializeField] public AgentAction[] agentActions;
+        public Condition actionCondition;
+
+        [Space(15)] 
+        [Header("DESTINATION")] 
+=======
         public int currentTransition = 0;
 <<<<<<< HEAD
         [Space(10)]
@@ -58,18 +100,35 @@ namespace AI
 =======
         [Space(10)] [Header("Agent Destination")]
 >>>>>>> parent of bf8c73b ([Spider functional] Major refactor: AgentConditions, AgentState, AgentActions)
+>>>>>>> af34cea9e93e08ee2efab9b93d0052f1cdb96dc4
         public AgentBehaviour target;
 
         public Vector3 currPosition;
         public int currDestination = 0;
         public Vector3 destination;
+<<<<<<< HEAD
+        [Range(5, 100)] public int moveSpeed = 5;
+
+        [Space(15)]
+        [Header("SENSOR")] 
+        public SphereCollider SenseCollider;
+        public float actionRange;
+        public float detectProximity;
+        public bool closestTarget = false;
+=======
         [Range(5,100)] public int moveSpeed = 5;
+>>>>>>> af34cea9e93e08ee2efab9b93d0052f1cdb96dc4
         [Space(10)]
         #endregion
 
         #region PRIVATE MEMBERS
+<<<<<<< HEAD
+
+        [Header("TRANSITION")]
+=======
         [Header("State Transitions")]
 <<<<<<< HEAD
+>>>>>>> af34cea9e93e08ee2efab9b93d0052f1cdb96dc4
         [SerializeField] public Transitions[] Transitions;
 =======
         [SerializeField]
@@ -79,6 +138,15 @@ namespace AI
         #endregion
 
         #region MONOBEHAVIOUR
+<<<<<<< HEAD
+
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.DrawWireSphere(transform.position, detectProximity);
+        }
+        
+        // #1
+=======
 
         /// <summary>
         /// Add this agent to the total agent count 
@@ -100,17 +168,54 @@ namespace AI
                 }*/
         }
 
+>>>>>>> af34cea9e93e08ee2efab9b93d0052f1cdb96dc4
         private void Awake()
         {
-            sensor = GetComponent<Sensor>();
+            // sensor = GetComponent<Sensor>();
         }
 
+<<<<<<< HEAD
+        // #2
+        /// <summary>
+        /// Add this agent to the total agent count 
+        /// </summary>
+        private void OnEnable() => agentCounter++;
+        
+        /// <summary>
+        /// Remove this agent from the totals agent count 
+        /// </summary>
+        private void OnDisable() => agentCounter--;
+        
+        // #3
+=======
+>>>>>>> af34cea9e93e08ee2efab9b93d0052f1cdb96dc4
         private void Start()
         {
             AgentState State = ScriptableObject.Instantiate(defaultState);
             currState = State;
             currState.OnStateEnter(this);
+            SenseCollider = GetComponent<SphereCollider>();
+            SenseCollider.radius = detectProximity;
         }
+<<<<<<< HEAD
+        
+        //#4 - FIXED UPDATE 
+        private void FixedUpdate()
+        {
+            
+        }
+
+        // #5 - Update
+        private void Update()
+        {
+            currPosition = transform.position;
+            
+            if (currState == null)
+                checkTransitions(this);
+            else if (agentActions != null)
+            {
+                Debug.DrawLine(destination, transform.position, Color.blue);
+=======
 
         private void Update()
         {
@@ -127,11 +232,19 @@ namespace AI
             if (currState == null)
                 checkTransitions(this);
             else
+>>>>>>> af34cea9e93e08ee2efab9b93d0052f1cdb96dc4
                 currState.Tick(this);
+            }
         }
 
+        // #6 - 
         private void LateUpdate()
         {
+<<<<<<< HEAD
+            // Limit check
+            if (actionIndex >= agentActions.Length)
+                actionIndex = 0;
+=======
             if (currState == null)
                 timer -= Time.deltaTime;
 
@@ -141,21 +254,22 @@ namespace AI
                 currState.OnStateEnter(this);
                 timer = 0.1f;
             }
+>>>>>>> af34cea9e93e08ee2efab9b93d0052f1cdb96dc4
         }
         #endregion
 
         #region FUNCTIONS
 
         /// <summary>
-        /// Enable the senseor on the Agent
+        /// Enable the sensor on the Agent
         /// </summary>
         /// <param name="s"></param>
         /// <param name="b"></param>
-        public void enableSensor(bool b)
+        public void EnableSensor(bool b)
         {
             // s.enabled = b;
-            sensor.sphereCollider.enabled = b;
-            sensor.sphereCollider.isTrigger = b;
+            SenseCollider.enabled = b;
+            SenseCollider.isTrigger = b;
         }
 
         /// <summary>
@@ -166,7 +280,12 @@ namespace AI
         {
             for (int i = currentTransition; i < agent.Transitions.Length; i++)
             {
-                Transitions[i].checkTransition(agent, Transitions[i].state, Transitions[i].condition);
+                if (Transitions[i].condition != null)
+                    Transitions[i].checkTransition(agent, Transitions[i].state, Transitions[i].condition);
+                else
+                {
+                    // currState = Transitions[i].state;
+                }
             }
         }
 
@@ -218,6 +337,11 @@ namespace AI
             // https://docs.unity3d.com/ScriptReference/Vector3.RotateTowards.html
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="agent"></param>
+        /// <param name="s"></param>
         public void ResetAgent(AgentBehaviour agent, AgentState s)
         {
             agent.prevState = s;
@@ -225,9 +349,18 @@ namespace AI
             //  if (agent.currState != null)
             agent.currState = null;
 
-/*            if (agent.target != null)
-                agent.target = null;*/
+            if (agent.target != null)
+                agent.target = null;
 
+<<<<<<< HEAD
+            if (agent.agentActions.Length > 0)
+            {
+                agent.actionIndex = 0;
+                Array.Clear(agent.agentActions, 0, agent.agentActions.Length);
+            }
+
+=======
+>>>>>>> af34cea9e93e08ee2efab9b93d0052f1cdb96dc4
             agent.destination = Vector3.zero;
         }
 
@@ -238,17 +371,59 @@ namespace AI
             if (agent.currentTransition >= agent.Transitions.Length)
             {
                 agent.currentTransition = 0;
-                /*                agent.currState = agent.defaultState;
-                                agent.currState.OnStateEnter(agent);*/
             }
         }
 
+<<<<<<< HEAD
+        public void resetAction(AgentBehaviour agent)
+        {
+            IdleAction act = ScriptableObject.CreateInstance<IdleAction>();
+            agent.agentActions[0] = act;
+            agent.actionIndex = 0;
+        }
+
+        // TODO - return the current type of the state
+        public AgentState getStateType(AgentState t1)
+        {
+            if (t1.GetType() == typeof(PatrolState))
+            {
+                Debug.Log($"The current state of the agent is {agent.currState}");
+                return t1;
+            }
+
+            return null;
+        }
+
+        // TODO - 
+        public string checkStateType(AgentState t1)
+=======
         private void checkStateType(AgentState t1)
+>>>>>>> af34cea9e93e08ee2efab9b93d0052f1cdb96dc4
         {
             if (t1.GetType() == typeof(PatrolState))
             {
                 Debug.Log($"The current state of the agent is {agent.currState}");
             }
+<<<<<<< HEAD
+
+            return null;
+        }
+
+        // TODO - 
+        public string checkStateType(AgentAction action)
+        {
+            // return (action.GetType().ToString() ?
+            return null;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void performActions()
+        {
+            // Guard clause
+            if (agentActions == null && actionIndex == 0)
+=======
         }
 <<<<<<< HEAD
 =======
@@ -256,9 +431,121 @@ namespace AI
         private void performActions()
         {
             if (agentActions == null && currAction == 0)
+>>>>>>> af34cea9e93e08ee2efab9b93d0052f1cdb96dc4
                 return;
             
             if (agentActions.Length < 0)
+<<<<<<< HEAD
+            {
+                agentActions[actionIndex].performAction(this, target);
+            }
+
+            actionIndex++;
+
+            // Limit check
+            if (actionIndex > agentActions.Length)
+                actionIndex = 0;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="agent"></param>
+        /// <param name="actionIndex"></param>
+        public void removeAction(AgentBehaviour agent, int actionIndex)
+        {
+            agent.agentActions[actionIndex] = null;
+            agent.actionIndex++;
+
+            // Limit check
+            if (this.actionIndex > agentActions.Length)
+                this.actionIndex = 0;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="agent"></param>
+        /// <param name="countdown"></param>
+        public void resetBehaviour(AgentBehaviour agent, float countdown)
+        {
+            agent.timer -= Time.deltaTime;
+
+            if (agent.timer <= 0f)
+            {
+                if (agent.currState != null)
+                    agent.currState.OnStateExit(agent);
+                else
+                {
+                    agent.currState = agent.defaultState;
+                    agent.agent.currState.OnStateEnter(agent);
+                }
+
+                agent.timer = countdown;
+            }
+        }
+        
+        #endregion
+        
+         #region SENSOR
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>
+        private bool getAgent(Collider c)
+        {
+            return (c.GetComponent<AgentBehaviour>());
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="other"></param>
+        private void OnTriggerEnter(Collider other)
+        {
+            if (agent.target == null)
+            {
+                if (getAgent(other))
+                {
+                    AgentBehaviour enemy = other.GetComponent<AgentBehaviour>();
+                    if (!enemy.name.Contains("Seeker"))
+                        agent.target = enemy;
+                    // agent.target = enemy;
+                    //  Debug.DrawLine(enemy.transform.position, agent.transform.position);
+                }
+            }
+            else if (agent.target != null)
+            {
+                if (getAgent(other))
+                {
+                    AgentBehaviour enemy = other.GetComponent<AgentBehaviour>();
+                    float enemyDist = Vector3.Distance(agent.transform.position, enemy.transform.position);
+                    float targetDist = Vector3.Distance(agent.transform.position, agent.target.transform.position);
+
+                    // Seek furtherest target
+                    if (closestTarget)
+                    {
+                        if (enemyDist < targetDist)
+                        {
+                            if (!enemy.name.Contains("Seeker"))
+                                agent.target = enemy;
+                        }
+                    }
+                    else if (!closestTarget)
+                    {
+                        if (enemyDist > targetDist)
+                        {
+                            if (!enemy.name.Contains("Seeker"))
+                                agent.target = enemy;
+                        }
+                    }
+                }
+            }
+        }
+        
+=======
                 agentActions[currAction].performAction(this, target);
             
             currAction++;
@@ -268,6 +555,7 @@ namespace AI
         }
 
 >>>>>>> parent of bf8c73b ([Spider functional] Major refactor: AgentConditions, AgentState, AgentActions)
+>>>>>>> af34cea9e93e08ee2efab9b93d0052f1cdb96dc4
         #endregion
     }
 }

@@ -317,30 +317,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 489000675f3875b44b55049d80b33760, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
+  Body: {fileID: 68029158}
+=======
   sensor: {fileID: 68029152}
+>>>>>>> af34cea9e93e08ee2efab9b93d0052f1cdb96dc4
   agent: {fileID: 68029151}
   timer: 1
   defaultState: {fileID: 11400000, guid: 8e02d1260f3ea7c4990c120d79e92781, type: 2}
+  currentTransition: 0
   currState: {fileID: 0}
   prevState: {fileID: 0}
+<<<<<<< HEAD
+  stateCondition: {fileID: 0}
+  actionIndex: 0
+  agentActions:
+  - {fileID: 11400000, guid: bec2be5043a1b98479f36dbe3a9c439e, type: 2}
+  actionCondition: {fileID: 0}
+=======
   currentTransition: 0
   currAction: 0
   performAction: {fileID: 0}
   agentActions: []
+>>>>>>> af34cea9e93e08ee2efab9b93d0052f1cdb96dc4
   target: {fileID: 0}
   currPosition: {x: 0, y: 0, z: 0}
   currDestination: 0
   destination: {x: 0, y: 0, z: 0}
   moveSpeed: 10
-  Transitions:
-  - state: {fileID: 11400000, guid: e48d7352fb1c60e48a2c1b38465a8ef6, type: 2}
-    condition: {fileID: 11400000, guid: aff083f835c98844e991826f8c85f807, type: 2}
-  - state: {fileID: 11400000, guid: 8e02d1260f3ea7c4990c120d79e92781, type: 2}
-    condition: {fileID: 11400000, guid: aff083f835c98844e991826f8c85f807, type: 2}
-  - state: {fileID: 11400000, guid: 1854d4a47360ae241aba49c6f710fc6e, type: 2}
-    condition: {fileID: 11400000, guid: aff083f835c98844e991826f8c85f807, type: 2}
-  - state: {fileID: 11400000, guid: 17efee80dd8c39743b4bc08c80dde246, type: 2}
-    condition: {fileID: 11400000, guid: aff083f835c98844e991826f8c85f807, type: 2}
+  SenseCollider: {fileID: 0}
+  actionRange: 0
+  detectProximity: 0
+  closestTarget: 0
+  Transitions: []
 --- !u!114 &68029152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -393,6 +402,27 @@ SphereCollider:
     type: 3}
   m_PrefabInstance: {fileID: 1470347963}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
+--- !u!4 &68029158 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7236631972731034366, guid: d2ee11040e730c94a906603a48dd7bc8,
+    type: 3}
+  m_PrefabInstance: {fileID: 1470347963}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &269063902 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4495827914897797523, guid: a7376ca5b3a58b84cac1db480953dfc4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1862155523053254060}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 489000675f3875b44b55049d80b33760, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+=======
+>>>>>>> af34cea9e93e08ee2efab9b93d0052f1cdb96dc4
 --- !u!1 &334830803 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7236631972731034354, guid: d2ee11040e730c94a906603a48dd7bc8,
@@ -411,30 +441,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 489000675f3875b44b55049d80b33760, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
+  Body: {fileID: 334830811}
+=======
   sensor: {fileID: 334830805}
+>>>>>>> af34cea9e93e08ee2efab9b93d0052f1cdb96dc4
   agent: {fileID: 334830804}
   timer: 1
   defaultState: {fileID: 11400000, guid: 1854d4a47360ae241aba49c6f710fc6e, type: 2}
+  currentTransition: 0
   currState: {fileID: 0}
   prevState: {fileID: 0}
+<<<<<<< HEAD
+  stateCondition: {fileID: 0}
+  actionIndex: 0
+  agentActions:
+  - {fileID: 11400000, guid: bec2be5043a1b98479f36dbe3a9c439e, type: 2}
+  actionCondition: {fileID: 0}
+=======
   currentTransition: 0
   currAction: 0
   performAction: {fileID: 0}
   agentActions: []
+>>>>>>> af34cea9e93e08ee2efab9b93d0052f1cdb96dc4
   target: {fileID: 0}
   currPosition: {x: 0, y: 0, z: 0}
   currDestination: 0
   destination: {x: 0, y: 0, z: 0}
   moveSpeed: 10
-  Transitions:
-  - state: {fileID: 11400000, guid: e48d7352fb1c60e48a2c1b38465a8ef6, type: 2}
-    condition: {fileID: 11400000, guid: aff083f835c98844e991826f8c85f807, type: 2}
-  - state: {fileID: 11400000, guid: 8e02d1260f3ea7c4990c120d79e92781, type: 2}
-    condition: {fileID: 11400000, guid: aff083f835c98844e991826f8c85f807, type: 2}
-  - state: {fileID: 11400000, guid: 1854d4a47360ae241aba49c6f710fc6e, type: 2}
-    condition: {fileID: 11400000, guid: aff083f835c98844e991826f8c85f807, type: 2}
-  - state: {fileID: 11400000, guid: 17efee80dd8c39743b4bc08c80dde246, type: 2}
-    condition: {fileID: 11400000, guid: aff083f835c98844e991826f8c85f807, type: 2}
+  SenseCollider: {fileID: 0}
+  actionRange: 0
+  detectProximity: 0
+  closestTarget: 0
+  Transitions: []
 --- !u!114 &334830805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -594,30 +633,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 489000675f3875b44b55049d80b33760, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
+  Body: {fileID: 787677504}
+=======
   sensor: {fileID: 787677498}
+>>>>>>> af34cea9e93e08ee2efab9b93d0052f1cdb96dc4
   agent: {fileID: 787677497}
   timer: 1
   defaultState: {fileID: 11400000, guid: 8e02d1260f3ea7c4990c120d79e92781, type: 2}
+  currentTransition: 0
   currState: {fileID: 0}
   prevState: {fileID: 0}
+<<<<<<< HEAD
+  stateCondition: {fileID: 0}
+  actionIndex: 0
+  agentActions:
+  - {fileID: 11400000, guid: bec2be5043a1b98479f36dbe3a9c439e, type: 2}
+  actionCondition: {fileID: 0}
+=======
   currentTransition: 0
   currAction: 0
   performAction: {fileID: 0}
   agentActions: []
+>>>>>>> af34cea9e93e08ee2efab9b93d0052f1cdb96dc4
   target: {fileID: 0}
   currPosition: {x: 0, y: 0, z: 0}
   currDestination: 0
   destination: {x: 0, y: 0, z: 0}
   moveSpeed: 10
-  Transitions:
-  - state: {fileID: 11400000, guid: e48d7352fb1c60e48a2c1b38465a8ef6, type: 2}
-    condition: {fileID: 11400000, guid: aff083f835c98844e991826f8c85f807, type: 2}
-  - state: {fileID: 11400000, guid: 8e02d1260f3ea7c4990c120d79e92781, type: 2}
-    condition: {fileID: 11400000, guid: aff083f835c98844e991826f8c85f807, type: 2}
-  - state: {fileID: 11400000, guid: 1854d4a47360ae241aba49c6f710fc6e, type: 2}
-    condition: {fileID: 11400000, guid: aff083f835c98844e991826f8c85f807, type: 2}
-  - state: {fileID: 11400000, guid: 17efee80dd8c39743b4bc08c80dde246, type: 2}
-    condition: {fileID: 11400000, guid: aff083f835c98844e991826f8c85f807, type: 2}
+  SenseCollider: {fileID: 0}
+  actionRange: 0
+  detectProximity: 0
+  closestTarget: 0
+  Transitions: []
 --- !u!114 &787677498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -688,21 +736,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 489000675f3875b44b55049d80b33760, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
+  Body: {fileID: 917164702}
+=======
   sensor: {fileID: 917164696}
+>>>>>>> af34cea9e93e08ee2efab9b93d0052f1cdb96dc4
   agent: {fileID: 917164695}
   timer: 1
   defaultState: {fileID: 11400000, guid: 8e02d1260f3ea7c4990c120d79e92781, type: 2}
+  currentTransition: 0
   currState: {fileID: 0}
   prevState: {fileID: 0}
+<<<<<<< HEAD
+  stateCondition: {fileID: 0}
+  actionIndex: 0
+  agentActions:
+  - {fileID: 11400000, guid: bec2be5043a1b98479f36dbe3a9c439e, type: 2}
+  actionCondition: {fileID: 0}
+=======
   currentTransition: 0
   currAction: 0
   performAction: {fileID: 0}
   agentActions: []
+>>>>>>> af34cea9e93e08ee2efab9b93d0052f1cdb96dc4
   target: {fileID: 0}
   currPosition: {x: 0, y: 0, z: 0}
   currDestination: 0
   destination: {x: 0, y: 0, z: 0}
   moveSpeed: 10
+<<<<<<< HEAD
+  SenseCollider: {fileID: 0}
+  actionRange: 0
+  detectProximity: 0
+  closestTarget: 0
+  Transitions: []
+=======
   Transitions:
   - state: {fileID: 11400000, guid: e48d7352fb1c60e48a2c1b38465a8ef6, type: 2}
     condition: {fileID: 11400000, guid: aff083f835c98844e991826f8c85f807, type: 2}
@@ -712,6 +780,7 @@ MonoBehaviour:
     condition: {fileID: 11400000, guid: aff083f835c98844e991826f8c85f807, type: 2}
   - state: {fileID: 11400000, guid: 17efee80dd8c39743b4bc08c80dde246, type: 2}
     condition: {fileID: 11400000, guid: aff083f835c98844e991826f8c85f807, type: 2}
+>>>>>>> af34cea9e93e08ee2efab9b93d0052f1cdb96dc4
 --- !u!114 &917164696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -764,6 +833,14 @@ SphereCollider:
     type: 3}
   m_PrefabInstance: {fileID: 17099097}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
+--- !u!4 &917164702 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7236631972731034366, guid: d2ee11040e730c94a906603a48dd7bc8,
+    type: 3}
+  m_PrefabInstance: {fileID: 17099097}
+  m_PrefabAsset: {fileID: 0}
+=======
 --- !u!1 &967255876 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7236631972731034354, guid: d2ee11040e730c94a906603a48dd7bc8,
@@ -882,6 +959,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+>>>>>>> af34cea9e93e08ee2efab9b93d0052f1cdb96dc4
 --- !u!1 &1225093198
 GameObject:
   m_ObjectHideFlags: 0
@@ -976,6 +1054,8 @@ Transform:
   m_Father: {fileID: 1423744655}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
+=======
 --- !u!1 &1400177760 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7236631972731034354, guid: d2ee11040e730c94a906603a48dd7bc8,
@@ -1075,6 +1155,7 @@ SphereCollider:
     type: 3}
   m_PrefabInstance: {fileID: 1485039121}
   m_PrefabAsset: {fileID: 0}
+>>>>>>> af34cea9e93e08ee2efab9b93d0052f1cdb96dc4
 --- !u!1 &1423744654
 GameObject:
   m_ObjectHideFlags: 0
@@ -1294,11 +1375,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+<<<<<<< HEAD
+    - target: {fileID: 5730525521179051832, guid: d2ee11040e730c94a906603a48dd7bc8,
+=======
     - target: {fileID: 7236631972731034352, guid: d2ee11040e730c94a906603a48dd7bc8,
+>>>>>>> af34cea9e93e08ee2efab9b93d0052f1cdb96dc4
         type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: target
       value: 
-      objectReference: {fileID: 2100000, guid: d8d2429354579e04fbb07291a41985c3, type: 2}
+      objectReference: {fileID: 269063902}
     - target: {fileID: 7236631972731034354, guid: d2ee11040e730c94a906603a48dd7bc8,
         type: 3}
       propertyPath: m_Name
@@ -1308,21 +1393,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7236631972731034366, guid: d2ee11040e730c94a906603a48dd7bc8,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7236631972731034366, guid: d2ee11040e730c94a906603a48dd7bc8,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7236631972731034366, guid: d2ee11040e730c94a906603a48dd7bc8,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7236631972731034366, guid: d2ee11040e730c94a906603a48dd7bc8,
         type: 3}
@@ -1373,6 +1443,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8070332137343384686, guid: d2ee11040e730c94a906603a48dd7bc8,
+        type: 3}
+      propertyPath: detectRadius
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8070332137343384686, guid: d2ee11040e730c94a906603a48dd7bc8,
+        type: 3}
+      propertyPath: closestTarget
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2ee11040e730c94a906603a48dd7bc8, type: 3}
@@ -1503,30 +1583,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 489000675f3875b44b55049d80b33760, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
+  Body: {fileID: 1795286893}
+=======
   sensor: {fileID: 1795286886}
+>>>>>>> af34cea9e93e08ee2efab9b93d0052f1cdb96dc4
   agent: {fileID: 1795286887}
   timer: 0.26
   defaultState: {fileID: 11400000, guid: 8e02d1260f3ea7c4990c120d79e92781, type: 2}
+  currentTransition: 0
   currState: {fileID: 0}
   prevState: {fileID: 0}
+<<<<<<< HEAD
+  stateCondition: {fileID: 0}
+  actionIndex: 0
+  agentActions:
+  - {fileID: 11400000, guid: bec2be5043a1b98479f36dbe3a9c439e, type: 2}
+  actionCondition: {fileID: 0}
+=======
   currentTransition: 0
   currAction: 0
   performAction: {fileID: 0}
   agentActions: []
+>>>>>>> af34cea9e93e08ee2efab9b93d0052f1cdb96dc4
   target: {fileID: 0}
   currPosition: {x: 0, y: 0, z: 0}
   currDestination: 0
   destination: {x: 0, y: 0, z: 0}
   moveSpeed: 10
-  Transitions:
-  - state: {fileID: 11400000, guid: e48d7352fb1c60e48a2c1b38465a8ef6, type: 2}
-    condition: {fileID: 11400000, guid: aff083f835c98844e991826f8c85f807, type: 2}
-  - state: {fileID: 11400000, guid: 8e02d1260f3ea7c4990c120d79e92781, type: 2}
-    condition: {fileID: 11400000, guid: aff083f835c98844e991826f8c85f807, type: 2}
-  - state: {fileID: 11400000, guid: 1854d4a47360ae241aba49c6f710fc6e, type: 2}
-    condition: {fileID: 11400000, guid: aff083f835c98844e991826f8c85f807, type: 2}
-  - state: {fileID: 11400000, guid: 17efee80dd8c39743b4bc08c80dde246, type: 2}
-    condition: {fileID: 11400000, guid: aff083f835c98844e991826f8c85f807, type: 2}
+  SenseCollider: {fileID: 0}
+  actionRange: 0
+  detectProximity: 0
+  closestTarget: 0
+  Transitions: []
 --- !u!135 &1795286888
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1661,7 +1750,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 64
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -1687,7 +1776,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1935767983}
   m_LocalRotation: {x: 0.2588191, y: -0, z: -0, w: 0.9659258}
-  m_LocalPosition: {x: 0, y: 0.27000046, z: -10.02}
+  m_LocalPosition: {x: 0, y: 30, z: -60}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1423744655}
@@ -1716,11 +1805,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+<<<<<<< HEAD
+    - target: {fileID: 4495827914897797523, guid: a7376ca5b3a58b84cac1db480953dfc4,
+        type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 743086695}
+    - target: {fileID: 4495827914897797523, guid: a7376ca5b3a58b84cac1db480953dfc4,
+        type: 3}
+      propertyPath: Transitions.Array.data[0].condition
+      value: 
+      objectReference: {fileID: 11400000, guid: 65e22bd0b03298549a44a2f9bc5dfabc,
+        type: 2}
+=======
     - target: {fileID: 1968394350259634587, guid: a7376ca5b3a58b84cac1db480953dfc4,
         type: 3}
       propertyPath: target
       value: 
       objectReference: {fileID: 0}
+>>>>>>> af34cea9e93e08ee2efab9b93d0052f1cdb96dc4
     - target: {fileID: 6306485466831448804, guid: a7376ca5b3a58b84cac1db480953dfc4,
         type: 3}
       propertyPath: m_Name
@@ -1734,7 +1837,11 @@ PrefabInstance:
     - target: {fileID: 6306485466831448805, guid: a7376ca5b3a58b84cac1db480953dfc4,
         type: 3}
       propertyPath: m_LocalPosition.x
+<<<<<<< HEAD
+      value: -3
+=======
       value: 5.4
+>>>>>>> af34cea9e93e08ee2efab9b93d0052f1cdb96dc4
       objectReference: {fileID: 0}
     - target: {fileID: 6306485466831448805, guid: a7376ca5b3a58b84cac1db480953dfc4,
         type: 3}
@@ -1744,7 +1851,11 @@ PrefabInstance:
     - target: {fileID: 6306485466831448805, guid: a7376ca5b3a58b84cac1db480953dfc4,
         type: 3}
       propertyPath: m_LocalPosition.z
+<<<<<<< HEAD
+      value: 16.2
+=======
       value: -4.5
+>>>>>>> af34cea9e93e08ee2efab9b93d0052f1cdb96dc4
       objectReference: {fileID: 0}
     - target: {fileID: 6306485466831448805, guid: a7376ca5b3a58b84cac1db480953dfc4,
         type: 3}
@@ -1781,6 +1892,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< HEAD
+    m_RemovedComponents:
+    - {fileID: 2169922896656452293, guid: a7376ca5b3a58b84cac1db480953dfc4, type: 3}
+=======
     - target: {fileID: 7760348957756442001, guid: a7376ca5b3a58b84cac1db480953dfc4,
         type: 3}
       propertyPath: detection
@@ -1884,6 +1999,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 65e22bd0b03298549a44a2f9bc5dfabc,
         type: 2}
     m_RemovedComponents: []
+>>>>>>> af34cea9e93e08ee2efab9b93d0052f1cdb96dc4
   m_SourcePrefab: {fileID: 100100000, guid: a7376ca5b3a58b84cac1db480953dfc4, type: 3}
 --- !u!4 &5643739907816486990 stripped
 Transform:
@@ -1898,11 +2014,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+<<<<<<< HEAD
+    - target: {fileID: 5730525521179051832, guid: d2ee11040e730c94a906603a48dd7bc8,
+        type: 3}
+      propertyPath: target
+=======
     - target: {fileID: 7236631972731034352, guid: d2ee11040e730c94a906603a48dd7bc8,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
+>>>>>>> af34cea9e93e08ee2efab9b93d0052f1cdb96dc4
       value: 
-      objectReference: {fileID: 2100000, guid: d8d2429354579e04fbb07291a41985c3, type: 2}
+      objectReference: {fileID: 269063902}
     - target: {fileID: 7236631972731034354, guid: d2ee11040e730c94a906603a48dd7bc8,
         type: 3}
       propertyPath: m_Name
@@ -1915,23 +2037,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7236631972731034366, guid: d2ee11040e730c94a906603a48dd7bc8,
         type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7236631972731034366, guid: d2ee11040e730c94a906603a48dd7bc8,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7236631972731034366, guid: d2ee11040e730c94a906603a48dd7bc8,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7236631972731034366, guid: d2ee11040e730c94a906603a48dd7bc8,
-        type: 3}
       propertyPath: m_LocalPosition.x
+<<<<<<< HEAD
+      value: -40.4
+=======
       value: -0.095786616
+>>>>>>> af34cea9e93e08ee2efab9b93d0052f1cdb96dc4
       objectReference: {fileID: 0}
     - target: {fileID: 7236631972731034366, guid: d2ee11040e730c94a906603a48dd7bc8,
         type: 3}
@@ -1941,7 +2052,11 @@ PrefabInstance:
     - target: {fileID: 7236631972731034366, guid: d2ee11040e730c94a906603a48dd7bc8,
         type: 3}
       propertyPath: m_LocalPosition.z
+<<<<<<< HEAD
+      value: 40.8
+=======
       value: 8.57
+>>>>>>> af34cea9e93e08ee2efab9b93d0052f1cdb96dc4
       objectReference: {fileID: 0}
     - target: {fileID: 7236631972731034366, guid: d2ee11040e730c94a906603a48dd7bc8,
         type: 3}
