@@ -454,6 +454,7 @@ namespace Zacks.Terrain
                         terrainObj.transform.up = Vector3.up;
                         terrainObj.transform.localScale = new Vector3(TO.scale, TO.scale, TO.scale);
                         terrainObj.transform.position += new Vector3(position.x, position.y + TO.heightOffset, position.z);
+                        terrainObj.transform.eulerAngles += new Vector3(0, Random.Range(0, 359), 0);
                         spawned = true;
                     }
                 }

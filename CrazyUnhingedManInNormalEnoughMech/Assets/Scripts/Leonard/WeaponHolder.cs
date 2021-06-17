@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 public class WeaponHolder : MonoBehaviour
 {
-    //public Weapon weapon;
-    public GameObject weaponMono;
+    public GameObject weapon;
     Image thisImage;
     Player thePlayer;
 
@@ -18,7 +17,7 @@ public class WeaponHolder : MonoBehaviour
 
     void Update()
     {
-        if (thePlayer.currentWeaponMono[0].GetComponent<WeaponMono>() && thePlayer.currentWeaponMono[0].GetComponent<WeaponMono>().weaponPrefab == weaponMono.GetComponent<WeaponMono>().weaponPrefab)
+        if (thePlayer.currentWeapon[0].GetComponent<WeaponMono>() && thePlayer.currentWeapon[0].GetComponent<WeaponMono>().weaponPrefab == weapon.GetComponent<WeaponMono>().weaponPrefab)
         {
             thisImage.color = Color.red;
         }
