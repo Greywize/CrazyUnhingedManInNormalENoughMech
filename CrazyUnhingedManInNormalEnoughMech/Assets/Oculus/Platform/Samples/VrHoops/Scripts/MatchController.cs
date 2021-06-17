@@ -53,7 +53,7 @@ namespace Oculus.Platform.Samples.VrHoops
 		private State m_currentState;
 
 		// transition time for states that automatically transition to the next state,
-		// for example ending the match when the timer expires
+		// for example ending the match when the cooldown expires
 		private float m_nextStateTransitionTime;
 
 		// the court the local player was assigned to
@@ -101,7 +101,7 @@ namespace Oculus.Platform.Samples.VrHoops
 			// no current match, waiting for the local user to select something
 			NONE,
 
-			// user selected a practice match, waiting for the match timer to start
+			// user selected a practice match, waiting for the match cooldown to start
 			WAITING_TO_START_PRACTICE,
 
 			// playing a Practice match against AI players

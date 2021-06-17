@@ -7,29 +7,31 @@ namespace AI
     [CreateAssetMenu(menuName = "AI/AgentAction/AttackAction")]
     public class AttackAction : AgentAction
     {
+
         public override void performAction(AgentBehaviour agent)
         {
-            // Implement Animator 
-            _animator = agent.GetComponent<Animator>();
+            target = agent.target.GetComponent<CharStats>();
 
-            if (_animator == null)
+            if (agent.target != null)
             {
-                Debug.Log($"{name} has attacked {agent.target.name} : Animator not implemented");
+
+                if (target == null)
+                {
+                    Debug.Log($"{name} has attacked {agent.target.name} : No CharStats implemented");
+                    onExit(agent);
+                }
+                else if (target)
+                {
+                    Debug.Log($" {name} has attacked {agent.target.name} using {_animator.name}");
+                    target.takeDMG(agent.GetComponent<CharStats>().getCharDamage());
+                    agent.cooldown = 1.0f;
+                }
+            }
+            else
+            {
+                agent.cooldown = 1.0f;
                 onExit(agent);
             }
-            else if (_animator)
-            {
-                Debug.Log($" {name} has attacked {agent.target.name} using {_animator.name}");
-                _animator.SetBool("AttackTarget", true);
-                onExit(agent);
-            }
-
-            if (_cooldown >= 0)
-            {
-                agent.moveSpeed = 0;
-            }
-            
-            // _animator.SetBool("AttackTarget", false);
         }
 
         public override void Tick(AgentBehaviour agent, Condition cond)
@@ -39,8 +41,11 @@ namespace AI
 
         public override void Tick(AgentBehaviour agent)
         {
-            if (_condition)
-                performAction(agent);
+            agent.cooldown--;
+
+            if (agent.cooldown <= 0)
+                if (_condition)
+                    performAction(agent);
         }
 
         public override void addAction(AgentBehaviour agent, int index)

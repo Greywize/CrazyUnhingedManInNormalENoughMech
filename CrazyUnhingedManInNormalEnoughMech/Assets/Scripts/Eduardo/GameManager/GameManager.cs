@@ -1,15 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using RPGelements;
 using UnityEngine.SceneManagement;
 using AI;
 
-[ExecuteAlways]
+//[ExecuteAlways]
 public class GameManager : MonoBehaviour
 {
     #region PUBLIC MEMBERS 
-    public PlayerMech player;
+  //  public PlayerMech player;
   // [SerializeField] public List<AgentBehaviour> agents;
     public AgentBehaviour[] AllAgents;
 
@@ -23,10 +22,10 @@ public class GameManager : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.DrawLine(transform.position, player.transform.position);
+       // Gizmos.DrawLine(transform.position, player.transform.position);
 
-        foreach (AgentBehaviour agent in AllAgents)
-            Gizmos.DrawLine(transform.position, agent.transform.position);
+/*        foreach (AgentBehaviour agent in AllAgents)
+            Gizmos.DrawLine(transform.position, agent.transform.position);*/
     }
 
     private void Awake()
@@ -55,11 +54,11 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void GameOver()
     {
-        if(player.currentHealth <= 0)
+      /*  if(player.currentHealth <= 0)
         {
             // SceneManager.LoadSceneAsync(2);
             Debug.Log($"Player has died : Method not implemented");
-        }
+        }*/
     }
 
     #endregion

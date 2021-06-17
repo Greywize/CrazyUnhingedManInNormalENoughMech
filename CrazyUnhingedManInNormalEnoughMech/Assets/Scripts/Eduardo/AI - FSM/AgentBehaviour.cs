@@ -11,7 +11,7 @@ namespace AI
     /// Artificial behavioural unit
     /// Finite State Machine
     /// </summary>
-    [RequireComponent(typeof(SphereCollider), typeof(Animator))]
+    [RequireComponent(typeof(SphereCollider), typeof(Animator), typeof(CharStats))]
     public class AgentBehaviour : MonoBehaviour
     {
         #region CONTRUCTOR
@@ -36,7 +36,7 @@ namespace AI
         public AgentBehaviour agent;
 
         [Space(15)] [Header("STATE")] 
-        public float timer;
+        public float cooldown;
         public AgentState defaultState;
         public int currentTransition;
         public AgentState currState;
@@ -295,12 +295,12 @@ namespace AI
         /// <param name="countdown"></param>
         public void resetBehaviour(AgentBehaviour agent, float countdown)
         {
-            agent.timer -= Time.deltaTime;
+            agent.cooldown -= Time.deltaTime;
 
-            if (agent.timer <= 0f)
+            if (agent.cooldown <= 0f)
             {
                 //  agent.currentTransition++;
-                agent.timer = countdown;
+                agent.cooldown = countdown;
             }
         }
 

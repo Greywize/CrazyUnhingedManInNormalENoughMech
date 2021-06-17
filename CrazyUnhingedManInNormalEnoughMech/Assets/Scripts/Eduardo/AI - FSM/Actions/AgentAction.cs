@@ -14,6 +14,7 @@ namespace AI
         [SerializeField] protected Animator _animator;
         [SerializeField] protected float _cooldown;
         [SerializeField] protected Color _color = Color.white;
+        [SerializeField] protected CharStats target;
 
         public abstract void performAction(AgentBehaviour agent, AgentBehaviour target);
 
