@@ -367,10 +367,7 @@ public class Player : MonoBehaviour
 #if !UNITY_EDITOR
         velocity += touchpad.y * transform.forward * dashCancel * touchpad.y * speed;
 #else
-        if (Input.GetAxis("Vertical") > deadzone)
-        {
-            velocity += transform.forward * dashCancel * Input.GetAxis("Vertical") * speed;
-        }
+        velocity += transform.forward * dashCancel * Input.GetAxis("Vertical") * speed;
 #endif
         velocity.y = cc.isGrounded ? 0 : -gravity;
         cc.Move(velocity * Time.deltaTime);

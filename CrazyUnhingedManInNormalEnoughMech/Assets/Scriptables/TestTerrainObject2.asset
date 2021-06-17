@@ -15,4 +15,4 @@ MonoBehaviour:
   model: {fileID: -927199367670048503, guid: d173d7e666137f44789187d83f5d6a1e, type: 3}
   heightOffset: 0.5
   scale: 50
-  spawnChance: 0.15
+  spawnChance: 0.02

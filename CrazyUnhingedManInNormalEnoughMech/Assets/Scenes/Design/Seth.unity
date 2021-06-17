@@ -600,6 +600,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &946837612 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5609610114444910117, guid: 1ff23f8baf9891a49a2a656e47a4dba1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1189098499}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1066069093
 GameObject:
   m_ObjectHideFlags: 0
@@ -899,6 +905,11 @@ PrefabInstance:
       propertyPath: terrainGen
       value: 
       objectReference: {fileID: 1779368363}
+    - target: {fileID: 5609610115248558550, guid: 1ff23f8baf9891a49a2a656e47a4dba1,
+        type: 3}
+      propertyPath: loadingPanel
+      value: 
+      objectReference: {fileID: 946837612}
     - target: {fileID: 5609610115503875230, guid: 1ff23f8baf9891a49a2a656e47a4dba1,
         type: 3}
       propertyPath: m_AnchorMin.y

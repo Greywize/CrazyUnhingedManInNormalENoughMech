@@ -236,27 +236,7 @@ namespace Zacks.Terrain
                         gradient.Evaluate(perlin)
                         );
 
-                    float randomSpawn = Random.Range(0, spawnChance);
-                    float runningSpawn = 0f;
-                    bool spawned = false;
-
-                    foreach (TerrainObject TO in terrainObjects)
-                    {
-                        if (!spawned)
-                        {
-                            runningSpawn += TO.spawnChance;
-
-                            if (randomSpawn < runningSpawn)
-                            {
-                                GameObject terrainObj = Instantiate(TO.model, transform);
-                                terrainObj.transform.up = Vector3.up;
-                                terrainObj.transform.localScale = new Vector3(TO.scale, TO.scale, TO.scale);
-                                terrainObj.transform.position += new Vector3(pos.x, pos.y + TO.heightOffset, pos.z);
-                                spawned = true;
-                            }
-                        }
-                    }
-
+                    SpawnRandomObjects(pos);
                     m_cubes[x, z] = pos;
                     perlinVals[x, z] = perlin;
                 }
@@ -303,7 +283,6 @@ namespace Zacks.Terrain
                                 Vector3.right * cubeScale,
                                 -Vector3.up * (m_cubes[x, y].y - m_cubes[x, y + 1].y) + (cubeDistance * Vector3.forward),
                                 gradient.Evaluate(perlinVals[x, y]));
-
                         }
 
 
@@ -455,6 +434,30 @@ namespace Zacks.Terrain
         {
             Vector2Int gridPos = WorldToGrid(pos);
             return GridToWorld(gridPos);
+        }
+
+        void SpawnRandomObjects(Vector3 position)
+        {
+            float randomSpawn = Random.Range(0, spawnChance);
+            float runningSpawn = 0f;
+            bool spawned = false;
+
+            foreach (TerrainObject TO in terrainObjects)
+            {
+                if (!spawned)
+                {
+                    runningSpawn += TO.spawnChance;
+
+                    if (randomSpawn < runningSpawn)
+                    {
+                        GameObject terrainObj = Instantiate(TO.model, transform);
+                        terrainObj.transform.up = Vector3.up;
+                        terrainObj.transform.localScale = new Vector3(TO.scale, TO.scale, TO.scale);
+                        terrainObj.transform.position += new Vector3(position.x, position.y + TO.heightOffset, position.z);
+                        spawned = true;
+                    }
+                }
+            }
         }
     }
 }

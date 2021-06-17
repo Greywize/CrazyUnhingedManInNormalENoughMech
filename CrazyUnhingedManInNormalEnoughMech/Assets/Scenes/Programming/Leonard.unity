@@ -538,6 +538,12 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &872582541 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5609610114444910117, guid: 1ff23f8baf9891a49a2a656e47a4dba1,
+    type: 3}
+  m_PrefabInstance: {fileID: 5609610115220981664}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &895854969 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7713970027734802428, guid: e7d7d9c90946dec47b7f5fbd3a1b2b56,
@@ -892,7 +898,7 @@ PrefabInstance:
     - target: {fileID: 823780796143150319, guid: e7d7d9c90946dec47b7f5fbd3a1b2b56,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -200
+      value: -1000
       objectReference: {fileID: 0}
     - target: {fileID: 823780796143150319, guid: e7d7d9c90946dec47b7f5fbd3a1b2b56,
         type: 3}
@@ -1397,6 +1403,11 @@ PrefabInstance:
       propertyPath: terrainGen
       value: 
       objectReference: {fileID: 199567434396309808}
+    - target: {fileID: 5609610115248558550, guid: 1ff23f8baf9891a49a2a656e47a4dba1,
+        type: 3}
+      propertyPath: loadingPanel
+      value: 
+      objectReference: {fileID: 872582541}
     - target: {fileID: 5609610115503875230, guid: 1ff23f8baf9891a49a2a656e47a4dba1,
         type: 3}
       propertyPath: m_AnchorMin.y
