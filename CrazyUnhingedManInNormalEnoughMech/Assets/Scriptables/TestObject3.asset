@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: TestObject3
+  m_EditorClassIdentifier: Assembly-CSharp::TerrainObject
+  model: {fileID: 5974728036912589419, guid: 20fec55b156db014f8797b8d6733890c, type: 3}
+  heightOffset: 0
+  scale: 1
+  spawnChance: 0.01
+  health: 100
